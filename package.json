@@ -1,0 +1,29 @@
+{
+  "name": "powergord",
+  "version": "1.0.0",
+  "description": "Music Theory app explaining a conceptual model for guitar",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jordanforbes/Power-Gord.git"
+  },
+  "keywords": [
+    "guitar",
+    "music",
+    "thoery",
+    "music",
+    "theory"
+  ],
+  "author": "Jordan Forbes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jordanforbes/Power-Gord/issues"
+  },
+  "homepage": "https://github.com/jordanforbes/Power-Gord#readme",
+  "dependencies": {
+    "bootstrap": "^5.2.1"
+  }
+}

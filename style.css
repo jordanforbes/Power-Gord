@@ -1,0 +1,17 @@
+.title{
+    text-align:center;
+}
+.fretboard{
+    text-align:center;
+}
+.strings{
+    background-color:aquamarine;
+}
+.note{
+    height:50px;
+    width:50px;
+}
+/*div guidelines*/
+div{
+    border:1px dotted rgb(219, 219, 219);
+}
