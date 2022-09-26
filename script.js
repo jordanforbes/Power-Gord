@@ -55,5 +55,4 @@ const noteBounder =(n)=>{
     }else{
         return n
     }
-
 }
