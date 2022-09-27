@@ -1,9 +1,9 @@
 // note lists
-intervals = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-notes = ["A", "A#", "B", "C","C#", "D","D#", "E", "F","F#", "G", "G#"]
+const intervals = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+const notes = ["A", "A#", "B", "C","C#", "D","D#", "E", "F","F#", "G", "G#"]
 
 //chord dictionary
-chords={
+const chords={
         "diad":{ //power chord
             "power":[0,7]
         },
@@ -23,35 +23,4 @@ chords={
     }
 
 
-const chordSearch=(chordInts)=>{
-    // console.log(chordInts)
-    chordArray=[] //final array of chord notes
-    // console.log("foo "+notes)
-    for (const i in chordInts){
-        let aNote= notes[chordInts[i]]
-        // console.log("a note "+aNote)
-        chordArray.push(aNote)
-    }
-    // console.log("foobar "+chordArray)
-    return chordArray
-};
-
-const reverseChordSearch=(chordNotes)=>{
-    chordArray=[] //returns array of intervals
-    for (const n in chordNotes){
-        chordArray.push(notes.indexOf(chordNotes[n]))
-    }
-    return chordArray
-}
-
-
-module.exports = {chordSearch, reverseChordSearch}
-
-
-// console.log(reverseChordSearch(['A', 'E']))
-// console.log(chordSearch(chords["diad"]["power"])) //["A","E"]
-// chordSearch(chords["triad"]["major"])
-// chordSearch(chords["triad"]["minor"])
-// chordSearch(chords["triad"]["diminished"])
-// chordSearch(chords["seventh"]["diminished"])
-
+module.exports ={intervals, notes, chords}

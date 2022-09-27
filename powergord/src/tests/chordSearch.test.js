@@ -1,5 +1,5 @@
 // const reverseChordSearch = require('../noteLists');
-const cs = require('../noteLists')
+const cs = require('../chordSearch')
 
 //
 // const notes = ["A", "A#", "B", "C","C#", "D","D#", "E", "F","F#", "G", "G#"]
