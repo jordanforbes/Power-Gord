@@ -2,7 +2,7 @@
   "name": "powergord",
   "version": "1.0.0",
   "description": "Music Theory app explaining a conceptual model for guitar",
-  "main": "script.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/jordanforbes/Power-Gord#readme",
   "dependencies": {
-    "bootstrap": "^5.2.1"
+    "bootstrap": "^5.2.1",
+    "react": "^18.2.0"
   }
 }

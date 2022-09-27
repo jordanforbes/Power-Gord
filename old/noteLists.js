@@ -2,12 +2,12 @@
 intervals = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 notes = ["A", "A#", "B", "C","C#", "D","D#", "E", "F","F#", "G", "G#"]
 
-//chord lists
+//chord dictionary
 chords={
-        "diad":{
+        "diad":{ //power chord
             "power":[0,7]
-        }, //power chord
-        "triad":{ //major/minor triad chords
+        },
+        "triad":{ //triads
             "major":[0,4,7],
             "minor":[0,3,7],
             "augmented":[0,4,8],
@@ -20,7 +20,6 @@ chords={
             "minorflat5":[0,3,6,10],
             "diminished":[0,3,6,9]
         }
-
     }
 
 // console.log(notes[0],notes[7])
@@ -33,6 +32,7 @@ const chordSearch=(chordInts)=>{
     }
 };
 
+chordSearch(chords["diad"]["power"])
 chordSearch(chords["triad"]["major"])
 chordSearch(chords["triad"]["minor"])
 chordSearch(chords["triad"]["diminished"])
