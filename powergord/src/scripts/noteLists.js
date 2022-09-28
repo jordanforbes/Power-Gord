@@ -22,5 +22,8 @@ const chords={
         }
     }
 
+const modes = {
+    "aeolian":[0,2,3,5,7,8,10]
+}
 
-module.exports ={intervals, notes, chords}
+module.exports ={intervals, notes, modes, chords}
