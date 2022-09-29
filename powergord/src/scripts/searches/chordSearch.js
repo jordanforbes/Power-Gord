@@ -1,4 +1,4 @@
-const nl = require('../noteLists')
+const nl = require('./noteLists')
 
 
 const chordSearch=(chordInts)=>{
