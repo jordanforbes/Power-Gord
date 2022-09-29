@@ -5,12 +5,11 @@ const ms = require('./modeSearch')
 // does either a modeSearch or reverseModeSearch based on whether notes or intervals are inserted
 const superModeSearch = (modeInts) => {
     if (areNotes(modeInts) === true){
-        console.log('super reverse modesearch')
+        // console.log('super reverse modesearch')
         let m = ms.reverseModeSearch(modeInts)
         return m
     } else{
-        console.log("mode "+modeInts
-        )
+        // console.log("mode "+modeInts)
         let m = ms.modeSearch(modeInts)
         console.log('super modesearch '+m)
         return m
