@@ -1,28 +1,25 @@
-
-
-//notes
-var notes= ["c", "cs", "d", "ds", "e", "f", "fs", "g", "gs", "a", "as", "b"]
-
-var notesForLookup = ["C", "CD", "D", "DE", "E", "F", "FG", "G", "GA", "A", "AB", "B"]
-
 gl = require('./groupList')
+sp = require('./scaleParse')
+
 const scale = gl.scale
 const chord = gl.chord
+const notes = gl.notes
 
-//converts the number strings to int
-const scaleParse=(modeName)=>{
-    numScale= []
-    for (i in scale[modeName]){
-        step = parseInt(i)
-        numScale.push(step)
-    }
-    return numScale
-}
+// const scaleParse = sp.scaleParse
+//converts the number strings to integers
+// const scaleParse=(modeName)=>{
+//     numScale= []
+//     for (i in scale[modeName]){
+//         step = parseInt(i)
+//         numScale.push(step)
+//     }
+//     return numScale
+// }
 
 //notes finder. Gets called for each note
 const noteFinder=(root,modeName,chord)=>{
 
-    let mode = scaleParse("ionian")
+    let mode = sp.scaleParse("ionian")
     let scaleArr=[]
 
     let rootNote = notes.indexOf(root)
@@ -32,31 +29,29 @@ const noteFinder=(root,modeName,chord)=>{
 
         element += rootNote;
 
-        if(element<12){
+    if(element<12){
         scaleArr.push(notes[element]);
         element=element - rootNote
 
-    }else if(element>=12){
-        element=element-12;
+    }else{
+        element-=12;
         scaleArr.push(notes[element]);
-        element=element+rootNote+12
+        element+=rootNote+12
 
     }
 
   });
     //chord notes finder
   if(chord != undefined){
-    var chordArr=[]
+        chordArr=[]
+        chord.forEach(function(element){
 
-
-    chord.forEach(function(element){
-
-      chordArr.push(scaleArr[element]);
-    })
-      finArr= chordArr
+            chordArr.push(scaleArr[element]);
+        })
+            return chordArr
     }else{
-      console.log(root.toUpperCase() + " "+ modeName + " scale")
-      console.log(scaleArr)
+        console.log(root.toUpperCase() + " "+ modeName + " scale")
+        console.log(scaleArr)
     }
 
 }
@@ -64,82 +59,41 @@ const noteFinder=(root,modeName,chord)=>{
 //chord list
 
 
-function Maj7(n){
-  finArr=[]
-  noteFinder(n,scale["ionian"],chord["sev"])
-  console.log(finArr)
-  return finArr
+const Maj7=(root)=>{
+    return noteFinder(root,scale["ionian"],chord["sev"])
 }
 
-function Maj(n){
-  finArr=[]
-  //return n.toUpperCase() + " Major"
-  noteFinder(n,scale["ionian"],chord["tri"])
-  console.log(finArr)
-  return finArr
+const Maj=(root)=>{
+    return noteFinder(root,scale["ionian"],chord["tri"])
 }
 
-function Min(n){
-  finArr=[]
-  noteFinder(n,scale["aeolian"],chord["tri"])
-  console.log(finArr)
-  return finArr
+const Min=(root)=>{
+    return noteFinder(root,scale["aeolian"],chord["tri"])
 }
 
-function AugTri(n){
-  finArr=[]
-  noteFinder(n,scale["lydian"],chord["augTri"])
-  console.log(finArr)
-  return finArr
+const AugTri=(root)=>{
+    return noteFinder(root,scale["lydian"],chord["augTri"])
 }
 
-function DimTri(n){
-  finArr=[]
-  noteFinder(n,scale["locrian"],chord["tri"])
-  console.log(finArr)
-  return finArr
+const DimTri=(root)=>{
+    return noteFinder(root,scale["locrian"],chord["tri"])
 }
 
-function fiveDyad(n){
-  console.log(n.toUpperCase() + " Power Chord")
-  noteFinder(n,scale["ionian"],chord["pow"])
+const fiveDyad=(root)=>{
+//   console.log(n.toUpperCase() + " Power Chord")
+    return noteFinder(root,scale["ionian"],chord["pow"])
 }
 
-function findNoteIndex(n){
-  //console.log(n)
-  thisChord= []
-
-  for(i=0;i<n.length;i++){
-    d= notes.indexOf(n[i])
-    thisChord.push(d)
-  }
-
-  //console.log(thisChord)
-  return thisChord
-
-}
-
-function findModeIndex(n){
-  findNoteIndex(n)
-  console.log(thisChord)
-  console.log(scale[0])
-  for(i=0; i<8; i++){
-
-  }
-
-}
-
-//findModeIndex(["c","e","g"])
-
-function chordFinder(n){
-  findNoteIndex(n)
-}
 
 noteFinder("e", "ionian")
 Maj7("c")
 Maj("c")
-AugTri("c")
-DimTri("c")
+Min("f")
+console.log(
+    "c augtri: "+AugTri("c"),
+    "/c dimtri: "+DimTri("c")
+)
+
 fiveDyad("c")
 
 
@@ -168,3 +122,33 @@ fiveDyad("c")
 // var augTri= chord[1]
 // var sev = chord[2]
 // var fi = chord[3]
+
+// function findModeIndex(n){
+//   findNoteIndex(n)
+//   console.log(thisChord)
+//   console.log(scale[0])
+//   for(i=0; i<8; i++){
+
+//   }
+
+// }
+
+//findModeIndex(["c","e","g"])
+
+// function chordFinder(n){
+//   findNoteIndex(n)
+// }
+
+// function findNoteIndex(n){
+//     //console.log(n)
+//     thisChord= []
+
+//     for(i=0;i<n.length;i++){
+//       d= notes.indexOf(n[i])
+//       thisChord.push(d)
+//     }
+
+//     //console.log(thisChord)
+//     return thisChord
+
+//   }

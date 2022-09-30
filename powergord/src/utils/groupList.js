@@ -1,4 +1,6 @@
-// note List
+
+//notes
+const notes= ["c", "cs", "d", "ds", "e", "f", "fs", "g", "gs", "a", "as", "b"]
 
 const scale= {
     "ionian":[0,2,4,5,7,9,11],
@@ -17,4 +19,4 @@ const chord= {
     "pow":[0,4]   //power chord (5 chord)
 }
 
-module.exports={scale, chord}
+module.exports={scale, chord, notes}
