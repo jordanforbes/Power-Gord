@@ -19,16 +19,16 @@ const noteDict={
 
     // mode dictionary
     "modes":{
-        "major":{//modes   //scale degrees
-            "ionian":0,     //1
-            "lydian":3,      //4
-            "mixolydian":4   //5
-        },
+        "major":{//modes                 //scale degrees
+            "ionian":[0,2,4,5,7,9,11],      //1
+            "lydian":[0,2,4,6,7,9,11],      //4
+            "mixolydian":[0,2,4,5,7,9,10]   //5
+            },
         "minor":{//modes
-            "dorian":1,      //2
-            "phrygian":2,    //3
-            "aeolian":5,     //6
-            "locrian":6      //7
+            "dorian":[0,2,3,5,7,9,10],      //2
+            "phrygian":[0,1,3,5,7,8,10],    //3
+            "aeolian":[0,2,3,5,7,9,10],     //6
+            "locrian":[0,1,3,5,6,8,10]      //7
         }
     },
 
@@ -74,15 +74,15 @@ module.exports ={noteDict}
 
 //mode dictionary
 // const scales = {
-//     "major":{//modes                 //scale degrees
-//         "ionian":[0,2,4,5,7,9,11],      //1
-//         "lydian":[0,2,4,6,7,9,11],      //4
-//         "mixolydian":[0,2,4,5,7,9,10]   //5
-//     },
-//     "minor":{//modes
-//         "dorian":[0,2,3,5,7,9,10],      //2
-//         "phrygian":[0,1,3,5,7,8,10],    //3
-//         "aeolian":[0,2,3,5,7,9,10],     //6
-//         "locrian":[0,1,3,5,6,8,10]      //7
-//     }
+    // "major":{//modes                 //scale degrees
+    //     "ionian":[0,2,4,5,7,9,11],      //1
+    //     "lydian":[0,2,4,6,7,9,11],      //4
+    //     "mixolydian":[0,2,4,5,7,9,10]   //5
+    // },
+    // "minor":{//modes
+    //     "dorian":[0,2,3,5,7,9,10],      //2
+    //     "phrygian":[0,1,3,5,7,8,10],    //3
+    //     "aeolian":[0,2,3,5,7,9,10],     //6
+    //     "locrian":[0,1,3,5,6,8,10]      //7
+    // }
 // }
