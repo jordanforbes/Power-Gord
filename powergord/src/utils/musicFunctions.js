@@ -5,60 +5,10 @@ const scale = gl.scale
 const chord = gl.chord
 const notes = gl.notes
 
-// const scaleParse = sp.scaleParse
-//converts the number strings to integers
-// const scaleParse=(modeName)=>{
-//     numScale= []
-//     for (i in scale[modeName]){
-//         step = parseInt(i)
-//         numScale.push(step)
-//     }
-//     return numScale
-// }
-
-//notes finder. Gets called for each note
-const noteFinder=(root,modeName,chord)=>{
-
-    let mode = sp.scaleParse("ionian")
-    let scaleArr=[]
-
-    let rootNote = notes.indexOf(root)
-
-    //mode notes finder
-    mode.forEach((element) => {
-
-        element += rootNote;
-
-    if(element<12){
-        scaleArr.push(notes[element]);
-        element=element - rootNote
-
-    }else{
-        element-=12;
-        scaleArr.push(notes[element]);
-        element+=rootNote+12
-
-    }
-
-  });
-    //chord notes finder
-  if(chord != undefined){
-        chordArr=[]
-        chord.forEach(function(element){
-
-            chordArr.push(scaleArr[element]);
-        })
-            return chordArr
-    }else{
-        console.log(root.toUpperCase() + " "+ modeName + " scale")
-        console.log(scaleArr)
-    }
-
-}
+noteFinder = require('./noteFinder').noteFinder
 
 //chord list
-
-
+////////////////////////////////////////////////////////////////
 const Maj7=(root)=>{
     return noteFinder(root,scale["ionian"],chord["sev"])
 }
@@ -85,6 +35,7 @@ const fiveDyad=(root)=>{
 }
 
 
+////////////////////////////////////////////////////////////////
 noteFinder("e", "ionian")
 Maj7("c")
 Maj("c")
