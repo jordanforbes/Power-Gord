@@ -3,18 +3,14 @@
 //2. the chords and scales will change the kind they are based on their modes
 ////////////////////////////////////////////////////////////////
 
-// note lists
-const intervals = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-const notes = ["A", "AB", "B", "C","CD", "D","DE", "E", "F","FG", "G", "GA"]
-
-
 
 //full dictionary
 const noteDict={
     "notes":["A", "AB", "B", "C","CD", "D","DE", "E", "F","FG", "G", "GA"],
     "scales":{
         "chromatic":[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-        "diatonic":[0,2,4,5,7,9,11]
+        "diatonic":[0,2,4,5,7,9,11],
+        "harmonic":[0,2,4,5,7,10,11]
     },
 
     // mode dictionary
@@ -45,7 +41,9 @@ const noteDict={
         "quadrad":{
             "sev":[0,2,4,6]
         },
-        "pentatonic":{"minor":[0,2,3,5,6]}
+        "pentatonic":{
+            "minor":[0,2,3,5,6]
+        }
     }
 }
 module.exports ={noteDict}

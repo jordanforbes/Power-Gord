@@ -25,9 +25,7 @@ const rootSelect = rs.rootSelect
 // console.log(rootSelect("FG",notes))
 
 const cKey = rootSelect("C",notes)[0]
-console.log(cKey)
 diatonic = scales["diatonic"]
-console.log("bar "+diatonic)
 
 
 const noteGrouper =(key,group)=>{
@@ -41,7 +39,7 @@ const noteGrouper =(key,group)=>{
 }
 
 
-cDiatonic = noteGrouper("C",diatonic)
+cDiatonic = noteGrouper("E",diatonic)
 cMinorScale = noteGrouper(cKey, modes["minor"]["aeolian"])
 cMajorChord = noteGrouper(cDiatonic,chords["triad"]["majMin"])
 console.log(cMinorScale)

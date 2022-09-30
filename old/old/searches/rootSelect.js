@@ -1,9 +1,8 @@
-const nl = require('./noteLists')
-
+//////////////////////////////////////////////////////////////
 // returns array with the notes in order starting from the key's root note
+//////////////////////////////////////////////////////////////
 
-//chromatic scale of all notes
-// const chromaScale = nl.noteDict["notes"]
+const nl = require('./noteLists')
 
 let rootSelect=(root="C")=>{
     let chroma = nl.noteDict["notes"] //secondary initial array
