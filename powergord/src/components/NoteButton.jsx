@@ -21,6 +21,7 @@ const NoteButton=(props)=>{
             onClick={handleClick}
             style={{
                 display:'block',
+                color:'black',
                 backgroundColor: isActive? "yellow" : "white"
             }}
         >

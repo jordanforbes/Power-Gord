@@ -5,10 +5,18 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import NoteButton from './NoteButton';
 
 const NoteBar=()=>{
+    const intervals= ['R','m2','M2','m3','M3','P4','A4','P5','m6','M6','m7','M7']
+
+    const fretboardBuilder =()=>{
+        for(let i in intervals){
+            return <NoteButton pos={intervals[i]} />
+        }
+    }
     return(
         <div className="note-bar">
-            <div className="row">
-            <ButtonGroup>
+
+            <ButtonGroup vertical>
+                {fretboardBuilder()}
                 <NoteButton pos="Root" />
                 <NoteButton pos="min2" />
                 <NoteButton pos="Maj2" />
@@ -22,7 +30,7 @@ const NoteBar=()=>{
                 <NoteButton pos="min7" />
                 <NoteButton pos="Maj7" />
             </ButtonGroup>
-         </div>
+
     </div>
     )
 
