@@ -15,18 +15,18 @@
     <body>
         <div class="container">
             <div class="fretboard">
-                <div class="note" pos="r">E</div>
-                <div class="note" pos="m2">F</div>
-                <div class="note" pos="M2">FG</div>
-                <div class="note" pos="m3">G</div>
-                <div class="note" pos="M3">GA</div>
-                <div class="note" pos="p4">A</div>
-                <div class="note" pos="A4">AB</div>
-                <div class="note" pos="p5">B</div>
-                <div class="note" pos="m6">C</div>
-                <div class="note" pos="M6">CD</div>
-                <div class="note" pos="m7">D</div>
-                <div class="note" pos="M7">DE</div>
+                <div class="note" pos="r" num="0">E</div>
+                <div class="note" pos="m2" num="1">F</div>
+                <div class="note" pos="M2" num="2">FG</div>
+                <div class="note" pos="m3" num="3">G</div>
+                <div class="note" pos="M3" num="4">GA</div>
+                <div class="note" pos="p4" num="5">A</div>
+                <div class="note" pos="A4" num="6">AB</div>
+                <div class="note" pos="p5" num="7">B</div>
+                <div class="note" pos="m6" num="8">C</div>
+                <div class="note" pos="M6" num="9">CD</div>
+                <div class="note" pos="m7" num="10">D</div>
+                <div class="note" pos="M7" num="11">DE</div>
             </div>
             <div class="groupNotes">
 
@@ -40,6 +40,7 @@
         <script>
             $(document).ready(function () {
                 $('.note').click(function () {
+                    $(this).css({"background-color":"yellow"});
                     let thisNote = $(this).html()
                     let position = $(this).attr('pos')
                     console.log(thisNote);
