@@ -1,19 +1,18 @@
-notes= ["c", "cs", "d", "ds", "e", "f", "fs", "g", "gs", "a","as","b"]
+notes= ["c", "cd", "d", "de", "e", "f", "fg", "g", "ga", "a","ab","b"]
 
 intervals = {
-    0:"Perfect 1",
-    1:"minor 2",
-    2:"Major 2",
-    3:"minor 3",
-    4:"Major 3",
-    5:"Perfect 4",
-    6:"Augmented 4",
-    7:"Perfect 5",
-    8:"minor 6",
-    9:"Major 6",
-    10:"minor 7",
-    11:"Major 7",
-    12:"Perfect 8"
+    0:"P1",
+    1:"m2",
+    2:"M2",
+    3:"m3",
+    4:"M3",
+    5:"P4",
+    6:"A4",
+    7:"P5",
+    8:"m6",
+    9:"M6",
+    10:"m7",
+    11:"M7"
 }
 
 const keyChange = (root)=>{
@@ -46,4 +45,19 @@ const findInterval = (n1,n2)=>{
 // n = Math.abs(notes.indexOf("c")-notes.indexOf("f"))
 
 // console.log(intervals[n])
-module.exports = {findInterval};
+module.exports = findInterval
+
+
+//////////////////////////////////////////////////////////////
+//to do
+//inputs: ['c','e','g'] =['C Major Triad','P1,M3,P5']
+//
+//////////////////////////////////////////////////////////////
+//alt:
+//{'name':['C', 'Major', 'Triad'],
+// 0:['c','R'],
+// 3:['e','M3'],
+// 5:['g','P5']
+//}
+//
+//

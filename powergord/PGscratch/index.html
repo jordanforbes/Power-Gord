@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="./style.css">
     </head>
     <body>
+        <div id="root"></div>
         <div class="container">
             <div class="fretboard">
                 <div class="note" pos="r" num="0">E</div>
@@ -36,17 +37,7 @@
   src="https://code.jquery.com/jquery-3.6.1.min.js"
   integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
   crossorigin="anonymous"></script>
-        <script src="./script.js" async defer></script>
-        <script>
-            $(document).ready(function () {
-                $('.note').click(function () {
-                    $(this).css({"background-color":"yellow"});
-                    let thisNote = $(this).html()
-                    let position = $(this).attr('pos')
-                    console.log(thisNote);
-                    $('.groupNotes').append("<p>"+thisNote +"("+position+")</p> ")
-            });
-        })
-        </script>
+        <script src="./intervalFinder.js" async defer></script>
+        <script src = "./ui.js"></script>
     </body>
 </html>

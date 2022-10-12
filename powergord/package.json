@@ -7,6 +7,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.2.1",
+    "pug": "^3.0.2",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
@@ -39,6 +40,8 @@
   },
   "devDependencies": {
     "jest": "^23.6.0",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.1.3"
   }
 }

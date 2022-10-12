@@ -6,12 +6,13 @@ const NoteButton=(props)=>{
     const [isActive, setIsActive] = useState(false)
 
     const sendNote =()=>{
-        console.log(props.pos)
+        console.log(props.note)
     };
 
     const handleClick=()=>{
         setIsActive(current => !current);
-        sendNote();
+        console.log(props.pos)
+        // {props.setSelectedNotes(props.pos)}
     }
 
     return(
