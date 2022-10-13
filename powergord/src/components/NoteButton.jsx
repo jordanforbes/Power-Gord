@@ -11,7 +11,8 @@ const NoteButton=(props)=>{
 
     const handleClick=()=>{
         setIsActive(current => !current);
-        console.log(props.pos)
+        props.setNotes(props.interval)
+        console.log(props.interval)
         // {props.setSelectedNotes(props.pos)}
     }
 
@@ -26,9 +27,9 @@ const NoteButton=(props)=>{
                 backgroundColor: isActive? "yellow" : "white"
             }}
         >
-            {props.pos}
+            {props.thisNote}-{props.position}
         </Button>
     )
-}
+  }
 
 export default NoteButton;

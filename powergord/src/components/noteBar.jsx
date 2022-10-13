@@ -7,33 +7,34 @@ import NoteButton from './NoteButton';
 const NoteBar=(props)=>{
     const intervals= ['R','m2','M2','m3','M3','P4','A4','P5','m6','M6','m7','M7']
 
-    const fretboardBuilder =()=>{
-        for(let i in intervals){
-            return <NoteButton pos={intervals[i]} />
-        }
-    }
+    // const fretboardBuilder =()=>{
+    //     for(let i in intervals){
+    //         return <NoteButton pos={intervals[i]} setNotes={props.setNotes}/>
+    //     }
+    // }
+
     return(
         <div className="note-bar">
 
             <ButtonGroup vertical>
-                {fretboardBuilder()}
-                <NoteButton pos="Root" />
-                <NoteButton pos="min2" />
-                <NoteButton pos="Maj2" />
-                <NoteButton pos="min3" />
-                <NoteButton pos="Maj3" />
-                <NoteButton pos="Per4" />
-                <NoteButton pos="Aug4" />
-                <NoteButton pos="Per5" />
-                <NoteButton pos="min6" />
-                <NoteButton pos="Maj6" />
-                <NoteButton pos="min7" />
-                <NoteButton pos="Maj7" />
+                {/* {fretboardBuilder()} */}
+                <NoteButton setNotes={props.setNotes} position={0} thisNote="E" interval="R" />
+                <NoteButton setNotes={props.setNotes} position={1} thisNote="F" interval="m2" />
+                <NoteButton setNotes={props.setNotes} position={2} thisNote="F#" interval="M2" />
+                <NoteButton setNotes={props.setNotes} position={3} thisNote="G" interval="m3" />
+                <NoteButton setNotes={props.setNotes} position={4} thisNote="G#" interval="M3" />
+                <NoteButton setNotes={props.setNotes} position={5} thisNote="A" interval="P4" />
+                <NoteButton setNotes={props.setNotes} position={6} thisNote="A#" interval="A4" />
+                <NoteButton setNotes={props.setNotes} position={7} thisNote="B" interval="P5" />
+                <NoteButton setNotes={props.setNotes} position={8} thisNote="C" interval="m6" />
+                <NoteButton setNotes={props.setNotes} position={9} thisNote="C#" interval="M6" />
+                <NoteButton setNotes={props.setNotes} position={10} thisNote="D" interval="m7" />
+                <NoteButton setNotes={props.setNotes} position={11} thisNote="D#" interval="M7" />
             </ButtonGroup>
 
     </div>
     )
 
-}
+  }
 
 export default NoteBar;

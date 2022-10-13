@@ -5,7 +5,8 @@ import {Button} from 'react-bootstrap';
 const NoteDisplay=(props)=>{
     return (
         <div>
-            noteDisplay
+            <p>notes</p>
+            <p>{props.selectedNotes}</p>
         </div>
     )
 }
