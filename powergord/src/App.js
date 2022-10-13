@@ -2,18 +2,23 @@ import './App.css';
 import React, {useState, useEffect} from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
+
+// import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 
 import NoteBar from './components/NoteBar';
 import PowerHeader from './components/PowerHeader';
 import NoteDisplay from './components/NoteDisplay';
-import NoteButton from './components/NoteButton';
+// import NoteButton from './components/NoteButton';
+const { Chord } = require("@tonaljs/tonal");
 
-import { Button } from 'react-bootstrap';
+// import { Button } from 'reat-bootstrap';
+
+// triad builder
+
 
 const App=()=>{
-  const [selectedNotes, setSelectedNotes]= useState('')
+  const [selectedNotes, setSelectedNotes]= useState([])
   const [notes, setNotes]= useState('')
 
   const changeDisplay=()=>{
@@ -25,11 +30,17 @@ const App=()=>{
   }
 
   useEffect(()=>{
-    setSelectedNotes(prevNote => prevNote + ' '+notes)
-    console.log(notes)
+    setSelectedNotes(prevNote => [...prevNote, notes])
+    console.log(selectedNotes)
+    console.log(`App.js ${Chord.detect(selectedNotes)}`)
     changeDisplay()
   },[notes])
 
+
+  //init noteArr
+  // useEffect(()=>{
+  //   setNotes(n=>[...n,'C'])
+  // },[])
   return (
     <div className="App">
       <div className="container">
@@ -42,7 +53,8 @@ const App=()=>{
             <div className="col-md-1">
 
               <NoteBar
-                onClick={changeDisplay}
+                // onClick={changeDisplay}
+                notes={notes}
                 setNotes={setNotes}
               />
             </div>

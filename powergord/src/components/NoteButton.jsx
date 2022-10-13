@@ -5,14 +5,12 @@ import {Button} from 'react-bootstrap';
 const NoteButton=(props)=>{
     const [isActive, setIsActive] = useState(false)
 
-    const sendNote =()=>{
-        console.log(props.note)
-    };
-
     const handleClick=()=>{
-        setIsActive(current => !current);
-        props.setNotes(props.interval)
-        console.log(props.interval)
+        props.setNotes(props.thisNote)
+        console.log(`handle click noteButton.js ${props.notes}`)
+        // console.log(`handle click noteButton.js ${props.selectedNotes}`)
+        // setIsActive(current => !current);
+        // console.log(props.notes)
         // {props.setSelectedNotes(props.pos)}
     }
 
