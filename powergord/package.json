@@ -12,7 +12,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "^2.1.3",
+    "react-scripts": "^4.0.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -40,9 +40,9 @@
     ]
   },
   "devDependencies": {
-    "jest": "^23.6.0",
+    "autoprefixer": "^9.8.8",
+    "install": "^0.13.0",
     "nodemon": "^2.0.20",
-    "postcss": "^8.4.14",
-    "tailwindcss": "^3.1.3"
+    "npm": "^8.19.2"
   }
 }

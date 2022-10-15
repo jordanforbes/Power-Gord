@@ -1,23 +1,25 @@
 import React from 'react';
-import {useState} from 'react';
-import {Button} from 'react-bootstrap';
+import { useState } from 'react';
+import { Button } from 'react-bootstrap';
 
 const NoteButton=(props)=>{
     const [isActive, setIsActive] = useState(false)
 
+    // console.log('noteButton load')
+
     const handleClick=()=>{
-        props.setNotes(props.thisNote)
+        props.setSelectedNotes(props.thisNote)
         console.log(`handle click noteButton.js ${props.notes}`)
-        // console.log(`handle click noteButton.js ${props.selectedNotes}`)
-        // setIsActive(current => !current);
-        // console.log(props.notes)
-        // {props.setSelectedNotes(props.pos)}
+
+        setIsActive(current => !current);
+        console.log(props.notes)
     }
+
 
     return(
         <Button
             type="button"
-            className="button btn-primary"
+            className="button"
             onClick={handleClick}
             style={{
                 display:'block',
@@ -25,7 +27,7 @@ const NoteButton=(props)=>{
                 backgroundColor: isActive? "yellow" : "white"
             }}
         >
-            {props.thisNote}-{props.position}
+            {props.thisNote}
         </Button>
     )
   }
