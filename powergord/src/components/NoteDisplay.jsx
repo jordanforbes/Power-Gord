@@ -6,9 +6,9 @@ const NoteDisplay=(props)=>{
 
 
     const showNotes =()=>{
-        console.log('showNotes')
+        console.log('NoteDisplay.jsx showNotes')
         let selNotes = props.selectedNotes;
-
+        console.log(selNotes)
         return selNotes.map(n => (
             <span
                 className='badge'
@@ -18,7 +18,7 @@ const NoteDisplay=(props)=>{
 
 
     return (
-        <div>
+        <div className="outline">
             {showNotes}
         </div>
     )

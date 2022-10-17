@@ -7,7 +7,6 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@tonaljs/tonal": "^4.6.5",
-    "bootstrap": "^5.2.1",
     "pug": "^3.0.2",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
@@ -41,6 +40,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.8.8",
+    "bootstrap": "^5.2.2",
     "install": "^0.13.0",
     "nodemon": "^2.0.20",
     "npm": "^8.19.2"
