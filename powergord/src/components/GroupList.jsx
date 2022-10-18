@@ -1,10 +1,15 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
-import { Scale } from '@tonaljs/tonal'
+import GroupingBtn from './GroupingBtn';
+import { Chord, Scale, ChordType, ScaleType } from '@tonaljs/tonal'
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-const GroupList =()=>{
+const GroupList =(props)=>{
+    const handleClick=()=>{
+        console.log('!!!!!clicked!')
+    }
 
     //capitalize first letter in each word
     const capitalizer = (entry)=>{
@@ -16,33 +21,38 @@ const GroupList =()=>{
         for(let i= 0; i< entryArr.length; i++){
             fString += capitalizer(entryArr[i])+" "
         }
-        return fString
+        return(<span>{fString}</span>)
     }
 
-    //Loops through all scale lists
-    const allScales =()=>{
-        let scaleArr = Scale.names()
-        return scaleArr.map(s =>(
+    //Loops through all props.group lists
+    const allGroupings =()=>{
+        let groupArr
+        if(props.groupType === 'scales'){
+            groupArr = Scale.names()
+        }
+        if(props.groupType === 'chords'){
+            groupArr = ChordType.names()
+        }
+        return groupArr.map(s =>(
             <>
                 <tr className="scaleRow">
-                    {formatter(s)}
+                    <GroupingBtn name={s} />
                 </tr>
             </>
             )
         )
     }
     return(
-        <div className="overflow-auto scaleContainer text-left text-justify">
+        <>
+            <div className="overflow-auto scaleContainer text-left text-justify">
 
-            <Table striped bordered hover
-
-            >
-                <tbody>
-                    {allScales()}
-                </tbody>
-            </Table>
-
-        </div>
+                <Table striped bordered hover>
+                    <tbody>
+                        {allGroupings()}
+                    </tbody>
+                </Table>
+            </div>
+        </>
         )
 }
 

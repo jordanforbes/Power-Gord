@@ -12,12 +12,14 @@ const NoteButton=(props)=>{
     // console.log('noteButton load')
 
     const handleClick=()=>{
+        isActive ? activate(""):
         activate(props.thisNote)
     }
 
     const activate=(note)=>{
         setIsActive(current => !current);
         props.setNotes(note)
+        props.setSelectedRoot(note)
         console.log(`activate: ${props.thisNote}`)
     }
 
@@ -34,7 +36,7 @@ const NoteButton=(props)=>{
     return(
         <Button
             type="button"
-            className="btn btn-outline-light"
+            className="btn btn-outline-light noteButton"
             onClick={handleClick}
             style={{
                 display:'block',
