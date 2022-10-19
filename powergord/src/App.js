@@ -4,6 +4,7 @@ import { Chord, Scale, ChordType, ScaleType } from '@tonaljs/tonal'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
+
 // import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 
@@ -20,8 +21,8 @@ const App=()=>{
   const [selectedNotes, setSelectedNotes]= useState([])
   const [notes, setNotes]= useState('')
   const [selectedRoot, setSelectedRoot]= useState('')
-  const [selectedScale, setSelectedScale]= useState('major')
-  const [selectedChord, setSelectedChord]= useState('major')
+  const [selectedScale, setSelectedScale]= useState('')
+  const [selectedChord, setSelectedChord]= useState('')
   // const [currentChords, setCurrentChords] = useState([])
 
   const changeDisplay=(chordShow)=>{
@@ -47,7 +48,9 @@ const App=()=>{
         </div>
         <br />
         <div className="row">
-          <div className="col-md-1"></div>
+          <div className="col-md-1">
+            <figure id="fretboard"></figure>
+          </div>
           <div className="col-md-4">
           {/* fretboard */}
             <FretBoard
@@ -75,6 +78,8 @@ const App=()=>{
               </div>
                 <GroupList
                   groupType='scales'
+                  setSelectedChord={setSelectedChord}
+                  setSelectedScale={setSelectedScale}
                   selectedRoot = {selectedRoot}
                   selectedScale={selectedScale}
                   group={Scale}
@@ -85,6 +90,7 @@ const App=()=>{
                 <div className="row">
                   <NoteDisplay
                     groupType = 'chords'
+
                     selectedRoot = {selectedRoot}
                     selectedChord={selectedChord}
                     selectedNotes = {selectedNotes}
@@ -92,6 +98,8 @@ const App=()=>{
                 </div>
                 <GroupList
                   groupType='chords'
+                  setSelectedChord={setSelectedChord}
+                  setSelectedScale={setSelectedScale}
                   selectedRoot = {selectedRoot}
                   selectedScale={selectedScale}
                   group={ChordType}
