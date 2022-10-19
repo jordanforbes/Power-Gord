@@ -7,7 +7,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const GroupList =(props)=>{
+    const handleClick=()=>{
+        console.log('!!!!!clicked!')
+    }
 
+    //capitalize first letter in each word
+    const capitalizer = (entry)=>{
+        return entry.charAt(0).toUpperCase() + entry.slice(1).toLowerCase()
+    }
+    const formatter = (entry)=>{
+        let entryArr = entry.split(" ");
+        let fString = ''
+        for(let i= 0; i< entryArr.length; i++){
+            fString += capitalizer(entryArr[i])+" "
+        }
+        return(<span>{fString}</span>)
+    }
 
     //Loops through all props.group lists
     const allGroupings =()=>{
@@ -21,12 +36,7 @@ const GroupList =(props)=>{
         return groupArr.map(s =>(
             <>
                 <tr className="scaleRow">
-                    <GroupingBtn
-                        name={s}
-                        groupType={props.groupType}
-                        setSelectedScale={props.setSelectedScale}
-                        setSelectedChord={props.setSelectedChord}
-                    />
+                    <GroupingBtn name={s} />
                 </tr>
             </>
             )
