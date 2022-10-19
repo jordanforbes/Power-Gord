@@ -7,7 +7,7 @@ import { Scale } from '@tonaljs/tonal'
 //components
 import NoteButton from './NoteButton';
 
-const NoteBar=(props)=>{
+const FretBoard=(props)=>{
     // const intervals= ['R','m2','M2','m3','M3','P4','A4','P5','m6','M6','m7','M7']
     // const noteList = ['E','F','F#','G','G#','A','A#','B','C','C#','D','D#']
     const scaleRange = Scale.rangeOf('E chromatic')
@@ -24,6 +24,7 @@ const NoteBar=(props)=>{
         return scaleArray.map(n =>(
             <NoteButton
                 className="noteButton"
+                setSelectedRoot={props.setSelectedRoot}
                 setSelectedNotes ={props.setSelectedNotes}
                 notes={props.notes}
                 setNotes={props.setNotes}
@@ -34,6 +35,7 @@ const NoteBar=(props)=>{
 
     return(
         <div className="note-bar row">
+            <div className="col-md-4"></div>
             <div className="col-md-1 noteBar">
                 <ButtonGroup vertical>
                     {fretboardBuilder(lowEString)}
@@ -69,4 +71,4 @@ const NoteBar=(props)=>{
 
   }
 
-export default NoteBar;
+export default FretBoard;
