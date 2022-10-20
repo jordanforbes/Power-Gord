@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Table from 'react-bootstrap/Table';
 import GroupingBtn from './GroupingBtn';
 import { Chord, Scale, ChordType, ScaleType } from '@tonaljs/tonal'
@@ -7,9 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const GroupList =(props)=>{
-    const handleClick=()=>{
-        console.log('!!!!!clicked!')
-    }
+    // const [selected,setSelected] = useState('Egyptian')
 
     //capitalize first letter in each word
     const capitalizer = (entry)=>{
@@ -35,8 +33,17 @@ const GroupList =(props)=>{
         }
         return groupArr.map(s =>(
             <>
-                <tr className="scaleRow">
-                    <GroupingBtn name={s} />
+                <tr
+                    className="scaleRow"
+                  >
+                    <GroupingBtn
+                        groupType={props.groupType}
+                        selectedScale={props.selectedScale}
+                        selectedChord={props.selectedChord}
+                        setSelectedScale={props.setSelectedScale}
+                        setSelectedChord={props.setSelectedChord}
+                        name={s}
+                    />
                 </tr>
             </>
             )
@@ -46,7 +53,7 @@ const GroupList =(props)=>{
         <>
             <div className="overflow-auto scaleContainer text-left text-justify">
 
-                <Table striped bordered hover>
+                <Table bordered>
                     <tbody>
                         {allGroupings()}
                     </tbody>

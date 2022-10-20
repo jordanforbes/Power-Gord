@@ -4,21 +4,24 @@
 import { Chord, Scale, ChordType, ScaleType } from '@tonaljs/tonal'
 
 const NoteDisplay=(props)=>{
+    const formatter=(note) =>{
+        return note.slice(0,note.length-1)
+    }
 
     const showNotes =()=>{
+        let groupArr
         if(props.groupType === 'scales'){
-            let scaleArr = Scale.get(props.selectedRoot+' '+props.selectedScale).notes
-            return scaleArr.map(n => (
-                <span>{n} </span>
-            ))
+            groupArr = Scale.get(props.selectedRoot+' '+props.selectedScale).notes
+
         }
 
         if(props.groupType === 'chords'){
-            let scaleArr = Chord.get(props.selectedRoot+' '+props.selectedChord).notes
-            return scaleArr.map(n => (
-                <span>{n} </span>
-            ))
+            groupArr = Chord.get(props.selectedRoot+' '+props.selectedChord).notes
+
         }
+        return groupArr.map(n => (
+            <span>{formatter(n)} </span>
+        ))
 
     }
 

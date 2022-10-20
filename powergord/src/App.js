@@ -1,13 +1,14 @@
 import './App.css';
 import React, {useState, useEffect} from 'react';
 import { Chord, Scale, ChordType, ScaleType } from '@tonaljs/tonal'
+import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 // import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 
-import FretBoard from './components/FretBoard';
+import FretBoard from './components/FretBoard/FretBoard';
 import PowerHeader from './components/PowerHeader';
 // import NoteDisplay from './components/NoteDisplay';
 import GroupList from './components/GroupList';
@@ -20,24 +21,32 @@ const App=()=>{
   const [selectedNotes, setSelectedNotes]= useState([])
   const [notes, setNotes]= useState('')
   const [selectedRoot, setSelectedRoot]= useState('')
-  const [selectedScale, setSelectedScale]= useState('major')
-  const [selectedChord, setSelectedChord]= useState('major')
+  const [selectedScale, setSelectedScale]= useState('')
+  const [selectedChord, setSelectedChord]= useState('')
+  const [chordsOrScales,setChordsOrScales]= useState('scales')
   // const [currentChords, setCurrentChords] = useState([])
 
-  const changeDisplay=(chordShow)=>{
-      console.log(`chordShow: ${chordShow}`)
-      return [chordShow].map(c =>(
-          <>
-            {c}
-          </>
-        )
-      )
+  const showChords =()=>{
+    if(chordsOrScales === 'scales'){
+      chordsOrScales('chords')
+    }
+    if(chordsOrScales === 'chords'){
+      chordsOrScales('scales')
+    }
   }
 
-  // //right now it takes two clicks to work
-  // useEffect(()=>{
+  const showScales =()=>{
+    if(chordsOrScales === 'chords'){
+      chordsOrScales('scales')
+    }
+  }
 
-  // },[notes])
+
+  useEffect(()=>{
+    setSelectedRoot('E2')
+    setSelectedScale('major')
+    setSelectedChord('major')
+  },[])
 
   return (
     <div className="App">
@@ -53,8 +62,11 @@ const App=()=>{
             <FretBoard
               notes={notes}
               setSelectedRoot={setSelectedRoot}
+              selectedRoot = {selectedRoot}
               setNotes={setNotes}
               setSelectedNotes={setSelectedNotes}
+              selectedChord={selectedChord}
+              selectedScale={selectedScale}
             />
           </div>
           <div className="col-md-1">
@@ -74,9 +86,12 @@ const App=()=>{
                 />
               </div>
                 <GroupList
-                  groupType='scales'
+                  groupType={chordsOrScales}
                   selectedRoot = {selectedRoot}
                   selectedScale={selectedScale}
+                  selectedChord={selectedChord}
+                  setSelectedScale={setSelectedScale}
+                  setSelectedChord={setSelectedChord}
                   group={Scale}
                 />
               </div>
@@ -94,6 +109,9 @@ const App=()=>{
                   groupType='chords'
                   selectedRoot = {selectedRoot}
                   selectedScale={selectedScale}
+                  selectedChord={selectedChord}
+                  setSelectedScale={setSelectedScale}
+                  setSelectedChord={setSelectedChord}
                   group={ChordType}
                 />
               </div>
