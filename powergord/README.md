@@ -1,4 +1,4 @@
-#Power Gord is Music Theory With a Mullet.
+# Power Gord is Music Theory With a Mullet.
 
 Ultimately this will have a reverse chord/scale search utilizing tonal.js as a library.
 
@@ -7,7 +7,7 @@ Currently the reverse search function does not work, and only the scale search f
 
 But the scale search does.
 
-##How to use
+## How to use
 
 1. select Root note on the fretboard
 
