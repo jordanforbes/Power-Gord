@@ -21,7 +21,8 @@
 }
 
 .isInRange{
-  background-color:red;
+  padding:2px;
+  background-color:rgb(110, 0, 0);
 }
 .isNotInRange{
   color:'gray';

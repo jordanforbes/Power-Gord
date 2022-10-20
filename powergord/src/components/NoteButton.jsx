@@ -31,7 +31,7 @@ const NoteButton=(props)=>{
     //checks if note is in range of scale
     useEffect(()=>{
         checkInRange()
-    },[props.selectedScale])
+    },[props.selectedScale,props.selectedRoot])
 
     useEffect(()=>{
         if(props.selectedRoot === props.thisNote){
@@ -64,8 +64,8 @@ const NoteButton=(props)=>{
             <>
             <span
                 className={`btnNote
-                ${isRoot? 'isRoot':'isNotRoot'}
-                ${inRange? 'isInRange':'isNoteInRange'}`}
+                    ${isRoot? 'isRoot':'isNotRoot'}
+                `}
             >{note}</span>
             <span className="btnOctave topright">{octave}</span>
             </>)
@@ -89,11 +89,12 @@ const NoteButton=(props)=>{
         <Button
             type="button"
             className={`btn btn-outline-light noteButton
-                        `}
+                ${inRange? 'isInRange':'isNoteInRange'}`}
             onClick={handleClick}
             style={{
+                padding:'10px 10px 5px 5px',
                 display:'block',
-                backgroundColor: isRoot? "#ffff80" : "gray"
+                backgroundColor: isRoot? "#ffff80" : inRange? "red" : "gray"
             }}
         >
             {noteString()}

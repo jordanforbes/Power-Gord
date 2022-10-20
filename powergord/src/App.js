@@ -23,30 +23,59 @@ const App=()=>{
   const [selectedRoot, setSelectedRoot]= useState('')
   const [selectedScale, setSelectedScale]= useState('')
   const [selectedChord, setSelectedChord]= useState('')
-  const [chordsOrScales,setChordsOrScales]= useState('scales')
+  const [chordsOrScales,setChordsOrScales]= useState('')
   // const [currentChords, setCurrentChords] = useState([])
 
-  const showChords =()=>{
-    if(chordsOrScales === 'scales'){
-      chordsOrScales('chords')
-    }
-    if(chordsOrScales === 'chords'){
-      chordsOrScales('scales')
-    }
-  }
-
-  const showScales =()=>{
-    if(chordsOrScales === 'chords'){
-      chordsOrScales('scales')
-    }
-  }
+  console.log(chordsOrScales)
 
 
   useEffect(()=>{
     setSelectedRoot('E2')
     setSelectedScale('major')
     setSelectedChord('major')
+    setChordsOrScales('scales')
   },[])
+
+  const swapModes =()=>{
+    if(chordsOrScales === 'scales'){
+      setChordsOrScales('chords')
+    }
+    if(chordsOrScales === 'chords'){
+      setChordsOrScales('scales')
+    }
+  }
+
+  useEffect(()=>{
+    showMode()
+  },[chordsOrScales])
+
+  const showMode =()=>{
+    if(chordsOrScales === 'scales'){
+      return(
+        <DisplayMode
+          groupType={chordsOrScales}
+          selectedRoot = {selectedRoot}
+          selectedScale={selectedScale}
+          selectedChord={selectedChord}
+          setSelectedScale={setSelectedScale}
+          setSelectedChord={setSelectedChord}
+          group={Scale}
+        />
+      )}
+
+      if(chordsOrScales === 'chords'){
+        return(
+          <DisplayMode
+            groupType={chordsOrScales}
+            selectedRoot = {selectedRoot}
+            selectedScale={selectedScale}
+            selectedChord={selectedChord}
+            setSelectedScale={setSelectedScale}
+            setSelectedChord={setSelectedChord}
+            group={ChordType}
+          />
+        )}
+    }
 
   return (
     <div className="App">
@@ -58,9 +87,11 @@ const App=()=>{
         <div className="row">
           <div className="col-md-1"></div>
           <div className="col-md-4">
+
           {/* fretboard */}
             <FretBoard
               notes={notes}
+              chordsOrScales={chordsOrScales}
               setSelectedRoot={setSelectedRoot}
               selectedRoot = {selectedRoot}
               setNotes={setNotes}
@@ -69,52 +100,18 @@ const App=()=>{
               selectedScale={selectedScale}
             />
           </div>
-          <div className="col-md-1">
-            <h2>Root: {selectedRoot}</h2>
+          <div className="col-md-2">
+            <h2>Root: {selectedRoot.slice(0,selectedRoot.length-1)}</h2>
+            <Button onClick={swapModes}>
+              Swap Modes
+            </Button>
           </div>
           <div className="col-md-5">
 
             <div className="row">
-              <div className="col-md-6">
-              <h2>Scales</h2>
-              <div className="row">
-                <NoteDisplay
-                  groupType='scales'
-                  selectedRoot = {selectedRoot}
-                  selectedScale={selectedScale}
-                  selectedNotes = {selectedNotes}
-                />
-              </div>
-                <GroupList
-                  groupType={chordsOrScales}
-                  selectedRoot = {selectedRoot}
-                  selectedScale={selectedScale}
-                  selectedChord={selectedChord}
-                  setSelectedScale={setSelectedScale}
-                  setSelectedChord={setSelectedChord}
-                  group={Scale}
-                />
-              </div>
-              <div className="col-md-6">
-              <h2>Chords</h2>
-                <div className="row">
-                  <NoteDisplay
-                    groupType = 'chords'
-                    selectedRoot = {selectedRoot}
-                    selectedChord={selectedChord}
-                    selectedNotes = {selectedNotes}
-                  />
-                </div>
-                <GroupList
-                  groupType='chords'
-                  selectedRoot = {selectedRoot}
-                  selectedScale={selectedScale}
-                  selectedChord={selectedChord}
-                  setSelectedScale={setSelectedScale}
-                  setSelectedChord={setSelectedChord}
-                  group={ChordType}
-                />
-              </div>
+
+              {showMode()}
+
               <div className="col-md-1"></div>
             </div>
           </div>
@@ -122,6 +119,32 @@ const App=()=>{
       </div>
     </div>
   );
+}
+
+const DisplayMode = (props)=>{
+  return(
+    <div className="col-md-10">
+              <h2>{props.groupType.toUpperCase()}</h2>
+              <div className="row">
+                <NoteDisplay
+                  groupType={props.groupType}
+                  selectedRoot = {props.selectedRoot}
+                  selectedScale={props.selectedScale}
+                  selectedChord={props.selectedChord}
+                  selectedNotes = {props.selectedNotes}
+                />
+              </div>
+                <GroupList
+                  groupType={props.groupType}
+                  selectedRoot = {props.selectedRoot}
+                  selectedScale={props.selectedScale}
+                  selectedChord={props.selectedChord}
+                  setSelectedScale={props.setSelectedScale}
+                  setSelectedChord={props.setSelectedChord}
+                  group={props.group}
+                />
+              </div>
+  )
 }
 
 
