@@ -28,11 +28,14 @@ const App=()=>{
 
   console.log(chordsOrScales)
 
+  const clearBoard=()=>{
+    setSelectedRoot('')
+    setSelectedScale('')
+    setSelectedChord('')
+  }
 
   useEffect(()=>{
-    setSelectedRoot('E2')
-    setSelectedScale('major')
-    setSelectedChord('major')
+    clearBoard()
     setChordsOrScales('scales')
   },[])
 
@@ -102,9 +105,12 @@ const App=()=>{
           </div>
           <div className="col-md-2">
             <h2>Root: {selectedRoot.slice(0,selectedRoot.length-1)}</h2>
-            <Button onClick={swapModes}>
+            <p><Button onClick={swapModes}>
               Swap Modes
-            </Button>
+            </Button></p>
+            <p><Button onClick={clearBoard}>
+              Clear
+            </Button></p>
           </div>
           <div className="col-md-5">
 
