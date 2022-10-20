@@ -1,4 +1,5 @@
-# Power Gord is Music Theory With a Mullet.
+# Power Gord
+## Music Theory With a Mullet.
 
 Ultimately this will have a reverse chord/scale search utilizing tonal.js as a library.
 
