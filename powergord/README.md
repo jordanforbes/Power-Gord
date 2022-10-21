@@ -18,3 +18,7 @@ But the scale and chord searches do
 4. use the Chord mode in the same way as scale mode. The difference is that they are highlighted in blue
 
 4. select clear to bring the fretboard back to its default state.
+
+
+## Current Problems
+currently there is an issue with enharmonic notes. Bb and A# are the same note and should be lit up on the fretboard because they're in the same location. I believe there is a way to do this with tonaljs.
