@@ -24,6 +24,7 @@ const FretBoard=(props)=>{
         return scaleArray.map(n =>(
             <NoteButton
                 className="noteButton"
+                chordsOrScales={props.chordsOrScales}
                 setSelectedRoot={props.setSelectedRoot}
                 selectedRoot ={props.selectedRoot}
                 setSelectedNotes ={props.setSelectedNotes}
@@ -31,6 +32,7 @@ const FretBoard=(props)=>{
                 setNotes={props.setNotes}
                 thisNote={n}
                 selectedScale={props.selectedScale}
+                selectedChord={props.selectedChord}
             />
         ))
     }

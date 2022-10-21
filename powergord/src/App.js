@@ -10,11 +10,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import FretBoard from './components/FretBoard/FretBoard';
 import PowerHeader from './components/PowerHeader';
-// import NoteDisplay from './components/NoteDisplay';
-import GroupList from './components/GroupList';
-import NoteDisplay from './components/NoteDisplay';
-// import NoteButton from './components/NoteButton';
-// const { Chord } = require("@tonaljs/tonal");
+import DisplayMode from './components/DisplayMode';
+
 
 
 const App=()=>{
@@ -23,7 +20,7 @@ const App=()=>{
   const [selectedRoot, setSelectedRoot]= useState('')
   const [selectedScale, setSelectedScale]= useState('')
   const [selectedChord, setSelectedChord]= useState('')
-  const [chordsOrScales,setChordsOrScales]= useState('')
+  const [chordsOrScales,setChordsOrScales]= useState('scales')
   // const [currentChords, setCurrentChords] = useState([])
 
   console.log(chordsOrScales)
@@ -32,6 +29,7 @@ const App=()=>{
     setSelectedRoot('')
     setSelectedScale('')
     setSelectedChord('')
+    console.log(Chord.get('c5 major').notes)
   }
 
   useEffect(()=>{
@@ -46,6 +44,7 @@ const App=()=>{
     if(chordsOrScales === 'chords'){
       setChordsOrScales('scales')
     }
+    clearBoard()
   }
 
   useEffect(()=>{
@@ -75,7 +74,7 @@ const App=()=>{
             selectedChord={selectedChord}
             setSelectedScale={setSelectedScale}
             setSelectedChord={setSelectedChord}
-            group={ChordType}
+            group={Chord}
           />
         )}
     }
@@ -127,31 +126,7 @@ const App=()=>{
   );
 }
 
-const DisplayMode = (props)=>{
-  return(
-    <div className="col-md-10">
-              <h2>{props.groupType.toUpperCase()}</h2>
-              <div className="row">
-                <NoteDisplay
-                  groupType={props.groupType}
-                  selectedRoot = {props.selectedRoot}
-                  selectedScale={props.selectedScale}
-                  selectedChord={props.selectedChord}
-                  selectedNotes = {props.selectedNotes}
-                />
-              </div>
-                <GroupList
-                  groupType={props.groupType}
-                  selectedRoot = {props.selectedRoot}
-                  selectedScale={props.selectedScale}
-                  selectedChord={props.selectedChord}
-                  setSelectedScale={props.setSelectedScale}
-                  setSelectedChord={props.setSelectedChord}
-                  group={props.group}
-                />
-              </div>
-  )
-}
+
 
 
 

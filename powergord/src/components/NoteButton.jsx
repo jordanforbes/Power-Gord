@@ -11,10 +11,11 @@ const NoteButton=(props)=>{
     //ist there a way to check each note and see if the active prop is on?
     const [isRoot, setIsRoot] = useState(false)
     const [inRange, setInRange] = useState(true)
+    // const [currentGroup, setCurrentGroup]=useState([])
 
     // console.log('noteButton load')
-    const formatGroup =()=>{
-        let thisGroup = Scale.get(props.selectedRoot+' '+props.selectedScale).notes
+    const formatGroup =(group, selectedGroup)=>{
+        let thisGroup = group.get(props.selectedRoot+' '+selectedGroup).notes
         let groupArr = thisGroup
         groupArr = groupArr.map(n =>(
             n.slice(0,n.length-1)
@@ -22,16 +23,25 @@ const NoteButton=(props)=>{
         return groupArr
     }
 
-    const currentGroup = formatGroup()
+    const chordGroup = formatGroup(Chord, props.selectedChord)
+    const scaleGroup = formatGroup(Scale, props.selectedScale)
 
     const checkInRange =()=>{
+        let currentGroup
+        if (props.chordsOrScales === 'chords'){
+            currentGroup = chordGroup
+        }
+        if (props.chordsOrScales === 'scales'){
+            currentGroup = scaleGroup
+        }
+        console.log(currentGroup)
         currentGroup.includes(props.thisNote.slice(0,props.thisNote.length-1)) ? setInRange(true) : setInRange(false)
     }
 
     //checks if note is in range of scale
     useEffect(()=>{
         checkInRange()
-    },[props.selectedScale,props.selectedRoot])
+    },[props.selectedChord,props.selectedScale,props.selectedRoot])
 
     useEffect(()=>{
         if(props.selectedRoot === props.thisNote){
@@ -42,11 +52,11 @@ const NoteButton=(props)=>{
     },[props.selectedRoot])
 
     const handleClick=()=>{
-        console.log(currentGroup)
+        console.log('handleClick')
+        console.log(Chord.get(props.thisNote+" "+props.selectedChord).notes)
         console.log(props.thisNote)
         isRoot ? activate(""):
         activate(props.thisNote)
-        console.log(inRange)
 
     }
 
@@ -85,16 +95,18 @@ const NoteButton=(props)=>{
 
     }
 
+    var groupColor = props.chordsOrScales === 'scales' ? 'red':'blue'
+
     return(
         <Button
             type="button"
             className={`btn btn-outline-light noteButton
-                ${inRange? 'isInRange':'isNoteInRange'}`}
+                ${inRange? 'isInRange':'isNotInRange'}`}
             onClick={handleClick}
             style={{
-                padding:'10px 10px 5px 5px',
+
                 display:'block',
-                backgroundColor: isRoot? "#ffff80" : inRange? "red" : "gray"
+                backgroundColor: isRoot? "#ffff80" : inRange? groupColor: "gray"
             }}
         >
             {noteString()}
