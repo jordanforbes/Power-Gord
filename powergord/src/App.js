@@ -15,7 +15,7 @@ import DisplayMode from './components/DisplayMode';
 
 
 const App=()=>{
-  const [selectedNotes, setSelectedNotes]= useState([])
+  // const [selectedNotes, setSelectedNotes]= useState([])
   const [notes, setNotes]= useState('')
   const [selectedRoot, setSelectedRoot]= useState('')
   const [selectedScale, setSelectedScale]= useState('')
@@ -25,18 +25,20 @@ const App=()=>{
 
   console.log(chordsOrScales)
 
+  //resets board to default values
   const clearBoard=()=>{
     setSelectedRoot('')
     setSelectedScale('')
     setSelectedChord('')
-    console.log(Chord.get('c5 major').notes)
   }
 
+  //cleans board and sets initial state to scales
   useEffect(()=>{
     clearBoard()
     setChordsOrScales('scales')
   },[])
 
+  //switches from chord look up to scale look up
   const swapModes =()=>{
     if(chordsOrScales === 'scales'){
       setChordsOrScales('chords')
@@ -47,37 +49,33 @@ const App=()=>{
     clearBoard()
   }
 
+
+  //swaps the display mode between scales and chords
+  const showMode =()=>{
+    var grouping;
+    if(chordsOrScales === 'scales'){
+      grouping = Scale
+    }
+
+    if(chordsOrScales === 'chords'){
+      grouping = Chord
+    }
+    return(
+      <DisplayMode
+        groupType={chordsOrScales}
+        selectedRoot = {selectedRoot}
+        selectedScale={selectedScale}
+        selectedChord={selectedChord}
+        setSelectedScale={setSelectedScale}
+        setSelectedChord={setSelectedChord}
+        group={grouping}
+      />
+    )}
+
+  //sets initial mode to scales
   useEffect(()=>{
     showMode()
   },[chordsOrScales])
-
-  const showMode =()=>{
-    if(chordsOrScales === 'scales'){
-      return(
-        <DisplayMode
-          groupType={chordsOrScales}
-          selectedRoot = {selectedRoot}
-          selectedScale={selectedScale}
-          selectedChord={selectedChord}
-          setSelectedScale={setSelectedScale}
-          setSelectedChord={setSelectedChord}
-          group={Scale}
-        />
-      )}
-
-      if(chordsOrScales === 'chords'){
-        return(
-          <DisplayMode
-            groupType={chordsOrScales}
-            selectedRoot = {selectedRoot}
-            selectedScale={selectedScale}
-            selectedChord={selectedChord}
-            setSelectedScale={setSelectedScale}
-            setSelectedChord={setSelectedChord}
-            group={Chord}
-          />
-        )}
-    }
 
   return (
     <div className="App">
@@ -90,23 +88,24 @@ const App=()=>{
           <div className="col-md-1"></div>
           <div className="col-md-4">
 
-          {/* fretboard */}
+            {/* fretboard grid */}
             <FretBoard
               notes={notes}
               chordsOrScales={chordsOrScales}
               setSelectedRoot={setSelectedRoot}
               selectedRoot = {selectedRoot}
               setNotes={setNotes}
-              setSelectedNotes={setSelectedNotes}
               selectedChord={selectedChord}
               selectedScale={selectedScale}
             />
           </div>
           <div className="col-md-2">
             <h2>Root: {selectedRoot.slice(0,selectedRoot.length-1)}</h2>
+            {/* button that swaps modes */}
             <p><Button onClick={swapModes}>
-              Swap Modes
+              CHORDS / SCALES
             </Button></p>
+            {/* button that resets board */}
             <p><Button onClick={clearBoard}>
               Clear
             </Button></p>

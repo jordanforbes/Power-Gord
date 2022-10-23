@@ -9,16 +9,19 @@ const NoteDisplay=(props)=>{
     }
 
     const showNotes =()=>{
+        var selectedGroup
+        var grouping
         let groupArr
         if(props.groupType === 'scales'){
-            groupArr = Scale.get(props.selectedRoot+' '+props.selectedScale).notes
-
+            grouping = Scale
+            selectedGroup = props.selectedScale
         }
 
         if(props.groupType === 'chords'){
-            groupArr = Chord.get(props.selectedRoot+' '+props.selectedChord).notes
-
+            grouping = Chord
+            selectedGroup = props.selectedChord
         }
+        groupArr = grouping.get(props.selectedRoot+' '+selectedGroup).notes
         return groupArr.map(n => (
             <span>{formatter(n)} </span>
         ))

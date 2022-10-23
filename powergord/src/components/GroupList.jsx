@@ -31,18 +31,19 @@ const GroupList =(props)=>{
         if(props.groupType === 'chords'){
             groupArr = ChordType.names()
         }
-        return groupArr.map(s =>(
+        return groupArr.map(name =>(
             <>
                 <tr
                     className="scaleRow"
                   >
                     <GroupingBtn
                         groupType={props.groupType}
+                        selectedRoot={props.selectedRoot}
                         selectedScale={props.selectedScale}
                         selectedChord={props.selectedChord}
                         setSelectedScale={props.setSelectedScale}
                         setSelectedChord={props.setSelectedChord}
-                        name={s}
+                        name={name}
                     />
                 </tr>
             </>

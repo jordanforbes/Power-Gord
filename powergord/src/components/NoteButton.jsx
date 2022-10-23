@@ -2,13 +2,14 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Chord, Scale, ChordType, ScaleType } from '@tonaljs/tonal'
+import { Chord, Scale, Note } from '@tonaljs/tonal'
 
 
 
 const NoteButton=(props)=>{
 
     //ist there a way to check each note and see if the active prop is on?
+    const [focusNote, setFocusNote] = useState(props.thisNote)
     const [isRoot, setIsRoot] = useState(false)
     const [inRange, setInRange] = useState(true)
     // const [currentGroup, setCurrentGroup]=useState([])
@@ -34,8 +35,9 @@ const NoteButton=(props)=>{
         if (props.chordsOrScales === 'scales'){
             currentGroup = scaleGroup
         }
-        console.log(currentGroup)
-        currentGroup.includes(props.thisNote.slice(0,props.thisNote.length-1)) ? setInRange(true) : setInRange(false)
+        let currentNote = props.thisNote.slice(0,props.thisNote.length-1)
+        console.log(Note.enharmonic(currentNote))
+        currentGroup.includes(currentNote) ? setInRange(true) : currentGroup.includes(Note.enharmonic(currentNote)) ? setInRange(true) : setInRange(false)
     }
 
     //checks if note is in range of scale
@@ -54,7 +56,6 @@ const NoteButton=(props)=>{
     const handleClick=()=>{
         console.log('handleClick')
         console.log(Chord.get(props.thisNote+" "+props.selectedChord).notes)
-        console.log(props.thisNote)
         isRoot ? activate(""):
         activate(props.thisNote)
 

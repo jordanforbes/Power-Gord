@@ -28,7 +28,6 @@ const FretBoard=(props)=>{
                 setSelectedRoot={props.setSelectedRoot}
                 selectedRoot ={props.selectedRoot}
                 setSelectedNotes ={props.setSelectedNotes}
-                notes={props.notes}
                 setNotes={props.setNotes}
                 thisNote={n}
                 selectedScale={props.selectedScale}

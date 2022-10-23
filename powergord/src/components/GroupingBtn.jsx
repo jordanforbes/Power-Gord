@@ -1,12 +1,14 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Chord, Scale } from '@tonaljs/tonal';
 
 
 const GroupingBtn=(props)=>{
     const [active, setActive] = useState(false)
-
+    var selectedGroup
+    var groupingMode
+    var groupNotes //learn useRef hook
 
     const checkActive =(grouping)=>{
         if(grouping === props.name){
@@ -21,15 +23,21 @@ const GroupingBtn=(props)=>{
 
     useEffect(()=>{
         if(props.groupType ==='scales'){
-            checkActive(props.selectedScale)
+            selectedGroup = props.selectedScale
+            groupingMode = Scale
         }
         if(props.groupType === 'chords'){
-            checkActive(props.selectedChord)
+            groupingMode = Chord
+
+            selectedGroup = props.selectedChord
         }
+        groupNotes = groupingMode.get(`${props.selectedRoot.toLowerCase()} ${props.name}`).notes
+        checkActive(selectedGroup)
     },[props.selectedScale,props.selectedChord])
 
     const handleClick=()=>{
         if(props.groupType === 'scales'){
+
             props.setSelectedScale(props.name)
             checkActive(props.selectedScale)
         }
@@ -52,6 +60,7 @@ const GroupingBtn=(props)=>{
         }
         return(<span>{fString}</span>)
     }
+
 
     return(<span
               style={{
