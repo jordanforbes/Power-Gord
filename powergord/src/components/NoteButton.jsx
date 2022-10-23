@@ -2,70 +2,25 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Chord, Scale, Note } from '@tonaljs/tonal'
+import { Note } from '@tonaljs/tonal'
 
 
+import NoteString from './NoteString';
 
 const NoteButton=(props)=>{
 
     //ist there a way to check each note and see if the active prop is on?
+
+    //TODO: make the displayed note change if the enharmonic value is in the grouping
+
     const [isRoot, setIsRoot] = useState(false)
     const [inRange, setInRange] = useState(true)
-    var focusNote = props.thisNote
+    const [isEnharmonic, setIsEnharmonic] = useState(false)
+
     var groupColor = props.chordsOrScales ? 'red':'blue'
 
+    //adds root and group together
 
-    const formatGroup =(group, selectedGroup)=>{
-        let thisGroup = group.get(props.selectedRoot+' '+selectedGroup).notes
-        let groupArr = thisGroup
-        groupArr = groupArr.map(n =>(
-            n.slice(0,n.length-1)
-        ))
-        return groupArr
-    }
-
-    const getEnharmonic=(n)=>{
-        return Note.enharmonic(n)
-    }
-
-    const checkEnharmonic = (n)=>{
-        setInRange(true)
-        getEnharmonic(n)
-    }
-
-    const checkInRange =()=>{
-        let currentGroup = formatGroup(props.grouping,props.selectedGroup)
-
-        let currentNote = props.thisNote.slice(0,props.thisNote.length-1)
-
-        console.log('thisNote', props.thisNote)
-        console.log('thisNote', props.thisNote)
-        console.log('currentNote', currentNote)
-
-        currentGroup.includes(currentNote) ? setInRange(true) : currentGroup.includes(getEnharmonic(currentNote)) ? checkEnharmonic(currentNote) : setInRange(false)
-    }
-
-
-
-    const noteString=()=>{
-        let note = focusNote.substr(0,focusNote.length-1)
-
-        let octave = focusNote.substr(focusNote.length-1)
-        return (
-            <>
-            <span
-                className={`btnNote
-                    ${isRoot? 'isRoot':'isNotRoot'}
-                `}
-            >{note}</span>
-            <span className="btnOctave topright">{octave}</span>
-            </>)
-    }
-
-    //checks if note is in range of group
-    useEffect(()=>{
-        checkInRange()
-    },[props.selectedGroup,props.selectedRoot])
 
     useEffect(()=>{
         if(props.selectedRoot === props.thisNote){
@@ -75,11 +30,6 @@ const NoteButton=(props)=>{
         }
     },[props.selectedRoot])
 
-    const handleClick=()=>{
-        isRoot ? activate(""):
-        activate(props.thisNote)
-
-    }
 
     const activate=(note)=>{
         setIsRoot(current => !current);
@@ -87,7 +37,14 @@ const NoteButton=(props)=>{
         props.setSelectedRoot(note)
     }
 
-    var nString = noteString()
+    // let nString = noteString()
+
+    const handleClick=()=>{
+        isRoot ? activate(""):
+        activate(props.thisNote)
+        // setIsEnharmonic(!isEnharmonic)
+        // nString ='y'
+    }
     return(
         <Button
             type="button"
@@ -100,7 +57,19 @@ const NoteButton=(props)=>{
                 backgroundColor: isRoot? "#ffff80" : inRange? groupColor: "gray"
             }}
         >
-            {nString}
+            <NoteString
+                isEnharmonic = {isEnharmonic}
+                setIsEnharmonic = {setIsEnharmonic}
+                thisNote = {props.thisNote}
+                isRoot = {props.isRoot}
+                setIsRoot = {props.setIsRoot}
+                inRange = {props.inRange}
+                setInRange = {setInRange}
+                selectedGroup = {props.selectedGroup}
+                selectedRoot = {props.selectedRoot}
+                grouping = {props.grouping}
+            />
+            {/* {noteString()} */}
         </Button>
     )
   }
