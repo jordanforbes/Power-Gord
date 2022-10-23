@@ -30,8 +30,9 @@ const FretBoard=(props)=>{
                 setSelectedNotes ={props.setSelectedNotes}
                 setNotes={props.setNotes}
                 thisNote={n}
-                selectedScale={props.selectedScale}
-                selectedChord={props.selectedChord}
+                selectedGroup = {props.selectedGroup}
+                setSelectedGroup = {props.setSelectedGroup}
+                grouping={props.grouping}
             />
         ))
     }

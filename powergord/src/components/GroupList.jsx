@@ -1,34 +1,19 @@
 import React, {useState, useEffect} from 'react';
 import Table from 'react-bootstrap/Table';
 import GroupingBtn from './GroupingBtn';
-import { Chord, Scale, ChordType, ScaleType } from '@tonaljs/tonal'
+import { Scale, ChordType, ScaleType } from '@tonaljs/tonal'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const GroupList =(props)=>{
-    // const [selected,setSelected] = useState('Egyptian')
 
-    //capitalize first letter in each word
-    const capitalizer = (entry)=>{
-        return entry.charAt(0).toUpperCase() + entry.slice(1).toLowerCase()
-    }
-    const formatter = (entry)=>{
-        let entryArr = entry.split(" ");
-        let fString = ''
-        for(let i= 0; i< entryArr.length; i++){
-            fString += capitalizer(entryArr[i])+" "
-        }
-        return(<span>{fString}</span>)
-    }
-
-    //Loops through all props.group lists
     const allGroupings =()=>{
         let groupArr
-        if(props.groupType === 'scales'){
+        if(props.chordsOrScales === true){
             groupArr = Scale.names()
         }
-        if(props.groupType === 'chords'){
+        if(props.chordsOrScales === false){
             groupArr = ChordType.names()
         }
         return groupArr.map(name =>(
@@ -37,12 +22,11 @@ const GroupList =(props)=>{
                     className="scaleRow"
                   >
                     <GroupingBtn
-                        groupType={props.groupType}
+                        chordsOrScales={props.chordsOrScales}
                         selectedRoot={props.selectedRoot}
-                        selectedScale={props.selectedScale}
-                        selectedChord={props.selectedChord}
-                        setSelectedScale={props.setSelectedScale}
-                        setSelectedChord={props.setSelectedChord}
+                        selectedGroup={props.selectedGroup}
+                        setSelectedGroup={props.setSelectedGroup}
+                        grouping={props.grouping}
                         name={name}
                     />
                 </tr>

@@ -1,6 +1,6 @@
 import './App.css';
 import React, {useState, useEffect} from 'react';
-import { Chord, Scale, ChordType, ScaleType } from '@tonaljs/tonal'
+import { Chord, Scale } from '@tonaljs/tonal'
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -20,10 +20,12 @@ const App=()=>{
   const [selectedRoot, setSelectedRoot]= useState('')
   const [selectedScale, setSelectedScale]= useState('')
   const [selectedChord, setSelectedChord]= useState('')
-  const [chordsOrScales,setChordsOrScales]= useState('scales')
-  // const [currentChords, setCurrentChords] = useState([])
+  const [chordsOrScales,setChordsOrScales]= useState(true)
 
-  console.log(chordsOrScales)
+  var grouping;
+
+        //true = scales, false = chords
+  // const [currentChords, setCurrentChords] = useState([])
 
   //resets board to default values
   const clearBoard=()=>{
@@ -32,50 +34,32 @@ const App=()=>{
     setSelectedChord('')
   }
 
-  //cleans board and sets initial state to scales
-  useEffect(()=>{
-    clearBoard()
-    setChordsOrScales('scales')
-  },[])
-
   //switches from chord look up to scale look up
   const swapModes =()=>{
-    if(chordsOrScales === 'scales'){
-      setChordsOrScales('chords')
-    }
-    if(chordsOrScales === 'chords'){
-      setChordsOrScales('scales')
-    }
+    setChordsOrScales(!chordsOrScales)
     clearBoard()
   }
 
 
   //swaps the display mode between scales and chords
   const showMode =()=>{
-    var grouping;
-    if(chordsOrScales === 'scales'){
+    if(chordsOrScales){
       grouping = Scale
     }
 
-    if(chordsOrScales === 'chords'){
+    if(!chordsOrScales){
       grouping = Chord
     }
     return(
       <DisplayMode
-        groupType={chordsOrScales}
+        chordsOrScales={chordsOrScales}
         selectedRoot = {selectedRoot}
-        selectedScale={selectedScale}
-        selectedChord={selectedChord}
-        setSelectedScale={setSelectedScale}
-        setSelectedChord={setSelectedChord}
-        group={grouping}
+        selectedGroup = {chordsOrScales? selectedScale : selectedChord}
+        setSelectedGroup = {chordsOrScales? setSelectedScale : setSelectedChord}
+        grouping={chordsOrScales ? Scale : Chord}
       />
     )}
 
-  //sets initial mode to scales
-  useEffect(()=>{
-    showMode()
-  },[chordsOrScales])
 
   return (
     <div className="App">
@@ -95,8 +79,9 @@ const App=()=>{
               setSelectedRoot={setSelectedRoot}
               selectedRoot = {selectedRoot}
               setNotes={setNotes}
-              selectedChord={selectedChord}
-              selectedScale={selectedScale}
+              selectedGroup = {chordsOrScales? selectedScale : selectedChord}
+              setSelectedGroup = {chordsOrScales? setSelectedScale : setSelectedChord}
+              grouping={chordsOrScales ? Scale : Chord}
             />
           </div>
           <div className="col-md-2">

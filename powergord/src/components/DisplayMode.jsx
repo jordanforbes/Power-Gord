@@ -2,26 +2,29 @@ import NoteDisplay from "./NoteDisplay"
 import GroupList from "./GroupList"
 
 const DisplayMode = (props)=>{
+
+  const nameType =()=>{
+    return props.chordsOrScales ? "Scales" : "Chords"
+  }
     return(
       <div className="col-md-10">
-        <h2>{props.groupType.toUpperCase()}</h2>
+        <h2>{nameType()}</h2>
         <div className="row">
             <NoteDisplay
-            groupType={props.groupType}
+            chordsOrScales={props.chordsOrScales}
             selectedRoot = {props.selectedRoot}
-            selectedScale={props.selectedScale}
-            selectedChord={props.selectedChord}
             selectedNotes = {props.selectedNotes}
+            selectedGroup = {props.selectedGroup}
+            setSelectedGroup ={props.setSelectedGroup}
+            grouping={props.grouping}
             />
         </div>
             <GroupList
-            groupType={props.groupType}
+            chordsOrScales={props.chordsOrScales}
             selectedRoot = {props.selectedRoot}
-            selectedScale={props.selectedScale}
-            selectedChord={props.selectedChord}
-            setSelectedScale={props.setSelectedScale}
-            setSelectedChord={props.setSelectedChord}
-            group={props.group}
+            selectedGroup = {props.selectedGroup}
+            setSelectedGroup ={props.setSelectedGroup}
+            grouping={props.grouping}
             />
         </div>
     )
