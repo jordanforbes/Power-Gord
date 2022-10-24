@@ -1,17 +1,18 @@
 import NoteDisplay from "./NoteDisplay"
 import GroupList from "./GroupList"
 
+//contains the note list and the group list
 const DisplayMode = (props)=>{
 
   const nameType =()=>{
-    return props.chordsOrScales ? "Scales" : "Chords"
+    return props.areScales ? "Scales" : "Chords"
   }
     return(
       <div className="col-md-10">
         <h2>{nameType()}</h2>
         <div className="row">
             <NoteDisplay
-            chordsOrScales={props.chordsOrScales}
+            areScales={props.areScales}
             selectedRoot = {props.selectedRoot}
             selectedNotes = {props.selectedNotes}
             selectedGroup = {props.selectedGroup}
@@ -20,7 +21,7 @@ const DisplayMode = (props)=>{
             />
         </div>
             <GroupList
-            chordsOrScales={props.chordsOrScales}
+            areScales={props.areScales}
             selectedRoot = {props.selectedRoot}
             selectedGroup = {props.selectedGroup}
             setSelectedGroup ={props.setSelectedGroup}

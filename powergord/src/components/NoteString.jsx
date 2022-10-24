@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-
+import { useEffect } from 'react';
 import { Note } from '@tonaljs/tonal'
 
 
@@ -11,8 +10,7 @@ const NoteString=(props)=>{
     // var focusNote = props.thisNote
 
     const formatGroup =(group, selectedGroup)=>{
-        let thisGroup = group.get(props.selectedRoot+' '+selectedGroup).notes
-        let groupArr = thisGroup
+        let groupArr = group.get(props.selectedRoot+' '+selectedGroup).notes
         groupArr = groupArr.map(n =>(
             n.slice(0,n.length-1)
         ))
@@ -45,10 +43,10 @@ const NoteString=(props)=>{
         props.setInRange(true)
         props.setIsEnharmonic(bool)
     }
-    console.log('getenharmonic '+getEnharmonic(note))
-
+    // console.log('getenharmonic '+getEnharmonic(note))
 
     note = props.isEnharmonic ?getEnharmonic(note) : note
+
     return (
         <>
         <span

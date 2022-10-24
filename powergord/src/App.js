@@ -20,7 +20,7 @@ const App=()=>{
   const [selectedRoot, setSelectedRoot]= useState('')
   const [selectedScale, setSelectedScale]= useState('')
   const [selectedChord, setSelectedChord]= useState('')
-  const [chordsOrScales,setChordsOrScales]= useState(true)
+  const [areScales,setAreScales]= useState(true)
 
   var grouping;
 
@@ -29,6 +29,7 @@ const App=()=>{
 
   //resets board to default values
   const clearBoard=()=>{
+    setNotes('')
     setSelectedRoot('')
     setSelectedScale('')
     setSelectedChord('')
@@ -36,27 +37,27 @@ const App=()=>{
 
   //switches from chord look up to scale look up
   const swapModes =()=>{
-    setChordsOrScales(!chordsOrScales)
+    setAreScales(!areScales)
     clearBoard()
   }
 
 
   //swaps the display mode between scales and chords
   const showMode =()=>{
-    if(chordsOrScales){
+    if(areScales){
       grouping = Scale
     }
 
-    if(!chordsOrScales){
+    if(!areScales){
       grouping = Chord
     }
     return(
       <DisplayMode
-        chordsOrScales={chordsOrScales}
+        areScales={areScales}
         selectedRoot = {selectedRoot}
-        selectedGroup = {chordsOrScales? selectedScale : selectedChord}
-        setSelectedGroup = {chordsOrScales? setSelectedScale : setSelectedChord}
-        grouping={chordsOrScales ? Scale : Chord}
+        selectedGroup = {areScales? selectedScale : selectedChord}
+        setSelectedGroup = {areScales? setSelectedScale : setSelectedChord}
+        grouping={areScales ? Scale : Chord}
       />
     )}
 
@@ -75,13 +76,13 @@ const App=()=>{
             {/* fretboard grid */}
             <FretBoard
               notes={notes}
-              chordsOrScales={chordsOrScales}
+              areScales={areScales}
               setSelectedRoot={setSelectedRoot}
               selectedRoot = {selectedRoot}
               setNotes={setNotes}
-              selectedGroup = {chordsOrScales? selectedScale : selectedChord}
-              setSelectedGroup = {chordsOrScales? setSelectedScale : setSelectedChord}
-              grouping={chordsOrScales ? Scale : Chord}
+              selectedGroup = {areScales? selectedScale : selectedChord}
+              setSelectedGroup = {areScales? setSelectedScale : setSelectedChord}
+              grouping={areScales ? Scale : Chord}
             />
           </div>
           <div className="col-md-2">

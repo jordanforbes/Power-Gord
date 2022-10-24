@@ -1,7 +1,6 @@
 import React from 'react';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { Scale } from '@tonaljs/tonal'
-// import { Button } from 'react-bootstrap'
 
 
 //components
@@ -24,7 +23,7 @@ const FretBoard=(props)=>{
         return scaleArray.map(n =>(
             <NoteButton
                 className="noteButton"
-                chordsOrScales={props.chordsOrScales}
+                areScales={props.areScales}
                 setSelectedRoot={props.setSelectedRoot}
                 selectedRoot ={props.selectedRoot}
                 setSelectedNotes ={props.setSelectedNotes}

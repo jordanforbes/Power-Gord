@@ -10,10 +10,10 @@ const GroupList =(props)=>{
 
     const allGroupings =()=>{
         let groupArr
-        if(props.chordsOrScales === true){
+        if(props.areScales === true){
             groupArr = Scale.names()
         }
-        if(props.chordsOrScales === false){
+        if(props.areScales === false){
             groupArr = ChordType.names()
         }
         return groupArr.map(name =>(
@@ -22,7 +22,7 @@ const GroupList =(props)=>{
                     className="scaleRow"
                   >
                     <GroupingBtn
-                        chordsOrScales={props.chordsOrScales}
+                        areScales={props.areScales}
                         selectedRoot={props.selectedRoot}
                         selectedGroup={props.selectedGroup}
                         setSelectedGroup={props.setSelectedGroup}
