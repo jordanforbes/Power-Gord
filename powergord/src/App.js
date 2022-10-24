@@ -22,10 +22,8 @@ const App=()=>{
   const [selectedChord, setSelectedChord]= useState('')
   const [areScales,setAreScales]= useState(true)
 
-  var grouping;
-
-        //true = scales, false = chords
-  // const [currentChords, setCurrentChords] = useState([])
+  //decides which group will be passed to components
+  var grouping = areScales ? Scale : Chord
 
   //resets board to default values
   const clearBoard=()=>{
@@ -57,7 +55,7 @@ const App=()=>{
         selectedRoot = {selectedRoot}
         selectedGroup = {areScales? selectedScale : selectedChord}
         setSelectedGroup = {areScales? setSelectedScale : setSelectedChord}
-        grouping={areScales ? Scale : Chord}
+        grouping={grouping}
       />
     )}
 
@@ -82,7 +80,7 @@ const App=()=>{
               setNotes={setNotes}
               selectedGroup = {areScales? selectedScale : selectedChord}
               setSelectedGroup = {areScales? setSelectedScale : setSelectedChord}
-              grouping={areScales ? Scale : Chord}
+              grouping={grouping}
             />
           </div>
           <div className="col-md-2">
