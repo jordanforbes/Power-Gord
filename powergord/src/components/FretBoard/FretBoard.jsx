@@ -7,8 +7,7 @@ import { Scale } from '@tonaljs/tonal'
 import NoteButton from '../NoteButton';
 
 const FretBoard=(props)=>{
-    // const intervals= ['R','m2','M2','m3','M3','P4','A4','P5','m6','M6','m7','M7']
-    // const noteList = ['E','F','F#','G','G#','A','A#','B','C','C#','D','D#']
+    //sets tuning by creating arrays of scales that represent individual guitar strings
     const scaleRange = Scale.rangeOf('E chromatic')
     const lowEString = scaleRange('E2','E3')
     const aString = scaleRange('A2','A3')

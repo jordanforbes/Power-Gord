@@ -15,19 +15,18 @@ import DisplayMode from './components/DisplayMode';
 
 
 const App=()=>{
-  // const [selectedNotes, setSelectedNotes]= useState([])
-  const [notes, setNotes]= useState('')
+
   const [selectedRoot, setSelectedRoot]= useState('')
   const [selectedScale, setSelectedScale]= useState('')
   const [selectedChord, setSelectedChord]= useState('')
   const [areScales,setAreScales]= useState(true)
+  const [notes, setNotes]= useState('')
 
-  //decides which group will be passed to components
+  //decides which group will be passed to components, swapping modes
   var grouping = areScales ? Scale : Chord
 
   //resets board to default values
   const clearBoard=()=>{
-    setNotes('')
     setSelectedRoot('')
     setSelectedScale('')
     setSelectedChord('')
@@ -38,27 +37,6 @@ const App=()=>{
     setAreScales(!areScales)
     clearBoard()
   }
-
-
-  //swaps the display mode between scales and chords
-  const showMode =()=>{
-    if(areScales){
-      grouping = Scale
-    }
-
-    if(!areScales){
-      grouping = Chord
-    }
-    return(
-      <DisplayMode
-        areScales={areScales}
-        selectedRoot = {selectedRoot}
-        selectedGroup = {areScales? selectedScale : selectedChord}
-        setSelectedGroup = {areScales? setSelectedScale : setSelectedChord}
-        grouping={grouping}
-      />
-    )}
-
 
   return (
     <div className="App">
@@ -98,7 +76,13 @@ const App=()=>{
 
             <div className="row">
 
-              {showMode()}
+            <DisplayMode
+              areScales={areScales}
+              selectedRoot = {selectedRoot}
+              selectedGroup = {areScales? selectedScale : selectedChord}
+              setSelectedGroup = {areScales? setSelectedScale : setSelectedChord}
+              grouping={grouping}
+            />
 
               <div className="col-md-1"></div>
             </div>
