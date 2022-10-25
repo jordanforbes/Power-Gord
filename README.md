@@ -21,4 +21,4 @@ But the scale and chord searches do
 
 
 ## Current Problems
-currently there is an issue with enharmonic notes. Bb and A# are the same note and should be lit up on the fretboard because they're in the same location. I believe there is a way to do this with tonaljs.
+currently there is an issue with double sharps.
