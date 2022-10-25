@@ -9,16 +9,19 @@ import NoteButton from '../NoteButton';
 const FretBoard=(props)=>{
     //sets tuning by creating arrays of scales that represent individual guitar strings
     const scaleRange = Scale.rangeOf('E chromatic')
-    const lowEString = scaleRange('E2','E3')
-    const aString = scaleRange('A2','A3')
-    const dString = scaleRange('D2','D3')
-    const gString = scaleRange('G3','G4')
-    const bString = scaleRange('B4','B5')
-    const highEString = scaleRange('E4','E5')
+
+    const standardTuning = [
+        scaleRange('E2','E3'),
+        scaleRange('A2','A3'),
+        scaleRange('D2','D3'),
+        scaleRange('G3','G4'),
+        scaleRange('B4','B5'),
+        scaleRange('E4','E5')
+    ]
 
 
     //dynamically builds fretboard based on inserted notes
-    const fretboardBuilder=(scaleArray)=>{
+    const stringTuner=(scaleArray)=>{
         return scaleArray.map(n =>(
             <NoteButton
                 className="noteButton"
@@ -35,38 +38,19 @@ const FretBoard=(props)=>{
         ))
     }
 
-    return(
-        <div className="note-bar container d-flex flex-nowrap">
+    const fretboardBuilder=()=>{
+        return standardTuning.map(s=>(
             <div className=" noteBar ">
                 <ButtonGroup vertical>
-                    {fretboardBuilder(lowEString)}
+                    {stringTuner(s)}
                 </ButtonGroup>
             </div>
-            <div className=" noteBar">
-                <ButtonGroup className='noteBar' vertical>
-                    {fretboardBuilder(aString)}
-                </ButtonGroup>
-            </div>
-            <div className=" noteBar">
-                <ButtonGroup className='noteBar' vertical>
-                    {fretboardBuilder(dString)}
-                </ButtonGroup>
-            </div>
-            <div className=" noteBar">
-                <ButtonGroup className='noteBar' vertical>
-                    {fretboardBuilder(gString)}
-                </ButtonGroup>
-            </div>
-            <div className=" noteBar">
-                <ButtonGroup className='noteBar' vertical>
-                    {fretboardBuilder(bString)}
-                </ButtonGroup>
-            </div>
-            <div className=" noteBar">
-                <ButtonGroup className='noteBar' vertical>
-                    {fretboardBuilder(highEString)}
-                </ButtonGroup>
-            </div>
+        ))
+    }
+
+    return(
+        <div className="note-bar container d-flex flex-nowrap">
+            {fretboardBuilder()}
         </div>
     )
 

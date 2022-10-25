@@ -46,6 +46,7 @@ const NoteButton=(props)=>{
                 ${inRange? 'isInRange':'isNotInRange'}`}
             onClick={handleClick}
             style={{
+                width:'50px',
                 display:'block',
                 backgroundColor: isRoot? "#ffff80" : inRange? groupColor: "gray",
                 "color": isRoot? 'black':'white'
