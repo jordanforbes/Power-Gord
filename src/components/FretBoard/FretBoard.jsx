@@ -36,34 +36,33 @@ const FretBoard=(props)=>{
     }
 
     return(
-        <div className="note-bar row">
-            <div className="col-md-4"></div>
-            <div className="col-md-1 noteBar">
+        <div className="note-bar container d-flex flex-nowrap">
+            <div className=" noteBar ">
                 <ButtonGroup vertical>
                     {fretboardBuilder(lowEString)}
                 </ButtonGroup>
             </div>
-            <div className="col-md-1 noteBar">
+            <div className=" noteBar">
                 <ButtonGroup className='noteBar' vertical>
                     {fretboardBuilder(aString)}
                 </ButtonGroup>
             </div>
-            <div className="col-md-1 noteBar">
+            <div className=" noteBar">
                 <ButtonGroup className='noteBar' vertical>
                     {fretboardBuilder(dString)}
                 </ButtonGroup>
             </div>
-            <div className="col-md-1 noteBar">
+            <div className=" noteBar">
                 <ButtonGroup className='noteBar' vertical>
                     {fretboardBuilder(gString)}
                 </ButtonGroup>
             </div>
-            <div className="col-md-1 noteBar">
+            <div className=" noteBar">
                 <ButtonGroup className='noteBar' vertical>
                     {fretboardBuilder(bString)}
                 </ButtonGroup>
             </div>
-            <div className="col-md-1 noteBar">
+            <div className=" noteBar">
                 <ButtonGroup className='noteBar' vertical>
                     {fretboardBuilder(highEString)}
                 </ButtonGroup>
