@@ -15,9 +15,12 @@ const NoteButton=(props)=>{
 
     var groupColor = props.areScales ? 'red':'blue'
 
+    const octaveRemove =(note)=>{
+        return note.slice(0, note.length-1)
+    }
     //adds root and group together to plug back into the tonaljs library
     useEffect(()=>{
-        if(props.selectedRoot === props.thisNote){
+        if(octaveRemove(props.selectedRoot) === octaveRemove(props.thisNote)){
             setIsRoot(true)
         }else{
             setIsRoot(false)
