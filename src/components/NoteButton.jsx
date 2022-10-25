@@ -16,7 +16,6 @@ const NoteButton=(props)=>{
     var groupColor = props.areScales ? 'red':'blue'
 
     //adds root and group together to plug back into the tonaljs library
-
     useEffect(()=>{
         if(props.selectedRoot === props.thisNote){
             setIsRoot(true)
@@ -25,11 +24,10 @@ const NoteButton=(props)=>{
         }
     },[props.selectedRoot])
 
-
     //sets the root for the chord/scale on button press
     const activate=(note)=>{
         setIsRoot(current => !current);
-        props.setNotes(note)
+        // props.setNotes(note)
         props.setSelectedRoot(note)
     }
 
@@ -62,7 +60,6 @@ const NoteButton=(props)=>{
                 selectedRoot = {props.selectedRoot}
                 grouping = {props.grouping}
             />
-            {/* {noteString()} */}
         </Button>
     )
   }

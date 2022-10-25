@@ -4,15 +4,12 @@ const NoteDisplay=(props)=>{
     }
 
     const showNotes =()=>{
-        let groupArr
-        console.log('selected Group: '+props.selectedGroup)
-        groupArr = props.grouping.get(props.selectedRoot+' '+props.selectedGroup).notes
+        let groupArr = props.grouping.get(props.selectedRoot+' '+props.selectedGroup).notes
         return groupArr.map(n => (
             <span>{formatter(n)} </span>
         ))
 
     }
-
 
     return (
         <div className="outline">

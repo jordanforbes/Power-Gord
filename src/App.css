@@ -37,6 +37,7 @@
   background-color:white;
 }
 .scaleRow:hover{
+  cursor:pointer;
   background-color:lightgray;
 }
 

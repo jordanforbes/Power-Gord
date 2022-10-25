@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import Table from 'react-bootstrap/Table';
 import GroupingBtn from './GroupingBtn';
-import { Scale, ChordType, ScaleType } from '@tonaljs/tonal'
+import { Scale, ChordType } from '@tonaljs/tonal'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -9,13 +9,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const GroupList =(props)=>{
 
     const allGroupings =()=>{
-        let groupArr
-        if(props.areScales === true){
-            groupArr = Scale.names()
-        }
-        if(props.areScales === false){
-            groupArr = ChordType.names()
-        }
+
+        //finds all of the names of scales and chords
+        let groupArr = props.areScales ? Scale.names() : ChordType.names()
+
         return groupArr.map(name =>(
             <>
                 <tr

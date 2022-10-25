@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import { Chord, Scale } from '@tonaljs/tonal'
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -60,13 +60,16 @@ const App=()=>{
               setSelectedGroup = {areScales? setSelectedScale : setSelectedChord}
               grouping={grouping}
             />
+
           </div>
           <div className="col-md-2">
             <h2>Root: {selectedRoot.slice(0,selectedRoot.length-1)}</h2>
+
             {/* button that swaps modes */}
             <p><Button onClick={swapModes}>
               CHORDS / SCALES
             </Button></p>
+
             {/* button that resets board */}
             <p><Button onClick={clearBoard}>
               Clear
@@ -76,13 +79,13 @@ const App=()=>{
 
             <div className="row">
 
-            <DisplayMode
-              areScales={areScales}
-              selectedRoot = {selectedRoot}
-              selectedGroup = {areScales? selectedScale : selectedChord}
-              setSelectedGroup = {areScales? setSelectedScale : setSelectedChord}
-              grouping={grouping}
-            />
+              <DisplayMode
+                areScales={areScales}
+                selectedRoot = {selectedRoot}
+                selectedGroup = {areScales? selectedScale : selectedChord}
+                setSelectedGroup = {areScales? setSelectedScale : setSelectedChord}
+                grouping={grouping}
+              />
 
               <div className="col-md-1"></div>
             </div>

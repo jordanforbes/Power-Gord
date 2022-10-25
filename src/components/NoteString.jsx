@@ -17,15 +17,12 @@ const NoteString=(props)=>{
         return groupArr
     }
 
-
-
     const checkInRange =()=>{
         let currentGroup = formatGroup(props.grouping,props.selectedGroup)
-
         let currentNote = props.thisNote.slice(0,props.thisNote.length-1)
 
-        console.log('thisNote', props.thisNote)
-        console.log('currentNote', currentNote)
+        // console.log('thisNote', props.thisNote)
+        // console.log('currentNote', currentNote)
 
         currentGroup.includes(currentNote) ? checkEnharmonic(currentNote,false) : currentGroup.includes(getEnharmonic(currentNote)) ? checkEnharmonic(currentNote,true) : props.setInRange(false)
     }
