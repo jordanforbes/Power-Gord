@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Chord, Scale } from '@tonaljs/tonal'
 import { Button } from 'react-bootstrap';
 import { Counter } from './features/counter/Counter';
+import { RootSelector } from './features/rootSelector/RootSelector';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -42,7 +43,6 @@ const App=()=>{
 
   return (
     <div className="App">
-      <Counter />
       <div className="container">
         <div className="row">
           <PowerHeader />
@@ -66,6 +66,7 @@ const App=()=>{
 
           </div>
           <div className="col-md-2">
+            <RootSelector />
             <h2>Root: {selectedRoot.slice(0,selectedRoot.length-1)}</h2>
 
             {/* button that swaps modes */}
