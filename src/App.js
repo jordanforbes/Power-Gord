@@ -2,6 +2,8 @@ import './App.css';
 import React, { useState } from 'react';
 import { Chord, Scale } from '@tonaljs/tonal'
 import { Button } from 'react-bootstrap';
+import { Counter } from './features/counter/Counter';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -40,6 +42,7 @@ const App=()=>{
 
   return (
     <div className="App">
+      <Counter />
       <div className="container">
         <div className="row">
           <PowerHeader />

@@ -1,6 +1,6 @@
 import React from 'react';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import { Scale } from '@tonaljs/tonal'
+import { Scale, ScaleType } from '@tonaljs/tonal'
 
 
 //components
@@ -19,6 +19,10 @@ const FretBoard=(props)=>{
         scaleRange('E4','E5')
     ]
 
+    const scaleFunctions =()=>{
+        const scaleArr = ScaleType.names()
+        console.log(scaleArr)
+    }
 
     //dynamically builds fretboard based on inserted notes
     const stringTuner=(scaleArray)=>{
@@ -50,6 +54,7 @@ const FretBoard=(props)=>{
 
     return(
         <div className="note-bar container d-flex flex-nowrap">
+            {scaleFunctions()}
             {fretboardBuilder()}
         </div>
     )
