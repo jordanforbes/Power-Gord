@@ -2,7 +2,6 @@ import './App.css';
 import React, { useState } from 'react';
 import { Chord, Scale } from '@tonaljs/tonal'
 import { Button } from 'react-bootstrap';
-import { Counter } from './features/counter/Counter';
 import { RootSelector } from './features/rootSelector/RootSelector';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -23,7 +22,6 @@ const App=()=>{
   const [selectedScale, setSelectedScale]= useState('')
   const [selectedChord, setSelectedChord]= useState('')
   const [areScales,setAreScales]= useState(true)
-  const [notes, setNotes]= useState('')
 
   //decides which group will be passed to components, swapping modes
   var grouping = areScales ? Scale : Chord
@@ -54,11 +52,9 @@ const App=()=>{
 
             {/* fretboard grid */}
             <FretBoard
-              notes={notes}
               areScales={areScales}
               setSelectedRoot={setSelectedRoot}
               selectedRoot = {selectedRoot}
-              setNotes={setNotes}
               selectedGroup = {areScales? selectedScale : selectedChord}
               setSelectedGroup = {areScales? setSelectedScale : setSelectedChord}
               grouping={grouping}
