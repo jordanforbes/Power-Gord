@@ -1,8 +1,10 @@
 import './App.css';
 import React, { useState } from 'react';
+import { configureStore }  from '@reduxjs/toolkit'
 import { Chord, Scale } from '@tonaljs/tonal'
 import { Button } from 'react-bootstrap';
 import { RootSelector } from './features/rootSelector/RootSelector';
+import { GroupSelector } from './features/groupSelector/GroupSelector'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -35,6 +37,8 @@ const App=()=>{
 
   //switches from chord look up to scale look up
   const swapModes =()=>{
+    const store =  configureStore({ reducer: GroupSelector })
+    console.log(store.getState())
     setAreScales(!areScales)
     clearBoard()
   }
@@ -62,7 +66,6 @@ const App=()=>{
 
           </div>
           <div className="col-md-2">
-            <RootSelector />
             <h2>Root: {selectedRoot.slice(0,selectedRoot.length-1)}</h2>
 
             {/* button that swaps modes */}
