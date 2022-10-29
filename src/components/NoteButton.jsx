@@ -1,11 +1,16 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectRoot } from '../features/rootSelector/rootSelectorSlice';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import NoteString from './NoteString';
 
 const NoteButton=(props)=>{
+    const root = useSelector(state => state.rootSelector.root)
+    const dispatch = useDispatch();
+
 
     const [isRoot, setIsRoot] = useState(false)
     const [inRange, setInRange] = useState(true)
@@ -31,6 +36,8 @@ const NoteButton=(props)=>{
     const activate=(note)=>{
         setIsRoot(current => !current);
         // props.setNotes(note)
+        dispatch(selectRoot(note))
+        console.log('redux state change '+root)
         props.setSelectedRoot(note)
     }
 
@@ -57,7 +64,7 @@ const NoteButton=(props)=>{
                 setIsEnharmonic = {setIsEnharmonic}
                 thisNote = {props.thisNote}
                 isRoot = {props.isRoot}
-                setIsRoot = {props.setIsRoot}
+                // setIsRoot = {props.setIsRoot}
                 inRange = {props.inRange}
                 setInRange = {setInRange}
                 selectedGroup = {props.selectedGroup}

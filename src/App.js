@@ -1,9 +1,11 @@
 import './App.css';
 import React, { useState } from 'react';
 import { configureStore }  from '@reduxjs/toolkit'
+import { useDispatch, useSelector } from 'react-redux';
 import { Chord, Scale } from '@tonaljs/tonal'
 import { Button } from 'react-bootstrap';
 import { RootSelector } from './features/rootSelector/RootSelector';
+import { selectRoot } from './features/rootSelector/rootSelectorSlice';
 import { GroupSelector } from './features/groupSelector/GroupSelector'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,8 +21,11 @@ import DisplayMode from './components/DisplayMode';
 
 
 const App=()=>{
+  const root = useSelector(state => state.rootSelector.root)
+  const dispatch = useDispatch();
 
   const [selectedRoot, setSelectedRoot]= useState('')
+  // const [ testRoot, setTestRoot ] = useState(root)
   const [selectedScale, setSelectedScale]= useState('')
   const [selectedChord, setSelectedChord]= useState('')
   const [areScales,setAreScales]= useState(true)
@@ -30,6 +35,7 @@ const App=()=>{
 
   //resets board to default values
   const clearBoard=()=>{
+    console.log('testroot '+root)
     setSelectedRoot('')
     setSelectedScale('')
     setSelectedChord('')
@@ -37,8 +43,6 @@ const App=()=>{
 
   //switches from chord look up to scale look up
   const swapModes =()=>{
-    const store =  configureStore({ reducer: GroupSelector })
-    console.log(store.getState())
     setAreScales(!areScales)
     clearBoard()
   }
@@ -66,7 +70,7 @@ const App=()=>{
 
           </div>
           <div className="col-md-2">
-            <h2>Root: {selectedRoot.slice(0,selectedRoot.length-1)}</h2>
+            <h2>Root: {root}</h2>
 
             {/* button that swaps modes */}
             <p><Button onClick={swapModes}>

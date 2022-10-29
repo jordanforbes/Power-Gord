@@ -1,22 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState={
-    currentRoot:'',
+    root:'',
 }
 
 export const rootSelectorSlice = createSlice({
     name: 'rootSelector',
     initialState,
     reducers:{
-        clearRoot: (state)=>{
-            state.currentRoot = ''
+        selectRoot: (state, action)=>{
+            let thisRoot = action.payload
+            thisRoot = thisRoot.slice(0,thisRoot.length-1)
+            state.root = thisRoot
         },
-        changeRoot: (state, action)=>{
-            state.currentRoot = action.payload
-        }
+        clearRoot: (state)=>{
+            state.root = ''
+        },
     }
 })
 
-export const { changeRoot, clearRoot } = rootSelectorSlice.actions
+export const { selectRoot, clearRoot } = rootSelectorSlice.actions
 
 export default rootSelectorSlice.reducer
