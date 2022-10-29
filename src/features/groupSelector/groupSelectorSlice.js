@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState={
-    root:'E',
-    chord:'Major',
-    scale:'Minor Pentatonic'
+    root:'',
+    rawRoot:'',
+    areScales: true,
+    chord:'',
+    scale:''
 }
 
 export const groupSelectorSlice = createSlice({
@@ -19,18 +21,23 @@ export const groupSelectorSlice = createSlice({
         clearScale: (state)=>{
             state.scale = ''
         },
-        changeRoot: (state, action)=>{
-            state.root = action.payload
+        selectRoot: (state, action)=>{
+            let thisRoot = action.payload
+            state.rawRoot = thisRoot
+            state.root = thisRoot.slice(0,thisRoot.length-1)
         },
-        changeChord: (state, action)=>{
+        selectChord: (state, action)=>{
             state.chord = action.payload
         },
-        changeScale: (state, action)=>{
+        selectScale: (state, action)=>{
             state.scale = action.payload
+        },
+        swapGrouping: (state)=>{
+            state.areScales = !state.areScales
         }
     }
 })
 
-export const { changeRoot, clearRoot, changeChord, clearChord, changeScale, clearScale } = groupSelectorSlice.actions
+export const { selectRoot, clearRoot, selectChord, clearChord, select, clearScale, swapGrouping } = groupSelectorSlice.actions
 
 export default groupSelectorSlice.reducer

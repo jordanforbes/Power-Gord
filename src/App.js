@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Chord, Scale } from '@tonaljs/tonal'
 import { Button } from 'react-bootstrap';
 import { RootSelector } from './features/rootSelector/RootSelector';
-import { selectRoot, clearRoot } from './features/rootSelector/rootSelectorSlice';
-import { GroupSelector } from './features/groupSelector/GroupSelector'
+import { selectRoot, clearRoot, swapGrouping } from './features/groupSelector/groupSelectorSlice';
+// import { GroupSelector } from './features/groupSelector/GroupSelector'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -21,17 +21,18 @@ import DisplayMode from './components/DisplayMode';
 
 
 const App=()=>{
-  const root = useSelector(state => state.rootSelector.root)
+  const root = useSelector(state => state.groupSelector.root)
   const dispatch = useDispatch();
 
   const [selectedRoot, setSelectedRoot]= useState('')
   // const [ testRoot, setTestRoot ] = useState(root)
   const [selectedScale, setSelectedScale]= useState('')
   const [selectedChord, setSelectedChord]= useState('')
-  const [areScales,setAreScales]= useState(true)
+  // const [areScales,setAreScales]= useState(true)
+  const areScales = useSelector(state => state.groupSelector.areScales)
 
   //decides which group will be passed to components, swapping modes
-  var grouping = areScales ? Scale : Chord
+  const grouping = areScales ? Scale : Chord
 
   //resets board to default values
   const clearBoard=()=>{
@@ -44,7 +45,7 @@ const App=()=>{
 
   //switches from chord look up to scale look up
   const swapModes =()=>{
-    setAreScales(!areScales)
+    dispatch(swapGrouping());
     clearBoard()
   }
 

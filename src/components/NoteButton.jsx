@@ -2,13 +2,15 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectRoot } from '../features/rootSelector/rootSelectorSlice';
+import { selectRoot } from '../features/groupSelector/groupSelectorSlice';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import NoteString from './NoteString';
 
 const NoteButton=(props)=>{
-    const root = useSelector(state => state.rootSelector.root)
+    const root = useSelector(state => state.groupSelector.root)
+    const areScales = useSelector(state => state.groupSelector.areScales)
+
     const dispatch = useDispatch();
 
 
@@ -18,7 +20,7 @@ const NoteButton=(props)=>{
 
     //sets the default color value for the group based on if it's scales or chords.
 
-    var groupColor = props.areScales ? 'red':'blue'
+    var groupColor = areScales ? 'red':'blue'
 
     const octaveRemove =(note)=>{
         return note.slice(0, note.length-1)
@@ -64,12 +66,10 @@ const NoteButton=(props)=>{
                 setIsEnharmonic = {setIsEnharmonic}
                 thisNote = {props.thisNote}
                 isRoot = {props.isRoot}
-                // setIsRoot = {props.setIsRoot}
                 inRange = {props.inRange}
                 setInRange = {setInRange}
                 selectedGroup = {props.selectedGroup}
                 selectedRoot = {props.selectedRoot}
-                grouping = {props.grouping}
             />
         </Button>
     )

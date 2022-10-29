@@ -1,20 +1,21 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectRoot } from '../features/rootSelector/rootSelectorSlice';
-import { Note } from '@tonaljs/tonal'
+import { useSelector } from 'react-redux';
+import { Note, Scale, Chord } from '@tonaljs/tonal'
 
 
 const NoteString=(props)=>{
-    const root = useSelector(state => state.rootSelector.root)
+    // const root = useSelector(state => state.rootSelector.root)
     const rawRoot = useSelector(state => state.rootSelector.rawRoot)
-    const dispatch = useDispatch();
+    const areScales = useSelector(state => state.groupSelector.areScales)
+
     //separate note from octave
     let note = props.thisNote.substr(0,props.thisNote.length-1)
     let octave = props.thisNote.substr(props.thisNote.length-1)
     // var focusNote = props.thisNote
 
-    const formatGroup =(group, selectedGroup)=>{
-        let groupArr = group.get(rawRoot+' '+selectedGroup).notes
+    const formatGroup =(selectedGroup)=>{
+        let grouping = areScales? Scale : Chord
+        let groupArr = grouping.get(rawRoot+' '+selectedGroup).notes
         groupArr = groupArr.map(n =>(
             n.slice(0,n.length-1)
         ))
@@ -22,7 +23,7 @@ const NoteString=(props)=>{
     }
 
     const checkInRange =()=>{
-        let currentGroup = formatGroup(props.grouping,props.selectedGroup)
+        let currentGroup = formatGroup(props.selectedGroup)
         let currentNote = props.thisNote.slice(0,props.thisNote.length-1)
 
         // console.log('thisNote', props.thisNote)
@@ -34,7 +35,7 @@ const NoteString=(props)=>{
     //checks if note is in range of group
     useEffect(()=>{
         checkInRange()
-    },[props.selectedGroup,props.selectedRoot])
+    },[props.selectedGroup,rawRoot])
 
     const getEnharmonic=(n)=>{
         return Note.enharmonic(n)
