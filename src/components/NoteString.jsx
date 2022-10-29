@@ -1,16 +1,20 @@
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectRoot } from '../features/rootSelector/rootSelectorSlice';
 import { Note } from '@tonaljs/tonal'
 
 
 const NoteString=(props)=>{
-
+    const root = useSelector(state => state.rootSelector.root)
+    const rawRoot = useSelector(state => state.rootSelector.rawRoot)
+    const dispatch = useDispatch();
     //separate note from octave
     let note = props.thisNote.substr(0,props.thisNote.length-1)
     let octave = props.thisNote.substr(props.thisNote.length-1)
     // var focusNote = props.thisNote
 
     const formatGroup =(group, selectedGroup)=>{
-        let groupArr = group.get(props.selectedRoot+' '+selectedGroup).notes
+        let groupArr = group.get(rawRoot+' '+selectedGroup).notes
         groupArr = groupArr.map(n =>(
             n.slice(0,n.length-1)
         ))

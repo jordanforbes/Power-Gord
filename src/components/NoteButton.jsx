@@ -25,12 +25,12 @@ const NoteButton=(props)=>{
     }
     //adds root and group together to plug back into the tonaljs library
     useEffect(()=>{
-        if(octaveRemove(props.selectedRoot) === octaveRemove(props.thisNote)){
+        if(root === octaveRemove(props.thisNote)){
             setIsRoot(true)
         }else{
             setIsRoot(false)
         }
-    },[props.selectedRoot])
+    },[root])
 
     //sets the root for the chord/scale on button press
     const activate=(note)=>{
@@ -38,7 +38,7 @@ const NoteButton=(props)=>{
         // props.setNotes(note)
         dispatch(selectRoot(note))
         console.log('redux state change '+root)
-        props.setSelectedRoot(note)
+        // props.setSelectedRoot(note)
     }
 
     const handleClick=()=>{

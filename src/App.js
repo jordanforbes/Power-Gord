@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Chord, Scale } from '@tonaljs/tonal'
 import { Button } from 'react-bootstrap';
 import { RootSelector } from './features/rootSelector/RootSelector';
-import { selectRoot } from './features/rootSelector/rootSelectorSlice';
+import { selectRoot, clearRoot } from './features/rootSelector/rootSelectorSlice';
 import { GroupSelector } from './features/groupSelector/GroupSelector'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -36,6 +36,7 @@ const App=()=>{
   //resets board to default values
   const clearBoard=()=>{
     console.log('testroot '+root)
+    dispatch(clearRoot())
     setSelectedRoot('')
     setSelectedScale('')
     setSelectedChord('')

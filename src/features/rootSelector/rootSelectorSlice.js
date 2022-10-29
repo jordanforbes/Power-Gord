@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState={
     root:'',
+    rawRoot:'',
 }
 
 export const rootSelectorSlice = createSlice({
@@ -10,6 +11,7 @@ export const rootSelectorSlice = createSlice({
     reducers:{
         selectRoot: (state, action)=>{
             let thisRoot = action.payload
+            state.rawRoot = thisRoot
             thisRoot = thisRoot.slice(0,thisRoot.length-1)
             state.root = thisRoot
         },
