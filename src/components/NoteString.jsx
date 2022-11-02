@@ -4,14 +4,14 @@ import { Note, Scale, Chord } from '@tonaljs/tonal'
 
 
 const NoteString=(props)=>{
-    // const root = useSelector(state => state.rootSelector.root)
-    const rawRoot = useSelector(state => state.rootSelector.rawRoot)
+    const rawRoot = useSelector(state => state.groupSelector.rawRoot)
     const areScales = useSelector(state => state.groupSelector.areScales)
 
     //separate note from octave
     let note = props.thisNote.substr(0,props.thisNote.length-1)
     let octave = props.thisNote.substr(props.thisNote.length-1)
-    // var focusNote = props.thisNote
+    let thisNote = useSelector(state => state.noteSelector.thisNote )
+    let thisRawNote = useSelector(state => state.noteSelector.thisRawNote )
 
     const formatGroup =(selectedGroup)=>{
         let grouping = areScales? Scale : Chord
@@ -26,8 +26,6 @@ const NoteString=(props)=>{
         let currentGroup = formatGroup(props.selectedGroup)
         let currentNote = props.thisNote.slice(0,props.thisNote.length-1)
 
-        // console.log('thisNote', props.thisNote)
-        // console.log('currentNote', currentNote)
 
         currentGroup.includes(currentNote) ? checkEnharmonic(currentNote,false) : currentGroup.includes(getEnharmonic(currentNote)) ? checkEnharmonic(currentNote,true) : props.setInRange(false)
     }

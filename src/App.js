@@ -4,9 +4,9 @@ import { configureStore }  from '@reduxjs/toolkit'
 import { useDispatch, useSelector } from 'react-redux';
 import { Chord, Scale } from '@tonaljs/tonal'
 import { Button } from 'react-bootstrap';
-import { RootSelector } from './features/rootSelector/RootSelector';
-import { selectRoot, clearRoot, swapGrouping } from './features/groupSelector/groupSelectorSlice';
+// import { RootSelector } from './features/rootSelector/RootSelector';
 // import { GroupSelector } from './features/groupSelector/GroupSelector'
+import { selectRoot, clearRoot, swapGrouping, reset } from './features/groupSelector/groupSelectorSlice';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -24,11 +24,10 @@ const App=()=>{
   const root = useSelector(state => state.groupSelector.root)
   const dispatch = useDispatch();
 
-  const [selectedRoot, setSelectedRoot]= useState('')
-  // const [ testRoot, setTestRoot ] = useState(root)
+  // const [selectedRoot, setSelectedRoot]= useState('')
   const [selectedScale, setSelectedScale]= useState('')
   const [selectedChord, setSelectedChord]= useState('')
-  // const [areScales,setAreScales]= useState(true)
+
   const areScales = useSelector(state => state.groupSelector.areScales)
 
   //decides which group will be passed to components, swapping modes
@@ -37,16 +36,15 @@ const App=()=>{
   //resets board to default values
   const clearBoard=()=>{
     console.log('testroot '+root)
-    dispatch(clearRoot())
-    setSelectedRoot('')
+    dispatch(reset())
     setSelectedScale('')
     setSelectedChord('')
   }
 
   //switches from chord look up to scale look up
   const swapModes =()=>{
-    dispatch(swapGrouping());
     clearBoard()
+    dispatch(swapGrouping());
   }
 
   return (
@@ -63,8 +61,6 @@ const App=()=>{
             {/* fretboard grid */}
             <FretBoard
               areScales={areScales}
-              setSelectedRoot={setSelectedRoot}
-              selectedRoot = {selectedRoot}
               selectedGroup = {areScales? selectedScale : selectedChord}
               setSelectedGroup = {areScales? setSelectedScale : setSelectedChord}
               grouping={grouping}
@@ -90,7 +86,6 @@ const App=()=>{
 
               <DisplayMode
                 areScales={areScales}
-                selectedRoot = {selectedRoot}
                 selectedGroup = {areScales? selectedScale : selectedChord}
                 setSelectedGroup = {areScales? setSelectedScale : setSelectedChord}
                 grouping={grouping}

@@ -9,6 +9,7 @@ import NoteString from './NoteString';
 
 const NoteButton=(props)=>{
     const root = useSelector(state => state.groupSelector.root)
+    // const rawRoot = useSelector(state => state.groupSelector.rawRoot)
     const areScales = useSelector(state => state.groupSelector.areScales)
 
     const dispatch = useDispatch();
@@ -65,11 +66,10 @@ const NoteButton=(props)=>{
                 isEnharmonic = {isEnharmonic}
                 setIsEnharmonic = {setIsEnharmonic}
                 thisNote = {props.thisNote}
-                isRoot = {props.isRoot}
                 inRange = {props.inRange}
                 setInRange = {setInRange}
                 selectedGroup = {props.selectedGroup}
-                selectedRoot = {props.selectedRoot}
+                // selectedRoot = {props.selectedRoot}
             />
         </Button>
     )

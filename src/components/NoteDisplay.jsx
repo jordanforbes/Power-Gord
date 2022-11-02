@@ -6,6 +6,7 @@ const NoteDisplay=(props)=>{
     const root = useSelector(state => state.groupSelector.root)
     const rawRoot = useSelector(state => state.groupSelector.rawRoot)
     const areScales = useSelector(state => state.groupSelector.areScales)
+
     const grouping = areScales ? Scale : Chord
 
 
