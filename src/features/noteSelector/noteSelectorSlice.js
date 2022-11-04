@@ -18,11 +18,13 @@ export const noteSelectorSlice = createSlice({
             let octave = thisNote.substr(thisNote.length-1)
             state.thisNote = shortNote
             state.thisOctave = parseInt(octave)
+            state.selectedNotes.push(shortNote)
         },
         clearNote: (state)=>{
             state.thisNote = ''
             state.thisRawNote =''
             state.thisOctave = 0
+            state.selectedNotes = []
         },
     }
 })

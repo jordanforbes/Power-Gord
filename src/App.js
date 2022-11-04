@@ -6,7 +6,8 @@ import { Chord, Scale } from '@tonaljs/tonal'
 import { Button } from 'react-bootstrap';
 // import { RootSelector } from './features/rootSelector/RootSelector';
 // import { GroupSelector } from './features/groupSelector/GroupSelector'
-import { selectRoot, clearRoot, swapGrouping, reset } from './features/groupSelector/groupSelectorSlice';
+import { selectRoot, clearRoot, swapGrouping, reset, selectChord, selectScale } from './features/groupSelector/groupSelectorSlice';
+import { selectNote, clearNote } from './features/noteSelector/noteSelectorSlice';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -22,6 +23,8 @@ import DisplayMode from './components/DisplayMode';
 
 const App=()=>{
   const root = useSelector(state => state.groupSelector.root)
+  const thisScale = useSelector(state => state.groupSelector.selectedScale)
+  const thisChord = useSelector(state => state.groupSelector.selectedChord)
   const dispatch = useDispatch();
 
   // const [selectedRoot, setSelectedRoot]= useState('')
@@ -32,11 +35,14 @@ const App=()=>{
 
   //decides which group will be passed to components, swapping modes
   const grouping = areScales ? Scale : Chord
+  const selectedGroup = areScales ? selectedScale : selectedChord
+  const setSelectedGroup = areScales? setSelectedScale : setSelectedChord
 
   //resets board to default values
   const clearBoard=()=>{
     console.log('testroot '+root)
     dispatch(reset())
+    //
     setSelectedScale('')
     setSelectedChord('')
   }
@@ -60,9 +66,8 @@ const App=()=>{
 
             {/* fretboard grid */}
             <FretBoard
-              areScales={areScales}
-              selectedGroup = {areScales? selectedScale : selectedChord}
-              setSelectedGroup = {areScales? setSelectedScale : setSelectedChord}
+              selectedGroup = {selectedGroup}
+              setSelectedGroup = {setSelectedGroup}
               grouping={grouping}
             />
 
@@ -85,9 +90,8 @@ const App=()=>{
             <div className="row">
 
               <DisplayMode
-                areScales={areScales}
-                selectedGroup = {areScales? selectedScale : selectedChord}
-                setSelectedGroup = {areScales? setSelectedScale : setSelectedChord}
+                selectedGroup = {selectedGroup}
+                setSelectedGroup = {setSelectedGroup}
                 grouping={grouping}
               />
 

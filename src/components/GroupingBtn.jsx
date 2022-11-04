@@ -1,13 +1,26 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { selectChord, selectScale } from './../features/groupSelector/groupSelectorSlice';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const GroupingBtn=(props)=>{
     const [active, setActive] = useState(false)
+    // const groupSelector = useSelector(state => state.groupSelector)
+    const areScales = useSelector(state => state.groupSelector.areScales)
+    const dispatch = useDispatch();
+    var thisGroup = useSelector(state => areScales? state.groupSelector.selectedScale : state.groupSelector.selectedChord)
+
+    const selectGroup =(group)=> {
+        areScales ? dispatch(selectScale(group)) :
+        dispatch(selectChord(group))
+    }
 
     const checkActive =()=>{
-        if(props.selectedGroup === props.name){
+        if(thisGroup === props.name){
             setActive(true)
         }else{
             setActive(false)
@@ -16,10 +29,12 @@ const GroupingBtn=(props)=>{
 
     useEffect(()=>{
         checkActive()
-    },[props.selectedGroup])
+    },[props.selectedGroup]) //FIXME: SELECTED GROUP
 
     const handleClick=()=>{
-            props.setSelectedGroup(props.name)
+            props.setSelectedGroup(props.name) //FIXME: SELECTED GROUP
+            selectGroup(props.name)
+            console.log('thisgroup '+thisGroup)
             checkActive()
     }
 

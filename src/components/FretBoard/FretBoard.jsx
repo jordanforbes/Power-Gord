@@ -1,6 +1,6 @@
 import React from 'react';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import { Scale, ScaleType } from '@tonaljs/tonal'
+import { Scale } from '@tonaljs/tonal'
 
 
 //components
@@ -28,8 +28,9 @@ const FretBoard=(props)=>{
                 setSelectedNotes ={props.setSelectedNotes}
                 setNotes={props.setNotes}
                 thisNote={n}
-                selectedGroup = {props.selectedGroup}
-                setSelectedGroup = {props.setSelectedGroup}
+                grouping = {props.grouping}
+                selectedGroup = {props.selectedGroup} //FIXME: SELECTED GROUP
+                setSelectedGroup = {props.setSelectedGroup} //FIXME: SELECTED GROUP
             />
         ))
     }

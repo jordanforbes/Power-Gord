@@ -5,17 +5,17 @@ import { Note, Scale, Chord } from '@tonaljs/tonal'
 
 const NoteString=(props)=>{
     const rawRoot = useSelector(state => state.groupSelector.rawRoot)
-    const areScales = useSelector(state => state.groupSelector.areScales)
+
 
     //separate note from octave
     let note = props.thisNote.substr(0,props.thisNote.length-1)
     let octave = props.thisNote.substr(props.thisNote.length-1)
-    let thisNote = useSelector(state => state.noteSelector.thisNote )
-    let thisRawNote = useSelector(state => state.noteSelector.thisRawNote )
+    console.log('octave',octave)
 
-    const formatGroup =(selectedGroup)=>{
-        let grouping = areScales? Scale : Chord
-        let groupArr = grouping.get(rawRoot+' '+selectedGroup).notes
+
+    //gets notes from grouping
+    const findGroup =(selectedGroup)=>{
+        let groupArr = props.grouping.get(rawRoot+' '+selectedGroup).notes
         groupArr = groupArr.map(n =>(
             n.slice(0,n.length-1)
         ))
@@ -23,7 +23,7 @@ const NoteString=(props)=>{
     }
 
     const checkInRange =()=>{
-        let currentGroup = formatGroup(props.selectedGroup)
+        let currentGroup = findGroup(props.selectedGroup)
         let currentNote = props.thisNote.slice(0,props.thisNote.length-1)
 
 
@@ -33,7 +33,7 @@ const NoteString=(props)=>{
     //checks if note is in range of group
     useEffect(()=>{
         checkInRange()
-    },[props.selectedGroup,rawRoot])
+    },[props.selectedGroup,rawRoot]) //FIXME: SELECTED GROUP
 
     const getEnharmonic=(n)=>{
         return Note.enharmonic(n)

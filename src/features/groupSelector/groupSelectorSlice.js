@@ -59,6 +59,6 @@ export const groupSelectorSlice = createSlice({
     }
 })
 
-export const { selectRoot, clearRoot, selectNote, clearNote, selectChord, clearChord, select, clearScale, swapGrouping, reset } = groupSelectorSlice.actions
+export const { selectRoot, clearRoot, selectNote, clearNote, selectChord, selectScale, clearChord, select, clearScale, swapGrouping, reset } = groupSelectorSlice.actions
 
 export default groupSelectorSlice.reducer

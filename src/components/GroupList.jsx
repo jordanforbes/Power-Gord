@@ -23,8 +23,8 @@ const GroupList =(props)=>{
                   >
                     <GroupingBtn
                         areScales={props.areScales}
-                        selectedGroup={props.selectedGroup}
-                        setSelectedGroup={props.setSelectedGroup}
+                        selectedGroup={props.selectedGroup}//FIXME: SELECTED GROUP
+                        setSelectedGroup={props.setSelectedGroup} //FIXME: SELECTED GROUP
                         grouping={props.grouping}
                         name={name}
                     />

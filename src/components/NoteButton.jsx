@@ -67,8 +67,9 @@ const NoteButton=(props)=>{
                 setIsEnharmonic = {setIsEnharmonic}
                 thisNote = {props.thisNote}
                 inRange = {props.inRange}
+                grouping = {props.grouping}
                 setInRange = {setInRange}
-                selectedGroup = {props.selectedGroup}
+                selectedGroup = {props.selectedGroup} //FIXME: SELECTED GROUP
                 // selectedRoot = {props.selectedRoot}
             />
         </Button>

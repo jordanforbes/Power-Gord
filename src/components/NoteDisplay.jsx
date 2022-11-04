@@ -1,13 +1,8 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { selectRoot } from '../features/groupSelector/groupSelectorSlice';
-import { Chord, Scale } from '@tonaljs/tonal'
+import { useSelector } from 'react-redux';
 
 const NoteDisplay=(props)=>{
-    const root = useSelector(state => state.groupSelector.root)
-    const rawRoot = useSelector(state => state.groupSelector.rawRoot)
-    const areScales = useSelector(state => state.groupSelector.areScales)
 
-    const grouping = areScales ? Scale : Chord
+    const rawRoot = useSelector(state => state.groupSelector.rawRoot)
 
 
     const formatter=(note) =>{
@@ -15,7 +10,7 @@ const NoteDisplay=(props)=>{
     }
 
     const showNotes =()=>{
-        let groupArr = grouping.get(rawRoot+' '+props.selectedGroup).notes
+        let groupArr = props.grouping.get(rawRoot+' '+props.selectedGroup).notes //FIXME: SELECTED GROUP
         return groupArr.map(n => (
             <span>{formatter(n)} </span>
         ))
