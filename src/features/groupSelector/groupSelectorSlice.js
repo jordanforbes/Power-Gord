@@ -3,8 +3,6 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState={
     root:'',
     rawRoot:'',
-    thisNote:'',
-    thisRawNote:'',
     areScales: true,
     selectedChord:'',
     selectedScale:''
@@ -24,15 +22,6 @@ export const groupSelectorSlice = createSlice({
             state.root = ''
             state.rawRoot=''
         },
-        selectNote: (state, action)=>{
-            let thisNote = action.payload
-            state.thisRawNote = thisNote
-            state.thisNote = thisNote.slice(0,thisNote.length-1)
-        },
-        clearNote: (state)=>{
-            state.thisNote = ''
-            state.thisRawNote=''
-        },
         selectChord: (state, action)=>{
             state.selectedChord = action.payload
         },
@@ -51,14 +40,12 @@ export const groupSelectorSlice = createSlice({
         reset: (state)=>{
             state.root=''
             state.rawRoot=''
-            state.thisNote=''
-            state.thisRawNote=''
             state.chord=''
             state.scale=''
         }
     }
 })
 
-export const { selectRoot, clearRoot, selectNote, clearNote, selectChord, selectScale, clearChord, select, clearScale, swapGrouping, reset } = groupSelectorSlice.actions
+export const { selectRoot, clearRoot, selectChord, selectScale, clearChord, select, clearScale, swapGrouping, reset } = groupSelectorSlice.actions
 
 export default groupSelectorSlice.reducer

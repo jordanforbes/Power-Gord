@@ -17,15 +17,15 @@ const DisplayMode = (props)=>{
         <div className="row">
             <NoteDisplay
             selectedNotes = {props.selectedNotes}
-            selectedGroup = {props.selectedGroup} //FIXME: SELECTED GROUP
-            setSelectedGroup ={props.setSelectedGroup} //FIXME: SELECTED GROUP
+            // selectedGroup = {props.selectedGroup} //FIXME: SELECTED GROUP
+            // setSelectedGroup ={props.setSelectedGroup} //FIXME: SELECTED GROUP
             grouping={props.grouping}
             />
         </div>
             <GroupList
             areScales={props.areScales}
-            selectedGroup = {props.selectedGroup} //FIXME: SELECTED GROUP
-            setSelectedGroup ={props.setSelectedGroup} //FIXME: SELECTED GROUP
+            // selectedGroup = {props.selectedGroup} //FIXME: SELECTED GROUP
+            // setSelectedGroup ={props.setSelectedGroup} //FIXME: SELECTED GROUP
             grouping={props.grouping}
             />
         </div>

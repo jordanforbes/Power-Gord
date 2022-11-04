@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { capitalizer } from '../utilities/capitalizer';
 
 import { selectChord, selectScale } from './../features/groupSelector/groupSelectorSlice';
 
@@ -12,11 +13,18 @@ const GroupingBtn=(props)=>{
     // const groupSelector = useSelector(state => state.groupSelector)
     const areScales = useSelector(state => state.groupSelector.areScales)
     const dispatch = useDispatch();
-    var thisGroup = useSelector(state => areScales? state.groupSelector.selectedScale : state.groupSelector.selectedChord)
+
+    const selectedChord = useSelector(state => state.groupSelector.selectedChord)
+    const selectedScale = useSelector(state => state.groupSelector.selectedScale)
+    var thisGroup = areScales? selectedScale : selectedChord
 
     const selectGroup =(group)=> {
+        console.log('selectedGroups')
+        console.log(group)
         areScales ? dispatch(selectScale(group)) :
         dispatch(selectChord(group))
+        console.log('selChord',selectedChord)
+        console.log('selScale',selectedScale)
     }
 
     const checkActive =()=>{
@@ -29,19 +37,15 @@ const GroupingBtn=(props)=>{
 
     useEffect(()=>{
         checkActive()
-    },[props.selectedGroup]) //FIXME: SELECTED GROUP
+    },[thisGroup]) //FIXME: SELECTED GROUP
 
     const handleClick=()=>{
-            props.setSelectedGroup(props.name) //FIXME: SELECTED GROUP
+            // props.setSelectedGroup(props.name) //FIXME: SELECTED GROUP
             selectGroup(props.name)
             console.log('thisgroup '+thisGroup)
             checkActive()
     }
 
-    //capitalize first letter in each word
-    const capitalizer = (entry)=>{
-        return entry.charAt(0).toUpperCase() + entry.slice(1).toLowerCase()
-    }
     const formatter = (entry)=>{
         let entryArr = entry.split(" ");
         let fString = ''

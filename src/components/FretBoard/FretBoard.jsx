@@ -29,8 +29,8 @@ const FretBoard=(props)=>{
                 setNotes={props.setNotes}
                 thisNote={n}
                 grouping = {props.grouping}
-                selectedGroup = {props.selectedGroup} //FIXME: SELECTED GROUP
-                setSelectedGroup = {props.setSelectedGroup} //FIXME: SELECTED GROUP
+                // selectedGroup = {props.selectedGroup} //FIXME: SELECTED GROUP
+                // setSelectedGroup = {props.setSelectedGroup} //FIXME: SELECTED GROUP
             />
         ))
     }

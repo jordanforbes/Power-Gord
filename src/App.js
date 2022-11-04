@@ -23,28 +23,21 @@ import DisplayMode from './components/DisplayMode';
 
 const App=()=>{
   const root = useSelector(state => state.groupSelector.root)
-  const thisScale = useSelector(state => state.groupSelector.selectedScale)
-  const thisChord = useSelector(state => state.groupSelector.selectedChord)
+
   const dispatch = useDispatch();
 
-  // const [selectedRoot, setSelectedRoot]= useState('')
-  const [selectedScale, setSelectedScale]= useState('')
-  const [selectedChord, setSelectedChord]= useState('')
-
   const areScales = useSelector(state => state.groupSelector.areScales)
+  const selectedScale = useSelector(state => state.groupSelector.selectedScale)
+  const selectedChord = useSelector(state => state.groupSelector.selectedChord)
 
   //decides which group will be passed to components, swapping modes
   const grouping = areScales ? Scale : Chord
   const selectedGroup = areScales ? selectedScale : selectedChord
-  const setSelectedGroup = areScales? setSelectedScale : setSelectedChord
 
   //resets board to default values
   const clearBoard=()=>{
     console.log('testroot '+root)
     dispatch(reset())
-    //
-    setSelectedScale('')
-    setSelectedChord('')
   }
 
   //switches from chord look up to scale look up
@@ -67,7 +60,6 @@ const App=()=>{
             {/* fretboard grid */}
             <FretBoard
               selectedGroup = {selectedGroup}
-              setSelectedGroup = {setSelectedGroup}
               grouping={grouping}
             />
 
@@ -91,7 +83,6 @@ const App=()=>{
 
               <DisplayMode
                 selectedGroup = {selectedGroup}
-                setSelectedGroup = {setSelectedGroup}
                 grouping={grouping}
               />
 

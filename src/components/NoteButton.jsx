@@ -13,7 +13,8 @@ const NoteButton=(props)=>{
     const areScales = useSelector(state => state.groupSelector.areScales)
 
     const dispatch = useDispatch();
-
+    // const thisNote = useSelector(state => state.noteSelector.thisNote)
+    // const rawNote = useSelector(state => state.noteSelector.rawNote)
 
     const [isRoot, setIsRoot] = useState(false)
     const [inRange, setInRange] = useState(true)
@@ -69,7 +70,7 @@ const NoteButton=(props)=>{
                 inRange = {props.inRange}
                 grouping = {props.grouping}
                 setInRange = {setInRange}
-                selectedGroup = {props.selectedGroup} //FIXME: SELECTED GROUP
+                // selectedGroup = {props.selectedGroup} //FIXME: SELECTED GROUP
                 // selectedRoot = {props.selectedRoot}
             />
         </Button>
