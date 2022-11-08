@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { capitalizer } from '../utilities/capitalizer';
 
-import { selectChord, selectScale, selectGroup } from './../features/groupSelector/groupSelectorSlice';
+import { selectGroup } from './../features/groupSelector/groupSelectorSlice';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
