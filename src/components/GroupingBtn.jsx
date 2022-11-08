@@ -11,20 +11,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const GroupingBtn=(props)=>{
     const [active, setActive] = useState(false)
 
-    const areScales = useSelector(state => state.groupSelector.areScales)
+    // const areScales = useSelector(state => state.groupSelector.areScales)
+    const rawRoot = useSelector(state => state.groupSelector.rawRoot)
     const dispatch = useDispatch();
 
-    var selectedChord = useSelector(state => state.groupSelector.selectedChord)
-    var selectedScale = useSelector(state => state.groupSelector.selectedScale)
     var selectedGroup = useSelector(state => state.groupSelector.selectedGroup)
-
-    var thisGroup = areScales? selectedScale : selectedChord
 
     const selectGrouping =(group)=> {
         dispatch(selectGroup(group))
-        areScales ? dispatch(selectScale(group)) :
-        dispatch(selectChord(group))
-
     }
 
     const checkActive =()=>{
@@ -37,7 +31,7 @@ const GroupingBtn=(props)=>{
 
     useEffect(()=>{
         checkActive()
-    },[thisGroup, selectedGroup]) //FIXME: SELECTED GROUP
+    },[selectedGroup]) //FIXME: SELECTED GROUP
 
     const handleClick=()=>{
             selectGrouping(props.name)
@@ -53,13 +47,28 @@ const GroupingBtn=(props)=>{
         }
         return(<span>{fString}</span>)
     }
+
+    const noteFormatter=(note) =>{
+        return note.slice(0,note.length-1)
+    }
+
+    const showNotes =()=>{
+        let groupArr = props.grouping.get(rawRoot+' '+props.name).notes
+        return groupArr.map(n => (
+            <span>{noteFormatter(n)} </span>
+        ))
+    }
+
     return(
         <span
             style={{
                     padding:'1px',
                     backgroundColor: active? 'yellow': 'white'
-                }}onClick={handleClick}>
-            {formatter(props.name)}
+                }}
+            onClick={handleClick}
+        >
+            <p>{formatter(props.name)}</p>
+            <p>{showNotes()}</p>
         </span>
     )
 }

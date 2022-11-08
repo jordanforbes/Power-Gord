@@ -16,10 +16,10 @@ const DisplayMode = (props)=>{
         <h2>{nameType()}</h2>
         <div className="row">
 
-            <NoteDisplay
+            {/* <NoteDisplay
               selectedNotes = {props.selectedNotes}
               grouping={props.grouping}
-            />
+            /> */}
         </div>
             <GroupList
               areScales={props.areScales}

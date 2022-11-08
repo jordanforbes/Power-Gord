@@ -1,6 +1,8 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import GroupingBtn from './GroupingBtn';
+import { useSelector } from 'react-redux';
+
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -16,7 +18,6 @@ const GroupList =(props)=>{
                     className="scaleRow"
                   >
                     <GroupingBtn
-                        areScales={props.areScales}
                         grouping={props.grouping}
                         name={name}
                     />

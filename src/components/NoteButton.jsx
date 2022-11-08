@@ -10,16 +10,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NoteString from './NoteString';
 
 const NoteButton=(props)=>{
-    const root = useSelector(state => state.groupSelector.root)
-    // const rawRoot = useSelector(state => state.groupSelector.rawRoot)
-    const areScales = useSelector(state => state.groupSelector.areScales)
-    const selectedScale = useSelector(state => state.groupSelector.selectedScale)
-    const selectedChord = useSelector(state => state.groupSelector.selectedChord)
-    const selectedGroup = areScales ? selectedScale : selectedChord
-
     const dispatch = useDispatch();
-    // const thisNote = useSelector(state => state.noteSelector.thisNote)
-    // const rawNote = useSelector(state => state.noteSelector.rawNote)
+    const root = useSelector(state => state.groupSelector.root)
+    const areScales = useSelector(state => state.groupSelector.areScales)
 
     const [isRoot, setIsRoot] = useState(false)
     const [inRange, setInRange] = useState(true)
@@ -32,6 +25,7 @@ const NoteButton=(props)=>{
     const octaveRemove =(note)=>{
         return note.slice(0, note.length-1)
     }
+
     //adds root and group together to plug back into the tonaljs library
     useEffect(()=>{
         if(root === octaveRemove(props.thisNote)){
@@ -44,10 +38,8 @@ const NoteButton=(props)=>{
     //sets the root for the chord/scale on button press
     const activate=(note)=>{
         setIsRoot(current => !current);
-        // props.setNotes(note)
         dispatch(selectRoot(note))
         console.log('redux state change '+root)
-        // props.setSelectedRoot(note)
     }
 
     const handleClick=()=>{
@@ -77,8 +69,6 @@ const NoteButton=(props)=>{
                 inRange = {props.inRange}
                 grouping = {props.grouping}
                 setInRange = {setInRange}
-                // selectedGroup = {props.selectedGroup} //FIXME: SELECTED GROUP
-                // selectedRoot = {props.selectedRoot}
             />
         </Button>
     )

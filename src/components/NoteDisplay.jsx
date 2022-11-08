@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 const NoteDisplay=(props)=>{
 
     const rawRoot = useSelector(state => state.groupSelector.rawRoot)
+    const selectedGroup = useSelector(state => state.groupSelector.selectedGroup)
 
 
     const formatter=(note) =>{
@@ -10,7 +11,7 @@ const NoteDisplay=(props)=>{
     }
 
     const showNotes =()=>{
-        let groupArr = props.grouping.get(rawRoot+' '+props.selectedGroup).notes //FIXME: SELECTED GROUP
+        let groupArr = props.grouping.get(rawRoot+' '+selectedGroup).notes //FIXME: SELECTED GROUP
         return groupArr.map(n => (
             <span>{formatter(n)} </span>
         ))
