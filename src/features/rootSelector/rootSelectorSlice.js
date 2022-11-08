@@ -17,6 +17,7 @@ export const rootSelectorSlice = createSlice({
         },
         clearRoot: (state)=>{
             state.root = ''
+            state.rawRoot = ''
         },
     }
 })

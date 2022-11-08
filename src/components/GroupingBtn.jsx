@@ -3,32 +3,32 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { capitalizer } from '../utilities/capitalizer';
 
-import { selectChord, selectScale } from './../features/groupSelector/groupSelectorSlice';
+import { selectChord, selectScale, selectGroup } from './../features/groupSelector/groupSelectorSlice';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const GroupingBtn=(props)=>{
     const [active, setActive] = useState(false)
-    // const groupSelector = useSelector(state => state.groupSelector)
+
     const areScales = useSelector(state => state.groupSelector.areScales)
     const dispatch = useDispatch();
 
     var selectedChord = useSelector(state => state.groupSelector.selectedChord)
     var selectedScale = useSelector(state => state.groupSelector.selectedScale)
+    var selectedGroup = useSelector(state => state.groupSelector.selectedGroup)
+
     var thisGroup = areScales? selectedScale : selectedChord
 
-    const selectGroup =(group)=> {
-        // console.log('selectedGroups')
-        // console.log(group)
+    const selectGrouping =(group)=> {
+        dispatch(selectGroup(group))
         areScales ? dispatch(selectScale(group)) :
         dispatch(selectChord(group))
-        // console.log('selChord',selectedChord)
-        // console.log('selScale',selectedScale)
+
     }
 
     const checkActive =()=>{
-        if(thisGroup === props.name){
+        if(selectedGroup === props.name){
             setActive(true)
         }else{
             setActive(false)
@@ -37,12 +37,11 @@ const GroupingBtn=(props)=>{
 
     useEffect(()=>{
         checkActive()
-    },[thisGroup]) //FIXME: SELECTED GROUP
+    },[thisGroup, selectedGroup]) //FIXME: SELECTED GROUP
 
     const handleClick=()=>{
-            // props.setSelectedGroup(props.name) //FIXME: SELECTED GROUP
-            selectGroup(props.name)
-            console.log('thisgroup '+thisGroup)
+            selectGrouping(props.name)
+            // console.log('thisgroup '+thisGroup)
             checkActive()
     }
 

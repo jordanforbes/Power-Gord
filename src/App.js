@@ -1,19 +1,11 @@
 import './App.css';
 import React, { useState } from 'react';
-import { configureStore }  from '@reduxjs/toolkit'
 import { useDispatch, useSelector } from 'react-redux';
 import { Chord, Scale, ChordType, ScaleType } from '@tonaljs/tonal'
 import { Button } from 'react-bootstrap';
-// import { RootSelector } from './features/rootSelector/RootSelector';
-// import { GroupSelector } from './features/groupSelector/GroupSelector'
-import { selectRoot, clearRoot, swapGrouping, reset, selectChord, selectScale } from './features/groupSelector/groupSelectorSlice';
-import { selectNote, clearNote } from './features/noteSelector/noteSelectorSlice';
+import { selectRoot, clearRoot, swapGrouping, reset, selectChord, selectScale, selectGroup, clearGroup } from './features/groupSelector/groupSelectorSlice';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-
-// import ButtonGroup from 'react-bootstrap/ButtonGroup'
-
 
 import FretBoard from './components/FretBoard/FretBoard';
 import PowerHeader from './components/PowerHeader';
@@ -30,17 +22,9 @@ const App=()=>{
   const areScales = useSelector(state => state.groupSelector.areScales)
   const grouping = areScales ? Scale : Chord
   const groupType = areScales ? ScaleType : ChordType
-  const groupingArr = grouping
-  const selectedScale = useSelector(state => state.groupSelector.selectedScale)
-  const selectedChord = useSelector(state => state.groupSelector.selectedChord)
-  const selectedGroup = areScales ? selectedScale : selectedChord
 
-  // console.log('app.js grouping test')
-  // console.log(grouping.names())
-  // console.log('app.js groupType test')
-  // console.log(groupType.names())
-  // console.log('end test')
-  //resets board to default values
+  const selectedGroup =  useSelector(state => state.groupSelector.selectedChord)
+
   const clearBoard=()=>{
     console.log('testroot '+root)
     dispatch(reset())

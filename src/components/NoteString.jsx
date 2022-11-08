@@ -5,11 +5,7 @@ import { Note } from '@tonaljs/tonal'
 
 const NoteString=(props)=>{
     const rawRoot = useSelector(state => state.groupSelector.rawRoot)
-    const areScales = useSelector(state => state.groupSelector.areScales)
-
-    var selectedChord = useSelector(state => state.groupSelector.selectedChord)
-    var selectedScale = useSelector(state => state.groupSelector.selectedScale)
-    var selectedGroup = areScales? selectedScale : selectedChord
+    var selectedGroup = useSelector(state => state.groupSelector.selectedGroup)
 
 
     //separate note from octave
@@ -19,7 +15,6 @@ const NoteString=(props)=>{
 
     //gets notes from grouping
     const findGroup =(group)=>{
-        // console.log('findGroup',rawRoot+' '+group)
         let groupArr = props.grouping.get(rawRoot+' '+group).notes
         groupArr = groupArr.map(n =>(
             n.slice(0,n.length-1)
@@ -31,8 +26,10 @@ const NoteString=(props)=>{
         let currentGroup = findGroup(selectedGroup)
         let currentNote = props.thisNote.slice(0,props.thisNote.length-1)
 
+        let noteChroma = Note.chroma(currentNote)
+        let chromaGroup = currentGroup.map(Note.chroma)
 
-        currentGroup.includes(currentNote) ? checkEnharmonic(currentNote,false) : currentGroup.includes(getEnharmonic(currentNote)) ? checkEnharmonic(currentNote,true) : props.setInRange(false)
+        chromaGroup.includes(noteChroma) ? props.setInRange(true): props.setInRange(false)
     }
 
     //checks if note is in range of group
@@ -44,11 +41,7 @@ const NoteString=(props)=>{
         return Note.enharmonic(n)
     }
 
-    const checkEnharmonic = (n,bool)=>{
-        props.setInRange(true)
-        props.setIsEnharmonic(bool)
-    }
-    // console.log('getenharmonic '+getEnharmonic(note))
+
 
     note = props.isEnharmonic ?getEnharmonic(note) : note
 

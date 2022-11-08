@@ -2,6 +2,8 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { Note } from '@tonaljs/tonal'
+
 import { selectRoot } from '../features/groupSelector/groupSelectorSlice';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -50,6 +52,8 @@ const NoteButton=(props)=>{
 
     const handleClick=()=>{
         isRoot ? activate(""):
+        console.log('enharmonic',Note.chroma(props.thisNote))
+
         activate(props.thisNote)
 
     }

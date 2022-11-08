@@ -5,12 +5,12 @@ const initialState={
     root:'',
     rawRoot:'',
     areScales: true,
+
     selectedChord:'',
-    selectedChordNotes:[],
-    selectedChordChroma:[],
+
     selectedScale:'',
-    selectedScaleNotes:[],
-    selectedScaleChroma:[]
+
+    selectedGroup:'',
 }
 
 export const groupSelectorSlice = createSlice({
@@ -29,14 +29,6 @@ export const groupSelectorSlice = createSlice({
         },
         selectChord: (state, action)=>{
             state.selectedChord = action.payload
-            console.log(state.selectedChord)
-            console.log(state.root)
-            // state.selectedChordNotes = Chord.notes(`${state.rawRoot}${state.selectedChord}`)
-            // console.log(state.selectedChordNotes)
-            let chordObject = Chord.get(`${state.root} ${state.selectedChord}`)
-            state.selectedChordNotes = chordObject.notes
-            console.log(state.selectedChordNotes)
-            console.log(chordObject.chroma)
         },
         clearChord: (state)=>{
             state.selectedChord = ''
@@ -47,18 +39,25 @@ export const groupSelectorSlice = createSlice({
         clearScale: (state)=>{
             state.selectedScale = ''
         },
+        selectGroup: (state, action)=>{
+            state.selectedGroup = action.payload
+        },
+        clearGroup: (state)=>{
+            state.selectedGroup = ''
+        },
         swapGrouping: (state)=>{
             state.areScales = !state.areScales
         },
         reset: (state)=>{
             state.root=''
             state.rawRoot=''
-            state.chord=''
-            state.scale=''
+            state.selectedChord=''
+            state.selectedScale=''
+            state.selectedGroup=''
         }
     }
 })
 
-export const { selectRoot, clearRoot, selectChord, selectScale, clearChord, select, clearScale, swapGrouping, reset } = groupSelectorSlice.actions
+export const { selectRoot, clearRoot, selectChord, selectScale, clearChord, selectGroup, clearGroup, clearScale, swapGrouping, reset } = groupSelectorSlice.actions
 
 export default groupSelectorSlice.reducer
