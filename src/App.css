@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color:lightcyan;
 }
 
 .outline {
@@ -29,7 +30,7 @@
 }
 .scaleContainer{
   width: 90%;
-  height: 200px;
+  height:400px;
 }
 
 .scaleRow{
@@ -80,6 +81,17 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.groupNoteList{
+  font-size: smaller;
+  color:lightgray;
+  /* font-weight:bold; */
+}
+.groupNoteList:hover{
+  font-size: smaller;
+  color:gray;
+  font-weight:bold;
 }
 
 @media (prefers-reduced-motion: no-preference) {

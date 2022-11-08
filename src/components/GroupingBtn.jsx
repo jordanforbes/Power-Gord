@@ -53,9 +53,12 @@ const GroupingBtn=(props)=>{
     }
 
     const showNotes =()=>{
-        let groupArr = props.grouping.get(rawRoot+' '+props.name).notes
+        rawRoot ? console.log('root selected'): console.log('no root',
+        props.grouping.get(props.name).intervals)
+        let groupArr = rawRoot ? props.grouping.get(rawRoot+' '+props.name).notes : props.grouping.get(props.name).intervals
+
         return groupArr.map(n => (
-            <span>{noteFormatter(n)} </span>
+            <span>{rawRoot ? noteFormatter(n):n} </span>
         ))
     }
 
@@ -67,8 +70,9 @@ const GroupingBtn=(props)=>{
                 }}
             onClick={handleClick}
         >
-            <p>{formatter(props.name)}</p>
-            <p>{showNotes()}</p>
+            {formatter(props.name)}
+            <br></br>
+            <span className="groupNoteList">{showNotes()}</span>
         </span>
     )
 }
