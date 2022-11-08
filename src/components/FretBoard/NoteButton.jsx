@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Note } from '@tonaljs/tonal'
 
-import { selectRoot } from '../features/groupSelector/groupSelectorSlice';
+import { selectRoot } from '../../features/groupSelector/groupSelectorSlice';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import NoteString from './NoteString';

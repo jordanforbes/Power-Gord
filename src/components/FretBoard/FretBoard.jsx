@@ -4,7 +4,7 @@ import { Scale } from '@tonaljs/tonal'
 
 
 //components
-import NoteButton from '../NoteButton';
+import NoteButton from './NoteButton';
 
 const FretBoard=(props)=>{
     //sets tuning by creating arrays of scales that represent individual guitar strings

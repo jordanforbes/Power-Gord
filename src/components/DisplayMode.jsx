@@ -1,5 +1,5 @@
 import NoteDisplay from "./NoteDisplay"
-import GroupList from "./GroupList"
+import GroupList from "./GroupingList/GroupList"
 import { useSelector } from 'react-redux';
 
 

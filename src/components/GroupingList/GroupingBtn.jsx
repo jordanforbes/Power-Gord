@@ -1,9 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { capitalizer } from '../utilities/capitalizer';
+import { capitalizer } from '../../utilities/capitalizer';
 
-import { selectGroup } from './../features/groupSelector/groupSelectorSlice';
+import { selectGroup } from '../../features/groupSelector/groupSelectorSlice';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -34,9 +34,9 @@ const GroupingBtn=(props)=>{
     },[selectedGroup]) //FIXME: SELECTED GROUP
 
     const handleClick=()=>{
+        if(rawRoot){
             selectGrouping(props.name)
-            // console.log('thisgroup '+thisGroup)
-            checkActive()
+            checkActive()}
     }
 
     const formatter = (entry)=>{
@@ -53,8 +53,6 @@ const GroupingBtn=(props)=>{
     }
 
     const showNotes =()=>{
-        rawRoot ? console.log('root selected'): console.log('no root',
-        props.grouping.get(props.name).intervals)
         let groupArr = rawRoot ? props.grouping.get(rawRoot+' '+props.name).notes : props.grouping.get(props.name).intervals
 
         return groupArr.map(n => (
