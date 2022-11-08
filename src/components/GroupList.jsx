@@ -1,21 +1,15 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import GroupingBtn from './GroupingBtn';
-import { useSelector } from 'react-redux';
-
-import { Scale, ChordType } from '@tonaljs/tonal'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const GroupList =(props)=>{
-    const areScales = useSelector(state => state.groupSelector.areScales)
 
+    //finds all of the names of scales and chords
     const allGroupings =()=>{
-
-        //finds all of the names of scales and chords
-        let groupArr = areScales ? Scale.names() : ChordType.names()
-
+        let groupArr = props.groupType.names()
         return groupArr.map(name =>(
             <>
                 <tr
@@ -23,8 +17,6 @@ const GroupList =(props)=>{
                   >
                     <GroupingBtn
                         areScales={props.areScales}
-                        // selectedGroup={props.selectedGroup}//FIXME: SELECTED GROUP
-                        // setSelectedGroup={props.setSelectedGroup} //FIXME: SELECTED GROUP
                         grouping={props.grouping}
                         name={name}
                     />

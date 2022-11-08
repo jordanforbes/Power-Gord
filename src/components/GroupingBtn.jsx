@@ -14,17 +14,17 @@ const GroupingBtn=(props)=>{
     const areScales = useSelector(state => state.groupSelector.areScales)
     const dispatch = useDispatch();
 
-    const selectedChord = useSelector(state => state.groupSelector.selectedChord)
-    const selectedScale = useSelector(state => state.groupSelector.selectedScale)
+    var selectedChord = useSelector(state => state.groupSelector.selectedChord)
+    var selectedScale = useSelector(state => state.groupSelector.selectedScale)
     var thisGroup = areScales? selectedScale : selectedChord
 
     const selectGroup =(group)=> {
-        console.log('selectedGroups')
-        console.log(group)
+        // console.log('selectedGroups')
+        // console.log(group)
         areScales ? dispatch(selectScale(group)) :
         dispatch(selectChord(group))
-        console.log('selChord',selectedChord)
-        console.log('selScale',selectedScale)
+        // console.log('selChord',selectedChord)
+        // console.log('selScale',selectedScale)
     }
 
     const checkActive =()=>{

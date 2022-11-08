@@ -15,18 +15,16 @@ const DisplayMode = (props)=>{
       <div className="col-md-10">
         <h2>{nameType()}</h2>
         <div className="row">
+
             <NoteDisplay
-            selectedNotes = {props.selectedNotes}
-            // selectedGroup = {props.selectedGroup} //FIXME: SELECTED GROUP
-            // setSelectedGroup ={props.setSelectedGroup} //FIXME: SELECTED GROUP
-            grouping={props.grouping}
+              selectedNotes = {props.selectedNotes}
+              grouping={props.grouping}
             />
         </div>
             <GroupList
-            areScales={props.areScales}
-            // selectedGroup = {props.selectedGroup} //FIXME: SELECTED GROUP
-            // setSelectedGroup ={props.setSelectedGroup} //FIXME: SELECTED GROUP
-            grouping={props.grouping}
+              areScales={props.areScales}
+              grouping={props.grouping}
+              groupType = {props.groupType}
             />
         </div>
     )

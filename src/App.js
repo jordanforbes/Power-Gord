@@ -2,7 +2,7 @@ import './App.css';
 import React, { useState } from 'react';
 import { configureStore }  from '@reduxjs/toolkit'
 import { useDispatch, useSelector } from 'react-redux';
-import { Chord, Scale } from '@tonaljs/tonal'
+import { Chord, Scale, ChordType, ScaleType } from '@tonaljs/tonal'
 import { Button } from 'react-bootstrap';
 // import { RootSelector } from './features/rootSelector/RootSelector';
 // import { GroupSelector } from './features/groupSelector/GroupSelector'
@@ -26,14 +26,20 @@ const App=()=>{
 
   const dispatch = useDispatch();
 
+  //decides which group will be passed to components, swapping modes
   const areScales = useSelector(state => state.groupSelector.areScales)
+  const grouping = areScales ? Scale : Chord
+  const groupType = areScales ? ScaleType : ChordType
+  const groupingArr = grouping
   const selectedScale = useSelector(state => state.groupSelector.selectedScale)
   const selectedChord = useSelector(state => state.groupSelector.selectedChord)
-
-  //decides which group will be passed to components, swapping modes
-  const grouping = areScales ? Scale : Chord
   const selectedGroup = areScales ? selectedScale : selectedChord
 
+  // console.log('app.js grouping test')
+  // console.log(grouping.names())
+  // console.log('app.js groupType test')
+  // console.log(groupType.names())
+  // console.log('end test')
   //resets board to default values
   const clearBoard=()=>{
     console.log('testroot '+root)
@@ -84,6 +90,7 @@ const App=()=>{
               <DisplayMode
                 selectedGroup = {selectedGroup}
                 grouping={grouping}
+                groupType = {groupType}
               />
 
               <div className="col-md-1"></div>

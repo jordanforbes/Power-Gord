@@ -1,11 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit"
+import {Note, Scale, Chord} from '@tonaljs/tonal'
 
 const initialState={
     root:'',
     rawRoot:'',
     areScales: true,
     selectedChord:'',
-    selectedScale:''
+    selectedChordNotes:[],
+    selectedChordChroma:[],
+    selectedScale:'',
+    selectedScaleNotes:[],
+    selectedScaleChroma:[]
 }
 
 export const groupSelectorSlice = createSlice({
@@ -24,6 +29,14 @@ export const groupSelectorSlice = createSlice({
         },
         selectChord: (state, action)=>{
             state.selectedChord = action.payload
+            console.log(state.selectedChord)
+            console.log(state.root)
+            // state.selectedChordNotes = Chord.notes(`${state.rawRoot}${state.selectedChord}`)
+            // console.log(state.selectedChordNotes)
+            let chordObject = Chord.get(`${state.root} ${state.selectedChord}`)
+            state.selectedChordNotes = chordObject.notes
+            console.log(state.selectedChordNotes)
+            console.log(chordObject.chroma)
         },
         clearChord: (state)=>{
             state.selectedChord = ''

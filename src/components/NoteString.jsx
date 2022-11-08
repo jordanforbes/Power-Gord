@@ -7,9 +7,9 @@ const NoteString=(props)=>{
     const rawRoot = useSelector(state => state.groupSelector.rawRoot)
     const areScales = useSelector(state => state.groupSelector.areScales)
 
-    const selectedChord = useSelector(state => state.groupSelector.selectedChord)
-    const selectedScale = useSelector(state => state.groupSelector.selectedScale)
-    var thisGroup = areScales? selectedScale : selectedChord
+    var selectedChord = useSelector(state => state.groupSelector.selectedChord)
+    var selectedScale = useSelector(state => state.groupSelector.selectedScale)
+    var selectedGroup = areScales? selectedScale : selectedChord
 
 
     //separate note from octave
@@ -18,8 +18,9 @@ const NoteString=(props)=>{
 
 
     //gets notes from grouping
-    const findGroup =(selectedGroup)=>{
-        let groupArr = props.grouping.get(rawRoot+' '+selectedGroup).notes
+    const findGroup =(group)=>{
+        // console.log('findGroup',rawRoot+' '+group)
+        let groupArr = props.grouping.get(rawRoot+' '+group).notes
         groupArr = groupArr.map(n =>(
             n.slice(0,n.length-1)
         ))
@@ -27,7 +28,7 @@ const NoteString=(props)=>{
     }
 
     const checkInRange =()=>{
-        let currentGroup = findGroup(thisGroup)
+        let currentGroup = findGroup(selectedGroup)
         let currentNote = props.thisNote.slice(0,props.thisNote.length-1)
 
 
@@ -37,7 +38,7 @@ const NoteString=(props)=>{
     //checks if note is in range of group
     useEffect(()=>{
         checkInRange()
-    },[thisGroup]) //FIXME: SELECTED GROUP
+    },[selectedGroup,rawRoot])
 
     const getEnharmonic=(n)=>{
         return Note.enharmonic(n)

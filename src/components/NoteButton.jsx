@@ -11,6 +11,9 @@ const NoteButton=(props)=>{
     const root = useSelector(state => state.groupSelector.root)
     // const rawRoot = useSelector(state => state.groupSelector.rawRoot)
     const areScales = useSelector(state => state.groupSelector.areScales)
+    const selectedScale = useSelector(state => state.groupSelector.selectedScale)
+    const selectedChord = useSelector(state => state.groupSelector.selectedChord)
+    const selectedGroup = areScales ? selectedScale : selectedChord
 
     const dispatch = useDispatch();
     // const thisNote = useSelector(state => state.noteSelector.thisNote)
