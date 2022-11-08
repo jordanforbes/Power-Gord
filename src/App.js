@@ -1,12 +1,11 @@
 import './App.css';
 import React, { useState } from 'react';
-import { Chord, Scale } from '@tonaljs/tonal'
+import { useDispatch, useSelector } from 'react-redux';
+import { Chord, Scale, ChordType, ScaleType } from '@tonaljs/tonal'
 import { Button } from 'react-bootstrap';
+import { selectRoot, clearRoot, swapGrouping, reset, selectChord, selectScale, selectGroup, clearGroup } from './features/groupSelector/groupSelectorSlice';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-
-// import ButtonGroup from 'react-bootstrap/ButtonGroup'
-
 
 import FretBoard from './components/FretBoard/FretBoard';
 import PowerHeader from './components/PowerHeader';
@@ -15,27 +14,26 @@ import DisplayMode from './components/DisplayMode';
 
 
 const App=()=>{
+  const root = useSelector(state => state.groupSelector.root)
 
-  const [selectedRoot, setSelectedRoot]= useState('')
-  const [selectedScale, setSelectedScale]= useState('')
-  const [selectedChord, setSelectedChord]= useState('')
-  const [areScales,setAreScales]= useState(true)
-  const [notes, setNotes]= useState('')
+  const dispatch = useDispatch();
 
   //decides which group will be passed to components, swapping modes
-  var grouping = areScales ? Scale : Chord
+  const areScales = useSelector(state => state.groupSelector.areScales)
+  const grouping = areScales ? Scale : Chord
+  const groupType = areScales ? ScaleType : ChordType
 
-  //resets board to default values
+  const selectedGroup =  useSelector(state => state.groupSelector.selectedChord)
+
   const clearBoard=()=>{
-    setSelectedRoot('')
-    setSelectedScale('')
-    setSelectedChord('')
+    console.log('testroot '+root)
+    dispatch(reset())
   }
 
   //switches from chord look up to scale look up
   const swapModes =()=>{
-    setAreScales(!areScales)
     clearBoard()
+    dispatch(swapGrouping());
   }
 
   return (
@@ -51,19 +49,13 @@ const App=()=>{
 
             {/* fretboard grid */}
             <FretBoard
-              notes={notes}
-              areScales={areScales}
-              setSelectedRoot={setSelectedRoot}
-              selectedRoot = {selectedRoot}
-              setNotes={setNotes}
-              selectedGroup = {areScales? selectedScale : selectedChord}
-              setSelectedGroup = {areScales? setSelectedScale : setSelectedChord}
+              selectedGroup = {selectedGroup}
               grouping={grouping}
             />
 
           </div>
           <div className="col-md-2">
-            <h2>Root: {selectedRoot.slice(0,selectedRoot.length-1)}</h2>
+            <h2>Root: {root}</h2>
 
             {/* button that swaps modes */}
             <p><Button onClick={swapModes}>
@@ -80,11 +72,9 @@ const App=()=>{
             <div className="row">
 
               <DisplayMode
-                areScales={areScales}
-                selectedRoot = {selectedRoot}
-                selectedGroup = {areScales? selectedScale : selectedChord}
-                setSelectedGroup = {areScales? setSelectedScale : setSelectedChord}
+                selectedGroup = {selectedGroup}
                 grouping={grouping}
+                groupType = {groupType}
               />
 
               <div className="col-md-1"></div>

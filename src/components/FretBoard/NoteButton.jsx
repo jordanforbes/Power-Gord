@@ -1,11 +1,18 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { Note } from '@tonaljs/tonal'
+
+import { selectRoot } from '../../features/groupSelector/groupSelectorSlice';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import NoteString from './NoteString';
 
 const NoteButton=(props)=>{
+    const dispatch = useDispatch();
+    const root = useSelector(state => state.groupSelector.root)
+    const areScales = useSelector(state => state.groupSelector.areScales)
 
     const [isRoot, setIsRoot] = useState(false)
     const [inRange, setInRange] = useState(true)
@@ -13,29 +20,32 @@ const NoteButton=(props)=>{
 
     //sets the default color value for the group based on if it's scales or chords.
 
-    var groupColor = props.areScales ? 'red':'blue'
+    var groupColor = areScales ? 'red':'blue'
 
     const octaveRemove =(note)=>{
         return note.slice(0, note.length-1)
     }
+
     //adds root and group together to plug back into the tonaljs library
     useEffect(()=>{
-        if(octaveRemove(props.selectedRoot) === octaveRemove(props.thisNote)){
+        if(root === octaveRemove(props.thisNote)){
             setIsRoot(true)
         }else{
             setIsRoot(false)
         }
-    },[props.selectedRoot])
+    },[root])
 
     //sets the root for the chord/scale on button press
     const activate=(note)=>{
         setIsRoot(current => !current);
-        // props.setNotes(note)
-        props.setSelectedRoot(note)
+        dispatch(selectRoot(note))
+        console.log('redux state change '+root)
     }
 
     const handleClick=()=>{
         isRoot ? activate(""):
+        console.log('enharmonic',Note.chroma(props.thisNote))
+
         activate(props.thisNote)
 
     }
@@ -56,13 +66,9 @@ const NoteButton=(props)=>{
                 isEnharmonic = {isEnharmonic}
                 setIsEnharmonic = {setIsEnharmonic}
                 thisNote = {props.thisNote}
-                isRoot = {props.isRoot}
-                setIsRoot = {props.setIsRoot}
                 inRange = {props.inRange}
-                setInRange = {setInRange}
-                selectedGroup = {props.selectedGroup}
-                selectedRoot = {props.selectedRoot}
                 grouping = {props.grouping}
+                setInRange = {setInRange}
             />
         </Button>
     )

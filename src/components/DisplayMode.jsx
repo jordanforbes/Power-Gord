@@ -1,31 +1,30 @@
 import NoteDisplay from "./NoteDisplay"
-import GroupList from "./GroupList"
+import GroupList from "./GroupingList/GroupList"
+import { useSelector } from 'react-redux';
+
 
 //contains the note list and the group list
 const DisplayMode = (props)=>{
+  const areScales = useSelector(state => state.groupSelector.areScales)
+
 
   const nameType =()=>{
-    return props.areScales ? "Scales" : "Chords"
+    return areScales ? "Scales" : "Chords"
   }
     return(
       <div className="col-md-10">
         <h2>{nameType()}</h2>
         <div className="row">
-            <NoteDisplay
-            areScales={props.areScales}
-            selectedRoot = {props.selectedRoot}
-            selectedNotes = {props.selectedNotes}
-            selectedGroup = {props.selectedGroup}
-            setSelectedGroup ={props.setSelectedGroup}
-            grouping={props.grouping}
-            />
+
+            {/* <NoteDisplay
+              selectedNotes = {props.selectedNotes}
+              grouping={props.grouping}
+            /> */}
         </div>
             <GroupList
-            areScales={props.areScales}
-            selectedRoot = {props.selectedRoot}
-            selectedGroup = {props.selectedGroup}
-            setSelectedGroup ={props.setSelectedGroup}
-            grouping={props.grouping}
+              areScales={props.areScales}
+              grouping={props.grouping}
+              groupType = {props.groupType}
             />
         </div>
     )

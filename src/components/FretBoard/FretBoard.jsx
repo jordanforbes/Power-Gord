@@ -4,11 +4,12 @@ import { Scale } from '@tonaljs/tonal'
 
 
 //components
-import NoteButton from '../NoteButton';
+import NoteButton from './NoteButton';
 
 const FretBoard=(props)=>{
     //sets tuning by creating arrays of scales that represent individual guitar strings
     const scaleRange = Scale.rangeOf('E chromatic')
+
 
     const standardTuning = [
         scaleRange('E2','E3'),
@@ -19,21 +20,17 @@ const FretBoard=(props)=>{
         scaleRange('E4','E5')
     ]
 
-
     //dynamically builds fretboard based on inserted notes
     const stringTuner=(scaleArray)=>{
         return scaleArray.map(n =>(
             <NoteButton
                 className="noteButton"
-                areScales={props.areScales}
-                setSelectedRoot={props.setSelectedRoot}
-                selectedRoot ={props.selectedRoot}
                 setSelectedNotes ={props.setSelectedNotes}
                 setNotes={props.setNotes}
                 thisNote={n}
-                selectedGroup = {props.selectedGroup}
-                setSelectedGroup = {props.setSelectedGroup}
-                grouping={props.grouping}
+                grouping = {props.grouping}
+                // selectedGroup = {props.selectedGroup} //FIXME: SELECTED GROUP
+                // setSelectedGroup = {props.setSelectedGroup} //FIXME: SELECTED GROUP
             />
         ))
     }

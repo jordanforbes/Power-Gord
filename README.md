@@ -22,3 +22,5 @@ But the scale and chord searches do
 
 ## Current Problems
 currently there is an issue with double sharps.
+sharp roots kind of break it
+notes are no longer appearing in the box

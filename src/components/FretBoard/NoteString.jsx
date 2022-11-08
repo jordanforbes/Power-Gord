@@ -1,16 +1,21 @@
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Note } from '@tonaljs/tonal'
 
 
 const NoteString=(props)=>{
+    const rawRoot = useSelector(state => state.groupSelector.rawRoot)
+    var selectedGroup = useSelector(state => state.groupSelector.selectedGroup)
+
 
     //separate note from octave
     let note = props.thisNote.substr(0,props.thisNote.length-1)
     let octave = props.thisNote.substr(props.thisNote.length-1)
-    // var focusNote = props.thisNote
 
-    const formatGroup =(group, selectedGroup)=>{
-        let groupArr = group.get(props.selectedRoot+' '+selectedGroup).notes
+
+    //gets notes from grouping
+    const findGroup =(group)=>{
+        let groupArr = props.grouping.get(rawRoot+' '+group).notes
         groupArr = groupArr.map(n =>(
             n.slice(0,n.length-1)
         ))
@@ -18,29 +23,25 @@ const NoteString=(props)=>{
     }
 
     const checkInRange =()=>{
-        let currentGroup = formatGroup(props.grouping,props.selectedGroup)
+        let currentGroup = findGroup(selectedGroup)
         let currentNote = props.thisNote.slice(0,props.thisNote.length-1)
 
-        // console.log('thisNote', props.thisNote)
-        // console.log('currentNote', currentNote)
+        let noteChroma = Note.chroma(currentNote)
+        let chromaGroup = currentGroup.map(Note.chroma)
 
-        currentGroup.includes(currentNote) ? checkEnharmonic(currentNote,false) : currentGroup.includes(getEnharmonic(currentNote)) ? checkEnharmonic(currentNote,true) : props.setInRange(false)
+        chromaGroup.includes(noteChroma) ? props.setInRange(true): props.setInRange(false)
     }
 
     //checks if note is in range of group
     useEffect(()=>{
         checkInRange()
-    },[props.selectedGroup,props.selectedRoot])
+    },[selectedGroup,rawRoot])
 
     const getEnharmonic=(n)=>{
         return Note.enharmonic(n)
     }
 
-    const checkEnharmonic = (n,bool)=>{
-        props.setInRange(true)
-        props.setIsEnharmonic(bool)
-    }
-    // console.log('getenharmonic '+getEnharmonic(note))
+
 
     note = props.isEnharmonic ?getEnharmonic(note) : note
 
