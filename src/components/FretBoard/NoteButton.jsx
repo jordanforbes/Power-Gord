@@ -44,8 +44,7 @@ const NoteButton=(props)=>{
 
     const handleClick=()=>{
         isRoot ? activate(""):
-        console.log('enharmonic',Note.chroma(props.thisNote))
-
+        // console.log('enharmonic',Note.chroma(props.thisNote))
         activate(props.thisNote)
 
     }
