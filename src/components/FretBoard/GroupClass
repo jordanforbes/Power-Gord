@@ -1,0 +1,32 @@
+const tonal = require('@tonaljs/tonal')
+const Note = tonal.Note
+const Scale = tonal.Scale
+const Chord = tonal.Chord
+const Pcset = tonal.Pcset
+
+const scaleDict =(root)=>{
+    let allScales = Scale.names()
+    return allScales.map(s => chromaFinder(root+' '+s))
+}
+
+const chromaFinder=(group)=>{
+    let getName = Scale.get(group).name
+    let getNotes = Scale.get(group).notes
+    return [getName,getNotes.map(n => Note.chroma(n))]
+}
+
+class GroupClass {
+    constructor(notes){
+        this.notes=[]
+        this.chroma=[]
+    }
+    chromaFinder(){
+        return this.notes.map((n,i)=>{
+            this.chroma[i] = Note.chroma(n)
+        })
+    }
+}
+
+const cMajor = new GroupClass(['C','E','G'])
+
+console.log(cMajor)

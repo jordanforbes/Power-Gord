@@ -90,9 +90,20 @@ console.log(allNotes)
 // console.log(mixo)
 
 const chromaDict = listOfAllNotes.map(n=>scaleDict(n))
+var chromaList = []
 
-for(let i = 0; i<chromaDict.length-1; i++){
-    const chromaList = chromaDict.map(a => a[][1])
+for(let i = 0; i<40; i++){
+    for(let j = 0; j<40;j++){
+
+        chromaList = chromaDict.map(a => a[j])
+    }
 }
-console.log(chromaDict.length)
+for(let i =0; i<chromaList.length; i++){
+    for(let j =0; j<chromaList.length; j++){
+        console.log(j)
+        console.log(chromaDict[i][j])
+        console.log(chromaDict[i][j][1])
+    }
+}
+// console.log(chromaDict)
 // console.log(chromaFinder(mixo.notes))
