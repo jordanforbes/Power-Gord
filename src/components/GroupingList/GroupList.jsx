@@ -11,6 +11,7 @@ const GroupList =(props)=>{
 
     //finds all of the names of scales and chords
     const allGroupings =()=>{
+
         let groupArr = props.groupType.names()
         return groupArr.map(name =>(
             <>

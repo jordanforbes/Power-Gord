@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Chord, Scale, ChordType, ScaleType } from '@tonaljs/tonal'
 import { Button } from 'react-bootstrap';
-import { selectRoot, clearRoot, swapGrouping, reset, selectChord, selectScale, selectGroup, clearGroup } from './features/groupSelector/groupSelectorSlice';
+import { swapGrouping, reset} from './features/groupSelector/groupSelectorSlice';
+import { clearNotes } from './features/noteSelector/noteSelectorSlice';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -15,8 +16,8 @@ import DisplayMode from './components/DisplayMode';
 
 const App=()=>{
   const root = useSelector(state => state.groupSelector.root)
-
   const dispatch = useDispatch();
+  var [listSearch, setListSearch] = useState(true)
 
   //decides which group will be passed to components, swapping modes
   const areScales = useSelector(state => state.groupSelector.areScales)
@@ -27,6 +28,7 @@ const App=()=>{
 
   const clearBoard=()=>{
     console.log('testroot '+root)
+    dispatch(clearNotes())
     dispatch(reset())
   }
 
@@ -34,6 +36,10 @@ const App=()=>{
   const swapModes =()=>{
     clearBoard()
     dispatch(swapGrouping());
+  }
+
+  const searchMode =()=>{
+    setListSearch(!listSearch)
   }
 
   return (
@@ -66,15 +72,20 @@ const App=()=>{
             <p><Button onClick={clearBoard}>
               Clear
             </Button></p>
+
+            {/* button that switches search modes */}
+            <p><Button onClick={searchMode}>
+              {listSearch ? 'Reverse Search':'List Search' }
+              </Button></p>
           </div>
           <div className="col-md-5">
 
             <div className="row">
-
               <DisplayMode
                 selectedGroup = {selectedGroup}
                 grouping={grouping}
                 groupType = {groupType}
+                listSearch = {listSearch}
               />
 
               <div className="col-md-1"></div>

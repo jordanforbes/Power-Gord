@@ -1,4 +1,5 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectNote, clearNotes } from './../features/noteSelector/noteSelectorSlice'
 
 const NoteDisplay=(props)=>{
 
@@ -11,7 +12,7 @@ const NoteDisplay=(props)=>{
     }
 
     const showNotes =()=>{
-        let groupArr = props.grouping.get(rawRoot+' '+selectedGroup).notes //FIXME: SELECTED GROUP
+        let groupArr = props.grouping.get(rawRoot+' '+selectedGroup).notes
         return groupArr.map(n => (
             <span>{formatter(n)} </span>
         ))

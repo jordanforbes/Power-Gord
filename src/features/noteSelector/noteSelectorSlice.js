@@ -1,34 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { Note } from '@tonaljs/tonal'
 
 const initialState={
+    //holds the chroma of selectedNotes
     selectedNotes:[],
-    thisNote:'',
-    thisRawNote:'',
-    thisOctave:0
+    selectedChroma:[]
 }
 
 export const noteSelectorSlice = createSlice({
     name: 'noteSelector',
     initialState,
     reducers:{
-        selectNote: (state, action)=>{
-            let thisNote = action.payload
-            state.thisRawNote = thisNote
-            let shortNote = thisNote.substr(0,thisNote.length-1)
-            let octave = thisNote.substr(thisNote.length-1)
-            state.thisNote = shortNote
-            state.thisOctave = parseInt(octave)
-            state.selectedNotes.push(shortNote)
+        addNote: (state, action)=>{
+            if(action.payload){
+                state.selectedNotes.push(action.payload)
+
+            }
+            state.selectedNotes.map(n=>console.log(n))
         },
-        clearNote: (state)=>{
-            state.thisNote = ''
-            state.thisRawNote =''
-            state.thisOctave = 0
+        removeNote: (state,action)=>{
+            //will remove individual notes from the list
+        },
+        clearNotes: (state)=>{
             state.selectedNotes = []
         },
     }
 })
 
-export const { selectNote, clearNote } = noteSelectorSlice.actions
+export const { addNote, clearNotes, removeNote } = noteSelectorSlice.actions
 
 export default noteSelectorSlice.reducer

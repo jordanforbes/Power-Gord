@@ -2,12 +2,14 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { addNote, clearNotes } from './../../features/noteSelector/noteSelectorSlice'
 import { Note } from '@tonaljs/tonal'
 
 import { selectRoot } from '../../features/groupSelector/groupSelectorSlice';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import NoteString from './NoteString';
+import noteSelectorSlice from '../../features/noteSelector/noteSelectorSlice';
 
 const NoteButton=(props)=>{
     const dispatch = useDispatch();
@@ -40,6 +42,7 @@ const NoteButton=(props)=>{
         setIsRoot(current => !current);
         dispatch(selectRoot(note))
         console.log('redux state change '+root)
+        dispatch(addNote(note))
     }
 
     const handleClick=()=>{

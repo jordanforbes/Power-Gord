@@ -1,5 +1,6 @@
 import NoteDisplay from "./NoteDisplay"
 import GroupList from "./GroupingList/GroupList"
+import ReverseList from './GroupingList/ReverseList'
 import { useSelector } from 'react-redux';
 
 
@@ -11,22 +12,35 @@ const DisplayMode = (props)=>{
   const nameType =()=>{
     return areScales ? "Scales" : "Chords"
   }
+
+  const listCheck =()=>{
+    return props.listSearch ? 'Search ' : 'Reverse '
+  }
     return(
       <div className="col-md-10">
-        <h2>{nameType()}</h2>
+        <h2>{listCheck()}{nameType()}</h2>
         <div className="row">
-
-            {/* <NoteDisplay
+          {props.listSearch ? '':
+            <NoteDisplay
               selectedNotes = {props.selectedNotes}
               grouping={props.grouping}
-            /> */}
-        </div>
-            <GroupList
-              areScales={props.areScales}
-              grouping={props.grouping}
-              groupType = {props.groupType}
-            />
-        </div>
+            />}
+            {props.listSearch ?
+                <GroupList
+                listSearch = {props.listSearch}
+                  areScales={props.areScales}
+                  grouping={props.grouping}
+                  groupType = {props.groupType}
+                />
+              :
+              <ReverseList
+              />
+
+            }
+
+
+          </div>
+      </div>
     )
   }
 

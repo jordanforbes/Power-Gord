@@ -5,7 +5,7 @@ const initialState={
     root:'',
     rawRoot:'',
     areScales: true,
-
+    isReverse: false,
     selectedChord:'',
 
     selectedScale:'',
@@ -48,6 +48,9 @@ export const groupSelectorSlice = createSlice({
         swapGrouping: (state)=>{
             state.areScales = !state.areScales
         },
+        toggleReverse: (state)=>{
+            state.isReverse = !state.isReverse
+        },
         reset: (state)=>{
             state.root=''
             state.rawRoot=''
@@ -58,6 +61,6 @@ export const groupSelectorSlice = createSlice({
     }
 })
 
-export const { selectRoot, clearRoot, selectChord, selectScale, clearChord, selectGroup, clearGroup, clearScale, swapGrouping, reset } = groupSelectorSlice.actions
+export const { selectRoot, clearRoot, selectChord, selectScale, clearChord, selectGroup, clearGroup, clearScale, swapGrouping, toggleReverse, reset } = groupSelectorSlice.actions
 
 export default groupSelectorSlice.reducer
