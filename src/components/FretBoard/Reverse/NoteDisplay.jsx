@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectNote, clearNotes } from './../features/noteSelector/noteSelectorSlice'
+import { selectNote, clearNotes } from '../../../features/noteSelectorSlice'
 
 const NoteDisplay=(props)=>{
 
-    const rawRoot = useSelector(state => state.groupSelector.rawRoot)
-    const selectedGroup = useSelector(state => state.groupSelector.selectedGroup)
+    // const rawRoot = useSelector(state => state.groupSelector.rawRoot)
+    // const selectedGroup = useSelector(state => state.groupSelector.selectedGroup)
+    const selectedNotes = useSelector(state => state.noteSelector.selectedNotes)
 
 
     const formatter=(note) =>{
@@ -12,12 +13,13 @@ const NoteDisplay=(props)=>{
     }
 
     const showNotes =()=>{
-        let groupArr = props.grouping.get(rawRoot+' '+selectedGroup).notes
+        let groupArr = selectedNotes
         return groupArr.map(n => (
             <span>{formatter(n)} </span>
         ))
 
     }
+
 
     return (
         <div className="outline">

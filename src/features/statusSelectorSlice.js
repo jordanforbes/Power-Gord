@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState={
     areScales: true,
-    isReverse: false,
+    isReverse: false
 }
 
 export const statusSelectorSlice = createSlice({

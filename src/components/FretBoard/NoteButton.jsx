@@ -2,19 +2,24 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { addNote, clearNotes } from './../../features/noteSelector/noteSelectorSlice'
-import { Note } from '@tonaljs/tonal'
+import { addNote, clearNotes } from '../../features/noteSelectorSlice'
+import { Note, Chord } from '@tonaljs/tonal'
 
-import { selectRoot } from '../../features/groupSelector/groupSelectorSlice';
+import { selectRoot } from '../../features/groupSelectorSlice';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import NoteString from './NoteString';
-import noteSelectorSlice from '../../features/noteSelector/noteSelectorSlice';
+// import noteSelectorSlice from '../../features/noteSelectorSlice';
 
 const NoteButton=(props)=>{
     const dispatch = useDispatch();
+
     const root = useSelector(state => state.groupSelector.root)
-    const areScales = useSelector(state => state.groupSelector.areScales)
+
+    const areScales = useSelector(state => state.statusSelector.areScales)
+
+    const selectedNotes = useSelector(state => state.noteSelector.selectedNotes)
+
 
     const [isRoot, setIsRoot] = useState(false)
     const [inRange, setInRange] = useState(true)
@@ -41,15 +46,19 @@ const NoteButton=(props)=>{
     const activate=(note)=>{
         setIsRoot(current => !current);
         dispatch(selectRoot(note))
-        console.log('redux state change '+root)
-        dispatch(addNote(note))
+        // console.log('redux state change '+root)
+        // dispatch(addNote(note))
+
     }
 
     const handleClick=()=>{
         isRoot ? activate(""):
         // console.log('enharmonic',Note.chroma(props.thisNote))
         activate(props.thisNote)
-
+        dispatch(addNote(props.thisNote))
+        console.log('SELECTEDNOTES DEBUG')
+        console.log(selectedNotes)
+        console.log(Chord.detect(selectedNotes))
     }
     return(
         <Button

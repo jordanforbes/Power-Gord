@@ -13,8 +13,9 @@ export const noteSelectorSlice = createSlice({
     reducers:{
         addNote: (state, action)=>{
             if(action.payload){
-                state.selectedNotes.push(action.payload)
-
+                if(!state.selectedNotes.includes(action.payload)){
+                    state.selectedNotes.push(action.payload)
+                }
             }
             state.selectedNotes.map(n=>console.log(n))
         },
