@@ -49,7 +49,6 @@ const NoteString=(props)=>{
         <>
         <span
             className={`btnNote
-                ${props.isRoot? 'isRoot':'isNotRoot'}
             `}
         >{note}</span>
         <span className="btnOctave topright">{octave}</span>

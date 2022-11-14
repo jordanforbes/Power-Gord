@@ -20,7 +20,7 @@ const NoteButton=(props)=>{
 
     //sets the default color value for the group based on if it's scales or chords.
 
-    var groupColor = areScales ? 'red':'blue'
+    // var groupColor = areScales ? 'red':'blue'
 
     const octaveRemove =(note)=>{
         return note.slice(0, note.length-1)
@@ -52,15 +52,10 @@ const NoteButton=(props)=>{
     return(
         <Button
             type="button"
-            className={`btn btn-outline-light noteButton
-                ${inRange? 'isInRange':'isNotInRange'}`}
+            className={`
+                noteButton
+                ${inRange? 'isInRange':'isNotInRange'} ${isRoot ? 'isRoot' : 'isNotRoot'} `}
             onClick={handleClick}
-            style={{
-                width:'50px',
-                display:'block',
-                backgroundColor: isRoot? "#ffff80" : inRange? groupColor: "gray",
-                "color": isRoot? 'black':'white'
-            }}
         >
             <NoteString
                 isEnharmonic = {isEnharmonic}
