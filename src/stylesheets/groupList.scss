@@ -1,0 +1,30 @@
+
+
+.scaleContainer{
+    width: 90%;
+    height:400px;
+}
+
+.scaleRow{
+    text-align: left;
+    background-color:white;
+}
+.scaleRow:hover{
+    cursor:pointer;
+    background-color:lightgray;
+}
+
+.scaleName{
+    color:gray;
+}
+
+.groupNoteList{
+    font-size: smaller;
+    color:lightgray;
+    /* font-weight:bold; */
+}
+.groupNoteList:hover{
+    font-size: smaller;
+    color:gray;
+    font-weight:bold;
+}

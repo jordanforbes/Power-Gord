@@ -1,4 +1,4 @@
-import './App.css';
+import './stylesheets/App.scss';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Chord, Scale, ChordType, ScaleType } from '@tonaljs/tonal'

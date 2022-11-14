@@ -1,0 +1,43 @@
+.noteButton{
+    display:'block';
+  }
+
+.isRoot{
+color: gray;
+background-color:#ffff80;
+}
+.isNotRoot{
+color:'white';
+background-color:'gray'
+}
+
+.isInRange{
+padding:2px;
+background-color:rgb(110, 0, 0);
+color:white;
+
+}
+.isNotInRange{
+color:'gray';
+color:darkgray;
+
+}
+
+.btnOctave{
+
+font-size: x-small;
+color:lightgray;
+}
+.btnNote{
+/* position: relative;
+left: -5px; */
+font-weight:bold;
+
+}
+
+.topright {
+position: absolute;
+top: 5px;
+right: 5px;
+text-align: right;
+}
