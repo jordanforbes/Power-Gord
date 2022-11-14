@@ -61,17 +61,18 @@ const GroupingBtn=(props)=>{
     }
 
     return(
-        <span
-            style={{
-                    padding:'1px',
-                    backgroundColor: active? 'yellow': 'white'
-                }}
-            onClick={handleClick}
-        >
-            {formatter(props.name)}
-            <br></br>
-            <span className="groupNoteList">{showNotes()}</span>
-        </span>
+        <tr className={`${active? 'selectedScaleRow':'scaleRow'}`}>
+            <span
+                style={{
+                        padding:'1px',
+                    }}
+                onClick={handleClick}
+            >
+                {formatter(props.name)}
+                <br></br>
+                <span className="groupNoteList">{showNotes()}</span>
+            </span>
+        </tr>
     )
 }
 

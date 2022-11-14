@@ -14,14 +14,12 @@ const GroupList =(props)=>{
         let groupArr = props.groupType.names()
         return groupArr.map(name =>(
             <>
-                <tr
-                    className="scaleRow"
-                  >
+
                     <GroupingBtn
                         grouping={props.grouping}
                         name={name}
                     />
-                </tr>
+
             </>
             )
         )

@@ -1,4 +1,4 @@
-
+@import 'ColorScheme';
 
 .scaleContainer{
     width: 90%;
@@ -8,6 +8,10 @@
 .scaleRow{
     text-align: left;
     background-color:white;
+}
+.selectedScaleRow{
+    text-align: left;
+    background-color:$root;
 }
 .scaleRow:hover{
     cursor:pointer;

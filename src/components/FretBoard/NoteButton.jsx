@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
+// import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Note } from '@tonaljs/tonal'
 
@@ -20,7 +20,7 @@ const NoteButton=(props)=>{
 
     //sets the default color value for the group based on if it's scales or chords.
 
-    // var groupColor = areScales ? 'red':'blue'
+    var rangeColor = areScales ? 'isInRangeScales':'isInRangeChords'
 
     const octaveRemove =(note)=>{
         return note.slice(0, note.length-1)
@@ -50,11 +50,13 @@ const NoteButton=(props)=>{
 
     }
     return(
-        <Button
+        <button
             type="button"
             className={`
                 noteButton
-                ${inRange? 'isInRange':'isNotInRange'} ${isRoot ? 'isRoot' : 'isNotRoot'} `}
+                ${isRoot ? 'isRoot' : inRange? rangeColor :'isNotInRange'}
+                btn
+                `}
             onClick={handleClick}
         >
             <NoteString
@@ -65,7 +67,7 @@ const NoteButton=(props)=>{
                 grouping = {props.grouping}
                 setInRange = {setInRange}
             />
-        </Button>
+        </button>
     )
   }
 

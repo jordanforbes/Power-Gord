@@ -2,46 +2,50 @@
 
 .noteButton{
     display:'block';
-    width:'50px',
+    width:'50px',;
+    border:1px white solid !important;
   }
 
+.noteButton:hover{
+    background-color: white !important;
+}
+
 .isRoot{
-color: black;
-font-weight:900;
-background-color: $root;
-}
-.isNotRoot{
-color:'white';
-background-color:'gray'
+    color: black;
+    font-weight:900;
+    background-color: $root !important;
 }
 
-.isInRange{
-padding:2px;
-background-color:rgb(110, 0, 0);
-color:white;
-
+.isInRangeScales{
+    padding:2px;
+    background-color: $scales !important;
+    color:white !important;
 }
+
+.isInRangeChords{
+    padding:2px;
+    background-color: $chords !important;
+    color:white !important;
+}
+
 .isNotInRange{
-color:'gray';
-color:darkgray;
-
+    background-color: $fretboard !important;
+    color:rgb(255, 255, 255) !important;
 }
 
 .btnOctave{
-
-font-size: x-small;
-color:lightgray;
+    font-size: x-small;
+    color:lightgray;
 }
 .btnNote{
-/* position: relative;
-left: -5px; */
-font-weight:bold;
-
+    /* position: relative;
+    left: -5px; */
+    font-weight:bold;
 }
 
 .topright {
-position: absolute;
-top: 5px;
-right: 5px;
-text-align: right;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    text-align: right;
 }
