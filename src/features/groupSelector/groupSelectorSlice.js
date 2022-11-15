@@ -1,15 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit"
-import {Note, Scale, Chord} from '@tonaljs/tonal'
 
 const initialState={
     root:'',
     rawRoot:'',
     areScales: true,
-
     selectedChord:'',
-
     selectedScale:'',
-
     selectedGroup:'',
 }
 
@@ -48,6 +44,12 @@ export const groupSelectorSlice = createSlice({
         swapGrouping: (state)=>{
             state.areScales = !state.areScales
         },
+        setGroupMode:(state,action)=>{
+            state.areScales = action.payload
+        },
+        getGrouping:(state)=>{
+            return state.selectedChord, state.selectedScale
+        },
         reset: (state)=>{
             state.root=''
             state.rawRoot=''
@@ -58,6 +60,6 @@ export const groupSelectorSlice = createSlice({
     }
 })
 
-export const { selectRoot, clearRoot, selectChord, selectScale, clearChord, selectGroup, clearGroup, clearScale, swapGrouping, reset } = groupSelectorSlice.actions
+export const { getGrouping, setGroupMode, selectRoot, clearRoot, selectChord, selectScale, clearChord, selectGroup, clearGroup, clearScale, swapGrouping, reset } = groupSelectorSlice.actions
 
 export default groupSelectorSlice.reducer

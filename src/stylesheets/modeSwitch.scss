@@ -1,0 +1,23 @@
+@import 'ColorScheme';
+
+.modeBtn{
+    display:block;
+    float:left;
+}
+.clearBtn:hover{
+    // display:block;
+    background-color: $fretboardHover;
+    color: white;
+}
+.activeMode{
+    background-color: $fretboard !important;
+    color:white;
+}
+
+.inactiveMode{
+    color:lightgray;
+}
+.inactiveMode:hover{
+    background-color: $fretboardHover !important;
+    // color:black;
+}

@@ -2,14 +2,14 @@ import './stylesheets/App.scss';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Chord, Scale, ChordType, ScaleType } from '@tonaljs/tonal'
-import { Button } from 'react-bootstrap';
-import { selectRoot, clearRoot, swapGrouping, reset, selectChord, selectScale, selectGroup, clearGroup } from './features/groupSelector/groupSelectorSlice';
+import { swapGrouping, reset} from './features/groupSelector/groupSelectorSlice';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import GroupDetails from './components/DetailColumn/GroupDetails'
 import FretBoard from './components/FretBoard/FretBoard';
 import PowerHeader from './components/PowerHeader';
-import DisplayMode from './components/DisplayMode';
+import DisplayMode from './components/GroupingList/DisplayMode';
 
 
 
@@ -44,7 +44,6 @@ const App=()=>{
         </div>
         <br />
         <div className="row">
-          <div className="col-md-1"></div>
           <div className="col-md-4">
 
             {/* fretboard grid */}
@@ -54,30 +53,17 @@ const App=()=>{
             />
 
           </div>
-          <div className="col-md-2">
-            <h2>Root: {root}</h2>
 
-            {/* button that swaps modes */}
-            <p><Button onClick={swapModes}>
-              CHORDS / SCALES
-            </Button></p>
-
-            {/* button that resets board */}
-            <p><Button onClick={clearBoard}>
-              Clear
-            </Button></p>
-          </div>
-          <div className="col-md-5">
+          <div className="col-md-8">
 
             <div className="row">
-
               <DisplayMode
                 selectedGroup = {selectedGroup}
                 grouping={grouping}
                 groupType = {groupType}
               />
 
-              <div className="col-md-1"></div>
+
             </div>
           </div>
         </div>

@@ -9,9 +9,12 @@
     text-align: left;
     background-color:white;
 }
+.groupSpacing{
+    padding:4px !important;
+
+}
 .selectedScaleRow{
-    text-align: left;
-    background-color:$root;
+    background-color:$root !important;
 }
 .scaleRow:hover{
     cursor:pointer;
@@ -25,6 +28,11 @@
 .groupNoteList{
     font-size: smaller;
     color:lightgray;
+    /* font-weight:bold; */
+}
+.selectedGroupNoteList{
+    font-size: smaller;
+    color:rgb(255, 255, 255);
     /* font-weight:bold; */
 }
 .groupNoteList:hover{

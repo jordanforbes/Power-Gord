@@ -1,9 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { capitalizer } from '../../utilities/capitalizer';
+import { capitalizer } from '../../../utilities/capitalizer';
 
-import { selectGroup } from '../../features/groupSelector/groupSelectorSlice';
+import { selectGroup } from '../../../features/groupSelector/groupSelectorSlice';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -19,6 +19,7 @@ const GroupingBtn=(props)=>{
 
     const selectGrouping =(group)=> {
         dispatch(selectGroup(group))
+        console.log(selectedGroup)
     }
 
     const checkActive =()=>{
@@ -59,18 +60,37 @@ const GroupingBtn=(props)=>{
             <span>{rawRoot ? noteFormatter(n):n} </span>
         ))
     }
+    const showIntervals =()=>{
+        let intArr = props.grouping.get(props.name).intervals
+
+        return (
+            <>
+            <br />
+            <span className='groupSpacing selectedGroupNoteList'>
+                {intArr.map(n => (
+                <span>{n} </span>
+                ))}
+            </span>
+            </>
+        )
+    }
 
     return(
-        <tr className={`${active? 'selectedScaleRow':'scaleRow'}`}>
+        <tr className={`scaleRow ${active? 'selectedScaleRow':''}`}
+            onClick={handleClick}
+        >
             <span
-                style={{
-                        padding:'1px',
-                    }}
-                onClick={handleClick}
+                className="groupSpacing"
             >
                 {formatter(props.name)}
-                <br></br>
-                <span className="groupNoteList">{showNotes()}</span>
+                <br />
+                <span className={`groupSpacing ${active? 'selectedGroupNoteList':'groupNoteList'}`}>
+                    {showNotes()}
+                </span>
+                {active ?
+                    showIntervals()
+                    : ''
+                }
             </span>
         </tr>
     )

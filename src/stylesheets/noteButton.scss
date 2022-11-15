@@ -8,17 +8,27 @@
 
 .noteButton:hover{
     background-color: white !important;
+    // color:black !important;
 }
 
 .isRoot{
-    color: black;
+    color: white !important;
     font-weight:900;
     background-color: $root !important;
+}
+
+.isRoot:hover{
+    background-color: $rootHover !important;
+    color: black;
 }
 
 .isInRangeScales{
     padding:2px;
     background-color: $scales !important;
+    color:white !important;
+}
+.isInRangeScales:hover{
+    background-color: $scalesHover !important;
     color:white !important;
 }
 
@@ -28,8 +38,17 @@
     color:white !important;
 }
 
+.isInRangeChords:hover{
+    background-color: $chordsHover !important;
+    color:white !important;
+}
+
 .isNotInRange{
     background-color: $fretboard !important;
+    color:rgb(255, 255, 255) !important;
+}
+.isNotInRange:Hover{
+    background-color: $fretboardHover !important;
     color:rgb(255, 255, 255) !important;
 }
 
