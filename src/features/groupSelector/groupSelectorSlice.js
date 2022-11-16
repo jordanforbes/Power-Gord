@@ -1,12 +1,12 @@
+import { ScaleType, Scale, ChordType, Chord } from "@tonaljs/tonal"
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState={
     root:'',
     rawRoot:'',
     areScales: true,
-    selectedChord:'',
-    selectedScale:'',
     selectedGroup:'',
+    groupInterval: ''
 }
 
 export const groupSelectorSlice = createSlice({
@@ -23,20 +23,27 @@ export const groupSelectorSlice = createSlice({
             state.root = ''
             state.rawRoot=''
         },
-        selectChord: (state, action)=>{
-            state.selectedChord = action.payload
-        },
-        clearChord: (state)=>{
-            state.selectedChord = ''
-        },
-        selectScale: (state, action)=>{
-            state.selectedScale = action.payload
-        },
-        clearScale: (state)=>{
-            state.selectedScale = ''
-        },
+
         selectGroup: (state, action)=>{
             state.selectedGroup = action.payload
+
+            if(state.root){
+                if(state.areScales){
+                    state.groupInterval =  ScaleType.get(state.selectedGroup).intervals
+                }else{
+                    state.groupInterval =  ChordType.get(state.selectedGroup).intervals
+                }
+            }else{
+                state.groupInterval = ['']
+            }
+            // console.log('group interval DEBUG', state.root)
+            // console.log(state.groupInterval)
+            // console.log('chords')
+            // console.log(Chord.get(state.selectedGroup).intervals)
+            // console.log(ChordType.get(state.selectedGroup).intervals)
+            // console.log('scales')
+            // console.log(Scale.get(state.selectedGroup).intervals)
+            // console.log(ScaleType.get(state.selectedGroup).intervals)
         },
         clearGroup: (state)=>{
             state.selectedGroup = ''
@@ -47,19 +54,14 @@ export const groupSelectorSlice = createSlice({
         setGroupMode:(state,action)=>{
             state.areScales = action.payload
         },
-        getGrouping:(state)=>{
-            return state.selectedChord, state.selectedScale
-        },
         reset: (state)=>{
             state.root=''
             state.rawRoot=''
-            state.selectedChord=''
-            state.selectedScale=''
             state.selectedGroup=''
         }
     }
 })
 
-export const { getGrouping, setGroupMode, selectRoot, clearRoot, selectChord, selectScale, clearChord, selectGroup, clearGroup, clearScale, swapGrouping, reset } = groupSelectorSlice.actions
+export const { getGrouping, setGroupMode, selectRoot, clearRoot,  selectGroup, clearGroup, swapGrouping, reset } = groupSelectorSlice.actions
 
 export default groupSelectorSlice.reducer

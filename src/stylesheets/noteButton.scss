@@ -2,7 +2,8 @@
 
 .noteButton{
     display:'block';
-    width:'50px',;
+    height: 50px;
+    width:50px !important;
     border:1px white solid !important;
   }
 
@@ -54,7 +55,13 @@
 
 .btnOctave{
     font-size: x-small;
-    color:lightgray;
+    color:white;
+}
+
+.rootInterval{
+    font-size: x-small;
+    font-weight: bold;
+    color: white;
 }
 .btnNote{
     /* position: relative;
@@ -64,7 +71,7 @@
 
 .topright {
     position: absolute;
-    top: 5px;
+    top: 0px;
     right: 5px;
     text-align: right;
 }
