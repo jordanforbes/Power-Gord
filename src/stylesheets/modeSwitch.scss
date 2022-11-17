@@ -6,18 +6,36 @@
 }
 .clearBtn:hover{
     // display:block;
-    background-color: $fretboardHover;
+    background-color: $fretboardHover !important;
     color: white;
 }
 .activeMode{
     background-color: $fretboard !important;
     color:white;
 }
+.activeModeScales{
+    background-color: $scales !important;
+    border-color: $scales !important;
+    color:white;
+}
+.activeModeChords{
+    background-color: $chords !important;
+    border-color: $chords !important;
+
+    color:white;
+}
 
 
 .inactiveMode{
-    color:lightgray;
+    // color:darkgray !important;
 }
 .inactiveMode:hover{
     background-color: $fretboardHover !important;
+    border-color: $fretboardHover !important;
+}
+
+
+.disabled{
+    pointer-events:none;
+    border:none !important;
 }

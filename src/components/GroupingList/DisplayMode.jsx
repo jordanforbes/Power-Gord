@@ -1,5 +1,6 @@
 import GroupList from "./GroupList/GroupList"
 import ClearBtn from './DisplayButtons/ClearBtn'
+import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import { setGroupMode, reset, clearGroup, clearChord, clearScale} from '../../features/groupSelector/groupSelectorSlice';
 
@@ -24,35 +25,34 @@ const DisplayMode = (props)=>{
 
     return(
       <div className="col-md-8">
-        <ClearBtn />
+        <ClearBtn root = {root} />
         <div
           className="row"
           style={{'display':'block','float':'left'}}
         >
-          <h3>Root: {`${root? root: 'none'}`}</h3>
         </div>
 
-        <button
-          style={{'display':'block','float':'right'}}
+        <Button
+          style={{'display':'block','float':'right','backgroundColor':'rgba(0,0,0,0)'}}
           className={
-            `modeBtn ${areScales ? 'activeMode':'inactiveMode'}`
+            `btn modeBtn ${areScales ? 'activeModeScales':'inactiveMode btn-outline-danger'}`
           }
           type="button"
           onClick={scaleMode}
           >
           <h2>Scales</h2>
-        </button>
+        </Button>
 
-        <button
-          style={{'display':'block','float':'right'}}
+        <Button
+          style={{'display':'block','float':'right','backgroundColor':'rgba(0,0,0,0)', }}
           className={
-            `modeBtn ${areScales ? 'inactiveMode':'activeMode'}`
+            `btn modeBtn ${areScales ? 'inactiveMode btn-outline-primary':'activeModeChords'}`
           }
           type="button"
           onClick={chordMode}
         >
           <h2>Chords</h2>
-        </button>
+        </Button>
 
         <div className="row">
         </div>

@@ -5,22 +5,54 @@
     height:400px;
 }
 
-.scaleRow{
-    text-align: left;
-    background-color:white;
-}
 .groupSpacing{
     padding:4px !important;
 
 }
 .selectedScaleRow{
-    background-color:$root !important;
+    background-color:$scales !important;
 }
 .scaleRow:hover{
     cursor:pointer;
-    background-color:lightgray;
+    color:white;
+    background-color:$scalesHover;
+}
+.scaleRow:hover .groupNoteList{
+    cursor:pointer;
+    // background-color:lightgray;
+    color: white;
+}
+.groupRow{
+    background-color:white;
+
+}
+.scaleRow{
+    text-align: left;
+    color:$scales;
+}
+.chordRow{
+    text-align: left;
+    color:$chords;
+}
+.selectedChordRow{
+    background-color:$chords !important;
+}
+.chordRow:hover{
+    cursor:pointer;
+    color:white;
+    background-color:$chordsHover;
+}
+.chordRow:hover .groupNoteList{
+    cursor:pointer;
+    // background-color:lightgray;
+    color: white;
 }
 
+.selectedGroupName{
+    color:white;
+    font-weight:bold;
+    text-decoration:underline;
+}
 .scaleName{
     color:gray;
 }
@@ -35,8 +67,9 @@
     color:rgb(255, 255, 255);
     /* font-weight:bold; */
 }
-.groupNoteList:hover{
+.groupNoteListHover{
     font-size: smaller;
-    color:gray;
+    color:rgb(255, 255, 255) !important;
     font-weight:bold;
 }
+

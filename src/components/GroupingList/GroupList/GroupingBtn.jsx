@@ -11,11 +11,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const GroupingBtn=(props)=>{
     const [active, setActive] = useState(false)
 
-    // const areScales = useSelector(state => state.groupSelector.areScales)
+    const areScales = useSelector(state => state.groupSelector.areScales)
     const rawRoot = useSelector(state => state.groupSelector.rawRoot)
     const dispatch = useDispatch();
 
     var selectedGroup = useSelector(state => state.groupSelector.selectedGroup)
+
 
     const selectGrouping =(group)=> {
         dispatch(selectGroup(group))
@@ -75,16 +76,26 @@ const GroupingBtn=(props)=>{
         )
     }
 
+    const changeBgColor = () =>{
+        return areScales ? 'selectedScaleRow':'selectedChordRow'
+    }
+    const changeHoverColor = () =>{
+        return areScales ? 'scaleRow':'chordRow'
+    }
+
+
     return(
-        <tr className={`scaleRow ${active? 'selectedScaleRow':''}`}
+        <tr className={`${changeHoverColor()} ${active? changeBgColor():''}`}
             onClick={handleClick}
         >
             <span
-                className="groupSpacing"
+                className={`groupSpacing ${active? 'selectedScaleName':''}`}
             >
+                <span className={`groupSpacing ${active? 'selectedGroupName selectedScale':''}`}>
                 {formatter(props.name)}
+                </span>
                 <br />
-                <span className={`groupSpacing ${active? 'selectedGroupNoteList':'groupNoteList'}`}>
+                <span className={`groupSpacing ${active? 'selectedGroupNoteList': 'groupNoteList' }`}>
                     {showNotes()}
                 </span>
                 {active ?
