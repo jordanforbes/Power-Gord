@@ -4,10 +4,24 @@
     display:block;
     float:left;
 }
+
+.clearBtn{
+    background-color: $root !important;
+    color:white !important;
+    border-color: $root !important;
+}
 .clearBtn:hover{
     // display:block;
-    background-color: $fretboardHover !important;
+    background-color: $rootHover !important;
     color: white;
+}
+
+.xClear{
+    color:$root;
+}
+
+.clearBtn:hover .xClear{
+    color:white;
 }
 .activeMode{
     background-color: $fretboard !important;
@@ -38,4 +52,6 @@
 .disabled{
     pointer-events:none;
     border:none !important;
+    background-color: transparent;
+    color: black;
 }

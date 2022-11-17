@@ -31,36 +31,38 @@ const DisplayMode = (props)=>{
           style={{'display':'block','float':'left'}}
         >
         </div>
+          <div
+          style={{'display':'block','float':'left'}}>
+          <Button
+            style={{'display':'block','float':'right','backgroundColor':'rgba(0,0,0,0)'}}
+            className={
+              `btn modeBtn ${areScales ? 'activeModeScales':'inactiveMode btn-outline-danger'}`
+            }
+            type="button"
+            onClick={scaleMode}
+            >
+            <h2>Scales</h2>
+          </Button>
 
-        <Button
-          style={{'display':'block','float':'right','backgroundColor':'rgba(0,0,0,0)'}}
-          className={
-            `btn modeBtn ${areScales ? 'activeModeScales':'inactiveMode btn-outline-danger'}`
-          }
-          type="button"
-          onClick={scaleMode}
+          <Button
+            style={{'display':'block','float':'right','backgroundColor':'rgba(0,0,0,0)', }}
+            className={
+              `btn modeBtn ${areScales ? 'inactiveMode btn-outline-primary':'activeModeChords'}`
+            }
+            type="button"
+            onClick={chordMode}
           >
-          <h2>Scales</h2>
-        </Button>
+            <h2>Chords</h2>
+          </Button>
+          </div>
 
-        <Button
-          style={{'display':'block','float':'right','backgroundColor':'rgba(0,0,0,0)', }}
-          className={
-            `btn modeBtn ${areScales ? 'inactiveMode btn-outline-primary':'activeModeChords'}`
-          }
-          type="button"
-          onClick={chordMode}
-        >
-          <h2>Chords</h2>
-        </Button>
-
-        <div className="row">
-        </div>
-            <GroupList
-              areScales={props.areScales}
-              grouping={props.grouping}
-              groupType = {props.groupType}
-            />
+          <div className="row">
+          </div>
+              <GroupList
+                areScales={props.areScales}
+                grouping={props.grouping}
+                groupType = {props.groupType}
+              />
         </div>
     )
   }

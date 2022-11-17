@@ -44,6 +44,7 @@ const App=()=>{
         </div>
         <br />
         <div className="row">
+          <div className="col-md-2"></div>
           <div className="col-md-4">
 
             {/* fretboard grid */}
@@ -54,7 +55,7 @@ const App=()=>{
 
           </div>
 
-          <div className="col-md-8">
+          <div className="col-md-6">
 
             <div className="row">
               <DisplayMode

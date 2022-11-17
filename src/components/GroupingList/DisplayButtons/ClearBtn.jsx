@@ -16,10 +16,10 @@ const ClearBtn =(props)=>{
           style={{
             'display':'block',
             'float':'left',
-            'backgroundColor':'rgba(0,0,0,0)'
+            // 'backgroundColor':'rgba(0,0,0,0)'
           }}
           type="button"
-          className={`clearBtn btn btn-outline-dark ${props.root ? '': 'disabled'}`}
+          className={` btn btn-outline-dark ${props.root ? 'clearBtn': 'disabled'}`}
           onClick={clearBoard}
         >
           <div
@@ -40,7 +40,9 @@ const ClearBtn =(props)=>{
               'float':'left'
             }}
           >
-            {props.root ? 'x': ''}
+            <span className="xClear">
+              {props.root ? 'x': ''}
+            </span>
           </div>
         </Button>
       </>
