@@ -87,6 +87,7 @@ const GroupingBtn=(props)=>{
     return(
         <tr className={`${changeHoverColor()} ${active? changeBgColor():''}`}
             onClick={handleClick}
+
         >
             <span
                 className={`groupSpacing ${active? 'selectedScaleName':''}`}

@@ -43,7 +43,7 @@ const FretBoard=(props)=>{
     }
 
     return(
-        <div className="note-bar container d-flex flex-nowrap">
+        <div className="fBoardContainer note-bar container d-flex flex-nowrap">
             {fretboardBuilder()}
         </div>
     )

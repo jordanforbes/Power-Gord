@@ -41,7 +41,8 @@ const GroupList =(props)=>{
 
     return(
         <>
-            <div className="overflow-auto scaleContainer">
+            <div className={`overflow-auto groupContainer ${!root? 'hideContainer': props.areScales ? 'scaleContainer' : 'chordContainer'}`}
+            >
                 <Table bordered>
                     <tbody>
                         {allGroupings()}

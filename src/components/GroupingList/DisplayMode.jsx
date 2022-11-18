@@ -25,12 +25,17 @@ const DisplayMode = (props)=>{
   }
 
     return(
-      <div className="col-md-8">
+      <div className={`col-md-8 displayColumn ${
+        !root ? 'displayNoRootBorder': areScales? 'displayScaleBorder': 'displayChordBorder'
+      }`}
+      // style={{'padding-right':'50px'}}
+      >
         {/* Clear Button */}
         <div style={{'height':'7px'}} />
         <ClearBtn
           root = {root}
         />
+        <div style={{'height':'7px'}} />
         <div style={{'height':'60px'}} />
         <div style={{'display':'block','float':'left'}}>
           {/* Scale Button */}
@@ -38,19 +43,22 @@ const DisplayMode = (props)=>{
             scaleMode={true}
             areScales={areScales}
             groupMode={scaleMode}
+            root={root}
           />
           {/* Chord Button */}
           <ModeBtn
             scaleMode={false}
             areScales={areScales}
             groupMode={chordMode}
+            root={root}
           />
         </div>
-        <br />
+        <div style={{'height':'10px'}} />
           <GroupList
-            areScales={props.areScales}
+            areScales={areScales}
             grouping={props.grouping}
             groupType = {props.groupType}
+            root={root}
         />
       </div>
     )

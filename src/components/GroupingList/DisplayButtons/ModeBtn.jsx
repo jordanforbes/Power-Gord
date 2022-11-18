@@ -2,10 +2,14 @@ import { Button } from "react-bootstrap";
 
 const ModeBtn=(props)=>{
     const groupClasses = ()=>{
+        if(props.root){
         return props.scaleMode ?
             `${props.areScales ? 'activeModeScales':'inactiveModeScales btn-outline-danger'}`
         :
             `${props.areScales ? 'inactiveModeChords btn-outline-primary':'activeModeChords'}`
+        }else{
+            return 'noRootMode'
+        }
     }
 
     return(

@@ -1,12 +1,51 @@
 @import 'ColorScheme';
 
+// @media screen and (min-width: 760px){
+.displayColumn{
+    background-color:white;
+    border-radius:5px;
+    width:fit-content !important;
+    padding-top:2px !important;
+    padding-bottom:10px !important;
+    filter: drop-shadow(1px 1px 2px $fretboard) !important;
+
+}
+
+
+.noRootMessage{
+    // margin-top:1px;
+    margin-bottom:-1px;
+}
+
+// .displayNoRootBorder{
+//     // border: 2px solid $fretboard !important;
+//     filter: drop-shadow(1px 1px 2px $fretboard) !important;
+
+// }
+
+// .displayChordBorder{
+//     // border: 2px solid $chords !important;
+//     filter: drop-shadow(1px 1px 2px $chords) !important;
+
+// }
+// .displayScaleBorder{
+//     // border: 2px solid $scales !important;
+//     filter: drop-shadow(1px 1px 2px $scales) !important;
+
+// }
+
 .modeBtn{
     display:block;
     float:left;
+    width:150px;
+    height:60px;
+    margin-bottom: 5px;
+    border:2px solid !important;
 }
 
 .clearBtn{
     background-color: transparent !important;
+    // width:150px;
     color:$root !important;
     border-color: $root !important;
 }
@@ -19,14 +58,19 @@
 
 .xClear{
     color:$root;
+    margin:0px -5px 10px 8px;
+    display:block;
+    float:right;
 }
 
 .clearBtn:hover .xClear{
     color:white;
 }
-.activeMode{
+.noRootMode{
     background-color: $fretboard !important;
     color:white;
+    pointer-events: none;
+    border:$fretboard !important;
 }
 .activeModeScales{
     background-color: $scales !important;
@@ -42,9 +86,9 @@
 }
 
 
-.inactiveMode{
-    // color:darkgray !important;
-}
+// .inactiveMode{
+//     // color:darkgray !important;
+// }
 .inactiveModeChords:hover{
     background-color: $chordsHover !important;
     border-color: $chordsHover !important;
@@ -60,4 +104,5 @@
     border:none !important;
     background-color: transparent;
     color: black;
+    margin-bottom:15px;
 }
