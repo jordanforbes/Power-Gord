@@ -22,7 +22,7 @@ const FretBoard=(props)=>{
 
     //dynamically builds fretboard based on inserted notes
     const stringTuner=(scaleArray)=>{
-        return scaleArray.map(n =>(
+        return scaleArray.map((n) =>(
             <NoteButton
                 setSelectedNotes ={props.setSelectedNotes}
                 setNotes={props.setNotes}
