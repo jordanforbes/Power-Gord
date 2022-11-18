@@ -28,7 +28,7 @@ const ClearBtn =(props)=>{
               'float':'left'
             }}
             >
-            <h3>Root: {props.root ? props.root : 'none'}</h3>
+            <h3>{props.root ? 'Root: '+props.root : 'Select Root'}</h3>
           </div>
           <div
             className={``}

@@ -1,5 +1,6 @@
 import GroupList from "./GroupList/GroupList"
 import ClearBtn from './DisplayButtons/ClearBtn'
+import ModeBtn  from "./DisplayButtons/ModeBtn"
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import { setGroupMode, reset, clearGroup, clearChord, clearScale} from '../../features/groupSelector/groupSelectorSlice';
@@ -25,45 +26,33 @@ const DisplayMode = (props)=>{
 
     return(
       <div className="col-md-8">
-        <ClearBtn root = {root} />
-        <div
-          className="row"
-          style={{'display':'block','float':'left'}}
-        >
+        {/* Clear Button */}
+        <div style={{'height':'7px'}} />
+        <ClearBtn
+          root = {root}
+        />
+        <div style={{'height':'60px'}} />
+        <div style={{'display':'block','float':'left'}}>
+          {/* Scale Button */}
+          <ModeBtn
+            scaleMode={true}
+            areScales={areScales}
+            groupMode={scaleMode}
+          />
+          {/* Chord Button */}
+          <ModeBtn
+            scaleMode={false}
+            areScales={areScales}
+            groupMode={chordMode}
+          />
         </div>
-          <div
-          style={{'display':'block','float':'left'}}>
-          <Button
-            style={{'display':'block','float':'right','backgroundColor':'rgba(0,0,0,0)'}}
-            className={
-              `btn modeBtn ${areScales ? 'activeModeScales':'inactiveMode btn-outline-danger'}`
-            }
-            type="button"
-            onClick={scaleMode}
-            >
-            <h2>Scales</h2>
-          </Button>
-
-          <Button
-            style={{'display':'block','float':'right','backgroundColor':'rgba(0,0,0,0)', }}
-            className={
-              `btn modeBtn ${areScales ? 'inactiveMode btn-outline-primary':'activeModeChords'}`
-            }
-            type="button"
-            onClick={chordMode}
-          >
-            <h2>Chords</h2>
-          </Button>
-          </div>
-
-          <div className="row">
-          </div>
-              <GroupList
-                areScales={props.areScales}
-                grouping={props.grouping}
-                groupType = {props.groupType}
-              />
-        </div>
+        <br />
+          <GroupList
+            areScales={props.areScales}
+            grouping={props.grouping}
+            groupType = {props.groupType}
+        />
+      </div>
     )
   }
 

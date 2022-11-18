@@ -32,7 +32,7 @@ const GroupList =(props)=>{
                             'font-size':25
                         }}
                     >
-                        select root
+
                     </span>
                 </>
             )

@@ -6,14 +6,15 @@
 }
 
 .clearBtn{
-    background-color: $root !important;
-    color:white !important;
+    background-color: transparent !important;
+    color:$root !important;
     border-color: $root !important;
 }
 .clearBtn:hover{
     // display:block;
-    background-color: $rootHover !important;
-    color: white;
+    text-decoration-line: line-through !important;
+    background-color: $root !important;
+    color: white !important;
 }
 
 .xClear{
@@ -31,21 +32,26 @@
     background-color: $scales !important;
     border-color: $scales !important;
     color:white;
+    pointer-events: none;
 }
 .activeModeChords{
     background-color: $chords !important;
     border-color: $chords !important;
-
     color:white;
+    pointer-events: none;
 }
 
 
 .inactiveMode{
     // color:darkgray !important;
 }
-.inactiveMode:hover{
-    background-color: $fretboardHover !important;
-    border-color: $fretboardHover !important;
+.inactiveModeChords:hover{
+    background-color: $chordsHover !important;
+    border-color: $chordsHover !important;
+}
+.inactiveModeScales:hover{
+    background-color: $scalesHover !important;
+    border-color: $scalesHover !important;
 }
 
 
