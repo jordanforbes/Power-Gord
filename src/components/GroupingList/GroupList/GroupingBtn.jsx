@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { capitalizer } from '../../../utilities/capitalizer';
 
-import { selectGroup } from '../../../features/groupSelector/groupSelectorSlice';
+import { selectGroup, clearGroup } from '../../../features/groupSelector/groupSelectorSlice';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -38,7 +38,12 @@ const GroupingBtn=(props)=>{
     const handleClick=()=>{
         if(rawRoot){
             selectGrouping(props.name)
-            checkActive()}
+            checkActive()
+        }
+        if(active){
+            setActive(false)
+            dispatch(clearGroup())
+        }
     }
 
     const formatter = (entry)=>{

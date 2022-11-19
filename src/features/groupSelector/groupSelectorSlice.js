@@ -4,6 +4,7 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState={
     root:'',
     rawRoot:'',
+    selectionReady:false,
     areScales: true,
     selectedGroup:'',
     groupInterval: ''
@@ -28,11 +29,15 @@ export const groupSelectorSlice = createSlice({
             state.selectedGroup = action.payload
 
             if(state.root){
+                state.selectionReady = true
+                console.log('DEBUG SELECTIONREADY')
+                console.log(state.selectionReady)
                 if(state.areScales){
                     state.groupInterval =  ScaleType.get(state.selectedGroup).intervals
                 }else{
                     state.groupInterval =  ChordType.get(state.selectedGroup).intervals
                 }
+
             }else{
                 state.groupInterval = ['']
             }
@@ -47,6 +52,9 @@ export const groupSelectorSlice = createSlice({
         },
         clearGroup: (state)=>{
             state.selectedGroup = ''
+            state.selectionReady = false
+            console.log('DEBUG SELECTIONREADY')
+            console.log(state.selectionReady)
         },
         swapGrouping: (state)=>{
             state.areScales = !state.areScales
@@ -57,7 +65,10 @@ export const groupSelectorSlice = createSlice({
         reset: (state)=>{
             state.root=''
             state.rawRoot=''
-            state.selectedGroup=''
+            state.selectedGroup = ''
+            state.selectionReady = false
+            console.log('DEBUG SELECTIONREADY')
+            console.log(state.selectionReady)
         }
     }
 })

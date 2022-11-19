@@ -7,6 +7,7 @@ const NoteString=(props)=>{
     const rawRoot = useSelector(state => state.groupSelector.rawRoot)
     var selectedGroup = useSelector(state => state.groupSelector.selectedGroup)
     var groupInterval = useSelector(state => state.groupSelector.groupInterval)
+    const selectionReady = useSelector(state => state.groupSelector.selectionReady)
 
     // const focusInterval = ''
 
@@ -35,7 +36,7 @@ const NoteString=(props)=>{
         let chromaGroup = currentGroup.map(Note.chroma)
         let intIndex
 
-        if(chromaGroup.includes(noteChroma)){
+        if(chromaGroup.includes(noteChroma) && selectionReady === true){
             props.setInRange(true)
             intIndex = chromaGroup.indexOf(noteChroma)
             setThisInterval(groupInterval[intIndex])

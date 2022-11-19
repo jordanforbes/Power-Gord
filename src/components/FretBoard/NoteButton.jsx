@@ -17,7 +17,6 @@ const NoteButton=(props)=>{
     const [isRoot, setIsRoot] = useState(false)
     const [inRange, setInRange] = useState(true)
     const [isEnharmonic, setIsEnharmonic] = useState(false)
-    const [interval, setInterval] = useState('')
 
     //sets the default color value for the group based on if it's scales or chords.
 
@@ -40,9 +39,9 @@ const NoteButton=(props)=>{
     const activate=(note)=>{
         setIsRoot(current => !current);
         dispatch(selectRoot(note))
-        console.log('redux state change '+root)
-        console.log('inRange DEBUG')
-        console.log(inRange)
+        // console.log('redux state change '+root)
+        // console.log('inRange DEBUG')
+        // console.log(inRange)
     }
 
     const handleClick=()=>{
@@ -57,7 +56,12 @@ const NoteButton=(props)=>{
             type="button"
             className={`
                 noteButton
-                ${isRoot ? 'isRoot' : inRange? rangeColor :'isNotInRange'}
+                ${isRoot ?
+                    'isRoot'
+                : inRange?
+                    rangeColor
+                :'isNotInRange'
+            }
                 btn
                 `}
             onClick={handleClick}
