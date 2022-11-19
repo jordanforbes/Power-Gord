@@ -1,17 +1,14 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Chord, Scale, ChordType, ScaleType } from '@tonaljs/tonal'
+///////////////////////////////////////////////////////////////
+//Component Container which shows details about selected group
+//-CURRENTLY UNUSED-
+///////////////////////////////////////////////////////////////////////////////////////////////
 
-
+import { useSelector } from 'react-redux';
+import { Chord, Scale } from '@tonaljs/tonal'
 
 const GroupDetails=(props)=>{
     var selectedGroup =  useSelector(state => state.groupSelector.selectedGroup)
     const root = useSelector(state => state.groupSelector.root)
-
-
-    // useEffect(()=>{
-    //     console.log(props.groupType.get(selectedGroup))
-    // },[selectedGroup])
 
     const showIntervals=()=>{
         let intArr = props.groupType.get(selectedGroup).intervals

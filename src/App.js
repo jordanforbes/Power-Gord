@@ -1,3 +1,7 @@
+/////////////////// //////////////////////////
+// Main App file containing all components
+///////////////////////////// /////////// ///////
+
 import './stylesheets/App.scss';
 import React from 'react';
 import { useSelector } from 'react-redux';

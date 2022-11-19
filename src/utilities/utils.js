@@ -1,3 +1,7 @@
+/////////////////////   /////////////////////// //////////////////////
+//Defines commonly used utility functions
+/////////////////////////////   ////////////////////////////////
+
 export const formatter = (entry)=>{
     let entryArr = entry.split(" ");
     let fString = ''
@@ -16,6 +20,7 @@ export const noteFormatter=(note) =>{
     return entry.charAt(0).toUpperCase() + entry.slice(1).toLowerCase()
 }
 
+//removes the octave number from the root.
 export const octaveRemove =(note)=>{
     return note.slice(0, note.length-1)
 }
