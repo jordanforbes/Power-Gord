@@ -1,12 +1,13 @@
+///////////////////////////////////////////////////////////////
+//Defines Button which selects the scale or chord grouping depending
+//on props passed
+///////////////////////////////////////////////////////////////
+
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { capitalizer } from '../../../utilities/capitalizer';
-
+import { formatter, noteFormatter } from '../../../utilities/utils';
 import { selectGroup, clearGroup } from '../../../features/groupSelector/groupSelectorSlice';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 
 const GroupingBtn=(props)=>{
     const [active, setActive] = useState(false)
@@ -33,7 +34,7 @@ const GroupingBtn=(props)=>{
 
     useEffect(()=>{
         checkActive()
-    },[selectedGroup]) //FIXME: SELECTED GROUP
+    },[selectedGroup])
 
     const handleClick=()=>{
         if(rawRoot){
@@ -44,19 +45,6 @@ const GroupingBtn=(props)=>{
             setActive(false)
             dispatch(clearGroup())
         }
-    }
-
-    const formatter = (entry)=>{
-        let entryArr = entry.split(" ");
-        let fString = ''
-        for(let i= 0; i< entryArr.length; i++){
-            fString += capitalizer(entryArr[i])+" "
-        }
-        return(<span>{fString}</span>)
-    }
-
-    const noteFormatter=(note) =>{
-        return note.slice(0,note.length-1)
     }
 
     const showNotes =()=>{
@@ -88,15 +76,9 @@ const GroupingBtn=(props)=>{
         return areScales ? 'scaleRow':'chordRow'
     }
 
-
     return(
-        <tr className={`${changeHoverColor()} ${active? changeBgColor():''}`}
-            onClick={handleClick}
-
-        >
-            <span
-                className={`groupSpacing ${active? 'selectedScaleName':''}`}
-            >
+        <tr className={`${changeHoverColor()} ${active? changeBgColor():''}`}onClick={handleClick}>
+            <span className={`groupSpacing ${active? 'selectedScaleName':''}`}>
                 <span className={`groupSpacing ${active? 'selectedGroupName selectedScale':''}`}>
                 {formatter(props.name)}
                 </span>
@@ -104,10 +86,7 @@ const GroupingBtn=(props)=>{
                 <span className={`groupSpacing ${active? 'selectedGroupNoteList': 'groupNoteList' }`}>
                     {showNotes()}
                 </span>
-                {active ?
-                    showIntervals()
-                    : ''
-                }
+                {active ? showIntervals() : '' }
             </span>
         </tr>
     )

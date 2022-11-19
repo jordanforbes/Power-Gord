@@ -1,3 +1,8 @@
+////////////////////////////////////////////////////////////////////
+// Defines the ModeBtn component which switches to either
+// the Chord Mode or the Scale Mode depending on the props
+///////////////////////////////////////////////////////////////////
+
 import { Button } from "react-bootstrap";
 
 const ModeBtn=(props)=>{

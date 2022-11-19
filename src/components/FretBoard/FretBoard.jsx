@@ -1,7 +1,10 @@
+///////////////////////////////////////////////////////////////
+//defines virtual fretboard, which holds all of the note buttons
+////////////////////////////////////////////////////////////
+
 import React from 'react';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { Scale } from '@tonaljs/tonal'
-
 
 //components
 import NoteButton from './NoteButton';
@@ -10,7 +13,7 @@ const FretBoard=(props)=>{
     //sets tuning by creating arrays of scales that represent individual guitar strings
     const scaleRange = Scale.rangeOf('E chromatic')
 
-
+    //sets the range of notes for each string
     const standardTuning = [
         scaleRange('E2','E3'),
         scaleRange('A2','A3'),

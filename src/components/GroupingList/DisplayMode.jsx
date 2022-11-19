@@ -1,9 +1,12 @@
+///////////////////////////////////////////////////////////////
+//Container Interface for mode switching and group selection
+///////////////////////////////////////////////////////////////
+
 import GroupList from "./GroupList/GroupList"
 import ClearBtn from './DisplayButtons/ClearBtn'
 import ModeBtn  from "./DisplayButtons/ModeBtn"
-import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
-import { setGroupMode, reset, clearGroup, clearChord, clearScale} from '../../features/groupSelector/groupSelectorSlice';
+import { setGroupMode, clearGroup } from '../../features/groupSelector/groupSelectorSlice';
 
 
 //contains the note list and the group list
@@ -25,9 +28,7 @@ const DisplayMode = (props)=>{
   }
 
     return(
-      <div className={`col-md-8 displayColumn ${
-        !root ? 'displayNoRootBorder': areScales? 'displayScaleBorder': 'displayChordBorder'
-      }`}
+      <div className={`col-md-8 displayColumn ${ !root ? 'displayNoRootBorder': areScales? 'displayScaleBorder': 'displayChordBorder'}`}
       // style={{'padding-right':'50px'}}
       >
         {/* Clear Button */}

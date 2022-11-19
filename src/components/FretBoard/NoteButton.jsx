@@ -1,13 +1,16 @@
+////////////////////////////////////////////////////////////////
+//component which defines the individual note buttons on the fretboard.
+////////////////////////////////////////////////////////////////
+
 import React from 'react';
 import { useState, useEffect } from 'react';
-// import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Note } from '@tonaljs/tonal'
-
+import { octaveRemove } from '../../utilities/utils';
 import { selectRoot } from '../../features/groupSelector/groupSelectorSlice';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import NoteString from './NoteString';
+
 
 const NoteButton=(props)=>{
     const dispatch = useDispatch();
@@ -19,12 +22,7 @@ const NoteButton=(props)=>{
     const [isEnharmonic, setIsEnharmonic] = useState(false)
 
     //sets the default color value for the group based on if it's scales or chords.
-
     var rangeColor = areScales ? 'isInRangeScales':'isInRangeChords'
-
-    const octaveRemove =(note)=>{
-        return note.slice(0, note.length-1)
-    }
 
     //adds root and group together to plug back into the tonaljs library
     useEffect(()=>{
@@ -39,31 +37,17 @@ const NoteButton=(props)=>{
     const activate=(note)=>{
         setIsRoot(current => !current);
         dispatch(selectRoot(note))
-        // console.log('redux state change '+root)
-        // console.log('inRange DEBUG')
-        // console.log(inRange)
     }
 
     const handleClick=()=>{
         isRoot ? activate(""):
-        console.log('enharmonic',Note.chroma(props.thisNote))
-
         activate(props.thisNote)
 
     }
     return(
         <button
             type="button"
-            className={`
-                noteButton
-                ${isRoot ?
-                    'isRoot'
-                : inRange?
-                    rangeColor
-                :'isNotInRange'
-            }
-                btn
-                `}
+            className={`noteButton ${isRoot ? 'isRoot' : inRange? rangeColor :'isNotInRange'} btn`}
             onClick={handleClick}
         >
             <NoteString

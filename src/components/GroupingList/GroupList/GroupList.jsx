@@ -1,10 +1,15 @@
+///////////////////////////////////////////////////////////////
+//contains GroupingBtn components, which list out every group
+//passes props to the GroupingBtn components
+/////////////////////////////////////////////// ////////////////
+
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import GroupingBtn from './GroupingBtn';
 import { useSelector } from 'react-redux';
 
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const GroupList =(props)=>{
@@ -21,28 +26,12 @@ const GroupList =(props)=>{
                     name={name}
                 />
             </>
-            )
-        )
-        }else{
-            return(
-                <>
-                    <span
-                        style={{
-                            'font-weight':'bold',
-                            'font-size':25
-                        }}
-                    >
-
-                    </span>
-                </>
-            )
-        }
+        ))}
     }
 
     return(
         <>
-            <div className={`overflow-auto groupContainer ${!root? 'hideContainer': props.areScales ? 'scaleContainer' : 'chordContainer'}`}
-            >
+            <div className={`overflow-auto groupContainer ${!root? 'hideContainer': props.areScales ? 'scaleContainer' : 'chordContainer'}`}>
                 <Table bordered>
                     <tbody>
                         {allGroupings()}

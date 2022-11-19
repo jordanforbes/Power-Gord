@@ -1,15 +1,16 @@
+////////////////////////////////////////////////////////////////
+//defines the note listed on each noteBtn
+///////////////////////////////////////////////////////////////
+
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Note } from '@tonaljs/tonal'
-
 
 const NoteString=(props)=>{
     const rawRoot = useSelector(state => state.groupSelector.rawRoot)
     var selectedGroup = useSelector(state => state.groupSelector.selectedGroup)
     var groupInterval = useSelector(state => state.groupSelector.groupInterval)
     const selectionReady = useSelector(state => state.groupSelector.selectionReady)
-
-    // const focusInterval = ''
 
     const [thisInterval, setThisInterval] = useState('')
 
@@ -29,9 +30,7 @@ const NoteString=(props)=>{
 
     const checkInRange =()=>{
         let currentGroup = findGroup(selectedGroup)
-        // console.log('GROUPDEBUG',currentGroup)
         let currentNote = props.thisNote.slice(0,props.thisNote.length-1)
-
         let noteChroma = Note.chroma(currentNote)
         let chromaGroup = currentGroup.map(Note.chroma)
         let intIndex
@@ -47,7 +46,6 @@ const NoteString=(props)=>{
 
     }
 
-
     useEffect(()=>{
         checkInRange()
     },[selectedGroup,rawRoot])
@@ -58,7 +56,6 @@ const NoteString=(props)=>{
     }
 
     note = props.isEnharmonic ?getEnharmonic(note) : note
-
 
     return (
         <>

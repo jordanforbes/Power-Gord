@@ -1,4 +1,4 @@
-import { ScaleType, Scale, ChordType, Chord } from "@tonaljs/tonal"
+import { ScaleType, ChordType } from "@tonaljs/tonal"
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState={
@@ -14,7 +14,6 @@ export const groupSelectorSlice = createSlice({
     name: 'groupSelector',
     initialState,
     reducers:{
-
         selectRoot: (state, action)=>{
             let thisRoot = action.payload
             state.rawRoot = thisRoot
@@ -41,14 +40,6 @@ export const groupSelectorSlice = createSlice({
             }else{
                 state.groupInterval = ['']
             }
-            // console.log('group interval DEBUG', state.root)
-            // console.log(state.groupInterval)
-            // console.log('chords')
-            // console.log(Chord.get(state.selectedGroup).intervals)
-            // console.log(ChordType.get(state.selectedGroup).intervals)
-            // console.log('scales')
-            // console.log(Scale.get(state.selectedGroup).intervals)
-            // console.log(ScaleType.get(state.selectedGroup).intervals)
         },
         clearGroup: (state)=>{
             state.selectedGroup = ''
