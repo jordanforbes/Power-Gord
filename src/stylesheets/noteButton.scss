@@ -21,6 +21,26 @@
     background-color: $rootHover !important;
     color: $darkText;
 }
+.sIsFifth{
+    color: $bg !important;
+    font-weight:900;
+    background-color: $sFifth !important;
+}
+
+.sIsFifth:hover{
+    background-color: $sFifthHover !important;
+    color: $darkText;
+}
+.cIsFifth{
+    color: $bg !important;
+    font-weight:900;
+    background-color: $cFifth !important;
+}
+
+.cIsFifth:hover{
+    background-color: $cFifthHover !important;
+    color: $darkText;
+}
 
 .isInRangeScales{
     padding:2px;

@@ -1,15 +1,27 @@
+///////////////////////////////////////////////////////////////
+// basic color scheme
+//////////////////////////////////////////////////////////////
 
-//selected notes
+//root colors
 $root: #ffb300;
 $rootHover: #ffe38e;
 
+//chord colors
 $chords: #1900ff;
 $chordsHover: #8a7dff;
 $chordsLight: #dedbff;
 
+$cFifth: #9900ff;
+$cFifthHover: #c368ff;
+
+//scale colors
 $scales:#ff0000 ;
 $scalesHover:#ff8585 ;
 $scalesLight:#ffdede ;
+
+$sFifth: #ff7b00;
+$sFifthHover: #ffa470;
+
 
 //blank fretboard
 $fretboard: #818181;

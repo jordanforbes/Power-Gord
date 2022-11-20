@@ -29,8 +29,8 @@ export const groupSelectorSlice = createSlice({
 
             if(state.root){
                 state.selectionReady = true
-                console.log('DEBUG SELECTIONREADY')
-                console.log(state.selectionReady)
+                // console.log('DEBUG SELECTIONREADY')
+                // console.log(state.selectionReady)
                 if(state.areScales){
                     state.groupInterval =  ScaleType.get(state.selectedGroup).intervals
                 }else{
@@ -44,8 +44,8 @@ export const groupSelectorSlice = createSlice({
         clearGroup: (state)=>{
             state.selectedGroup = ''
             state.selectionReady = false
-            console.log('DEBUG SELECTIONREADY')
-            console.log(state.selectionReady)
+            // console.log('DEBUG SELECTIONREADY')
+            // console.log(state.selectionReady)
         },
         swapGrouping: (state)=>{
             state.areScales = !state.areScales
@@ -58,8 +58,8 @@ export const groupSelectorSlice = createSlice({
             state.rawRoot=''
             state.selectedGroup = ''
             state.selectionReady = false
-            console.log('DEBUG SELECTIONREADY')
-            console.log(state.selectionReady)
+            // console.log('DEBUG SELECTIONREADY')
+            // console.log(state.selectionReady)
         }
     }
 })

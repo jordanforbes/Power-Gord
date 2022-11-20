@@ -48,9 +48,7 @@ const GroupingBtn=(props)=>{
     const showNotes =()=>{
         let groupArr = rawRoot ? props.grouping.get(rawRoot+' '+props.name).notes : props.grouping.get(props.name).intervals
 
-        return groupArr.map(n => (
-            <span>{rawRoot ? noteFormatter(n):n} </span>
-        ))
+        return groupArr.map(n => (<span className="groupSpacing">{rawRoot ? noteFormatter(n):n} </span>))
     }
 
 
@@ -63,14 +61,11 @@ const GroupingBtn=(props)=>{
 
     const showIntervals =()=>{
         let intArr = props.grouping.get(props.name).intervals
-
         return (
             <>
             <br />
-            <span className='groupSpacing selectedGroupNoteList'>
-                {intArr.map(n => (
-                <span>{n} </span>
-                ))}
+            <span className='groupSpacing interGroup selectedGroupNoteList'>
+                {intArr.map(n => (<span className="interSpacing">{n[1]+n[0]} </span> ))}
             </span>
             </>
         )

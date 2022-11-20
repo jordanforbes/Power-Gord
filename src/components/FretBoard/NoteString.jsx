@@ -5,6 +5,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Note } from '@tonaljs/tonal'
+import { octaveRemove } from '../../utilities/utils';
 
 const NoteString=(props)=>{
     const rawRoot = useSelector(state => state.groupSelector.rawRoot)
@@ -12,38 +13,34 @@ const NoteString=(props)=>{
     var groupInterval = useSelector(state => state.groupSelector.groupInterval)
     const selectionReady = useSelector(state => state.groupSelector.selectionReady)
 
-    const [thisInterval, setThisInterval] = useState('')
+    // const [thisInterval, setThisInterval] = useState('')
 
     //separate note from octave
-    let note = props.thisNote.substr(0,props.thisNote.length-1)
-    // let octave = props.thisNote.substr(props.thisNote.length-1)
-
+    let note = octaveRemove(props.thisNote)
 
     //gets notes from grouping
     const findGroup =(group)=>{
         let groupArr = props.grouping.get(rawRoot+' '+group).notes
-        groupArr = groupArr.map(n =>(
+        return groupArr.map(n =>(
             n.slice(0,n.length-1)
         ))
-        return groupArr
     }
 
+    //is this note within the selected group?
     const checkInRange =()=>{
         let currentGroup = findGroup(selectedGroup)
-        let currentNote = props.thisNote.slice(0,props.thisNote.length-1)
-        let noteChroma = Note.chroma(currentNote)
+        let noteChroma = Note.chroma(note)
         let chromaGroup = currentGroup.map(Note.chroma)
-        let intIndex
 
-        if(chromaGroup.includes(noteChroma) && selectionReady === true){
+        if(chromaGroup.includes(noteChroma) && selectionReady){
             props.setInRange(true)
-            intIndex = chromaGroup.indexOf(noteChroma)
-            setThisInterval(groupInterval[intIndex])
+            let selInterval = groupInterval[chromaGroup.indexOf(noteChroma)]
+            props.setThisInterval(`${selInterval[1]}${selInterval[0]}`)
+            // props.setThisInterval(`${selInterval[1]}${selInterval[0]}`)
         }else{
             props.setInRange(false)
-            setThisInterval('')
+            props.setThisInterval('')
         }
-
     }
 
     useEffect(()=>{
@@ -59,11 +56,13 @@ const NoteString=(props)=>{
 
     return (
         <>
-        <span
-            className={`btnNote
-            `}
-        >{note}</span>
-        <span className={`${props.isRoot ? 'rootInterval' : 'btnOctave'} topright`}>{thisInterval}</span>
+        <span className={`btnNote`}>{note}</span>
+
+        <span className={`topright
+            ${props.isRoot || props.isFifth ? 'rootInterval' : 'btnOctave'}
+        `}>
+            {props.thisInterval}
+        </span>
         </>)
 }
 
