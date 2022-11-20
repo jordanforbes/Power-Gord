@@ -78,6 +78,8 @@ const GroupingBtn=(props)=>{
 
     return(
         <tr className={`${changeHoverColor()} ${active? changeBgColor():''}`}onClick={handleClick}>
+            <div>
+
             <span className={`groupSpacing ${active? 'selectedScaleName':''}`}>
                 <span className={`groupSpacing ${active? 'selectedGroupName selectedScale':''}`}>
                 {formatter(props.name)}
@@ -88,6 +90,10 @@ const GroupingBtn=(props)=>{
                 </span>
                 {active ? showIntervals() : '' }
             </span>
+                <div className={`${active? 'xClearGroupingBtn' : 'unselectedClear'}`}>
+                    x
+                </div>
+            </div>
         </tr>
     )
 }

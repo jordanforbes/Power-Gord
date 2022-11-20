@@ -4,68 +4,65 @@
     display:'block';
     height: 50px;
     width:50px !important;
-    border:1px white solid !important;
+    border:1px $bg solid !important;
   }
 
 .noteButton:hover{
-    background-color: white !important;
-    // color:black !important;
+    background-color: $bg !important;
 }
 
 .isRoot{
-    color: white !important;
+    color: $bg !important;
     font-weight:900;
     background-color: $root !important;
 }
 
 .isRoot:hover{
     background-color: $rootHover !important;
-    color: black;
+    color: $darkText;
 }
 
 .isInRangeScales{
     padding:2px;
     background-color: $scales !important;
-    color:white !important;
+    color:$bg !important;
 }
 .isInRangeScales:hover{
     background-color: $scalesHover !important;
-    color:white !important;
+    color:$bg !important;
 }
 
 .isInRangeChords{
     padding:2px;
     background-color: $chords !important;
-    color:white !important;
+    color:$bg !important;
 }
 
 .isInRangeChords:hover{
     background-color: $chordsHover !important;
-    color:white !important;
+    color:$bg !important;
 }
 
 .isNotInRange{
     background-color: $fretboard !important;
-    color:rgb(255, 255, 255) !important;
+    color:$bg !important;
 }
 .isNotInRange:Hover{
     background-color: $fretboardHover !important;
-    color:rgb(255, 255, 255) !important;
+    color:$bg !important;
 }
 
 .btnOctave{
     font-size: x-small;
-    color:white;
+    color:$bg;
 }
 
 .rootInterval{
     font-size: x-small;
     font-weight: bold;
-    color: white;
+    color: $bg;
 }
 .btnNote{
-    /* position: relative;
-    left: -5px; */
     font-weight:bold;
 }
 

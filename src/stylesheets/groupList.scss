@@ -4,13 +4,11 @@
     width: 99%;
     height:400px;
     border-radius:5px;
-    background-color: white;
+    background-color: $bg;
 
 }
 .scaleContainer{
     border:2px solid $scalesHover;
-    // background-color:$scalesLight;
-    // scrollbar-color: $scales;
 }
 .chordContainer{
     border:2px solid $chordsHover;
@@ -29,17 +27,26 @@
 }
 .scaleRow:hover{
     cursor:pointer;
-    color:white;
+    color:$bg;
     background-color:$scalesHover;
 }
 .scaleRow:hover .groupNoteList{
     cursor:pointer;
-    // background-color:lightgray;
-    color: white;
+    color: $bg;
 }
-.groupRow{
-    background-color:white;
 
+.scaleRow:hover .xClearGroupingBtn{
+    color:$bg;
+    display:block;
+}
+.chordRow:hover .xClearGroupingBtn{
+    color:$bg;
+    display:block;
+}
+
+
+.groupRow{
+    background-color:$bg;
 }
 .scaleRow{
     text-align: left;
@@ -54,37 +61,43 @@
 }
 .chordRow:hover{
     cursor:pointer;
-    color:white;
+    color:$bg;
     background-color:$chordsHover;
 }
 .chordRow:hover .groupNoteList{
     cursor:pointer;
-    // background-color:lightgray;
-    color: white;
+    color: $bg;
 }
 
 .selectedGroupName{
-    color:white;
+    color:$bg;
     font-weight:bold;
-    // text-decoration:underline;
 }
-.scaleName{
-    color:gray;
-}
+
 
 .groupNoteList{
     font-size: smaller;
-    color:lightgray;
-    /* font-weight:bold; */
+    color:$lightText;
 }
 .selectedGroupNoteList{
     font-size: smaller;
-    color:rgb(255, 255, 255);
-    /* font-weight:bold; */
+    color:$bg;
 }
 .groupNoteListHover{
     font-size: smaller;
-    color:rgb(255, 255, 255) !important;
+    color:$bg !important;
     font-weight:bold;
 }
 
+.unselectedClear{
+    display:none;
+}
+
+.xClearGroupingBtn{
+    display:none;
+    float:right;
+    color: $lightText;
+    margin-right:10px;
+    margin-top:-50px;
+    // top:50%;
+}
