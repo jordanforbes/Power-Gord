@@ -13,7 +13,7 @@ const FretBoard=(props)=>{
     //sets tuning by creating arrays of scales that represent individual guitar strings
     const scaleRange = Scale.rangeOf('E chromatic')
 
-    //sets the range of notes for each string
+    //sets the range of notes for each string or column
     const standardTuning = [
         scaleRange('E2','E3'),
         scaleRange('A2','A3'),

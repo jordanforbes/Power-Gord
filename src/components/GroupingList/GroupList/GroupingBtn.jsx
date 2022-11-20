@@ -14,14 +14,12 @@ const GroupingBtn=(props)=>{
 
     const areScales = useSelector(state => state.groupSelector.areScales)
     const rawRoot = useSelector(state => state.groupSelector.rawRoot)
-    const dispatch = useDispatch();
-
     var selectedGroup = useSelector(state => state.groupSelector.selectedGroup)
 
+    const dispatch = useDispatch();
 
     const selectGrouping =(group)=> {
         dispatch(selectGroup(group))
-        console.log(selectedGroup)
     }
 
     const checkActive =()=>{
@@ -54,6 +52,15 @@ const GroupingBtn=(props)=>{
             <span>{rawRoot ? noteFormatter(n):n} </span>
         ))
     }
+
+
+    const changeBgColor = () =>{
+        return areScales ? 'selectedScaleRow':'selectedChordRow'
+    }
+    const changeHoverColor = () =>{
+        return areScales ? 'scaleRow':'chordRow'
+    }
+
     const showIntervals =()=>{
         let intArr = props.grouping.get(props.name).intervals
 
@@ -67,13 +74,6 @@ const GroupingBtn=(props)=>{
             </span>
             </>
         )
-    }
-
-    const changeBgColor = () =>{
-        return areScales ? 'selectedScaleRow':'selectedChordRow'
-    }
-    const changeHoverColor = () =>{
-        return areScales ? 'scaleRow':'chordRow'
     }
 
     return(

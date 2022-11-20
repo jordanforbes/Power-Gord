@@ -7,19 +7,16 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { octaveRemove } from '../../utilities/utils';
 import { selectRoot } from '../../features/groupSelector/groupSelectorSlice';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 import NoteString from './NoteString';
 
-
 const NoteButton=(props)=>{
-    const dispatch = useDispatch();
-    const root = useSelector(state => state.groupSelector.root)
-    const areScales = useSelector(state => state.groupSelector.areScales)
-
     const [isRoot, setIsRoot] = useState(false)
     const [inRange, setInRange] = useState(true)
     const [isEnharmonic, setIsEnharmonic] = useState(false)
+
+    const dispatch = useDispatch();
+    const root = useSelector(state => state.groupSelector.root)
+    const areScales = useSelector(state => state.groupSelector.areScales)
 
     //sets the default color value for the group based on if it's scales or chords.
     var rangeColor = areScales ? 'isInRangeScales':'isInRangeChords'

@@ -12,23 +12,13 @@ const GroupDetails=(props)=>{
 
     const showIntervals=()=>{
         let intArr = props.groupType.get(selectedGroup).intervals
-
-        return intArr.map(i =>(
-            <>
-                {i+' '}
-            </>
-        ))
+        return intArr.map(i =>(<>{i+' '}</>))
     }
+
     const showNotes=()=>{
         let thisGroup = root+' '+selectedGroup
         let noteArr = props.areScales? Scale.get(thisGroup).notes : Chord.get(thisGroup).notes
-
-        console.log(noteArr)
-        return noteArr.map(i =>(
-            <>
-                {i+' '}
-            </>
-        ))
+        return noteArr.map(i =>(<>{i+' '}</>))
     }
 
     return(

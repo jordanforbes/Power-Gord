@@ -8,11 +8,8 @@ import Table from 'react-bootstrap/Table';
 import GroupingBtn from './GroupingBtn';
 import { useSelector } from 'react-redux';
 
-
-// import 'bootstrap/dist/css/bootstrap.min.css';
-
-
 const GroupList =(props)=>{
+
     const root = useSelector(state => state.groupSelector.root)
 
     //finds all of the names of scales and chords
@@ -21,10 +18,7 @@ const GroupList =(props)=>{
         if(root){
         return groupArr.map(name =>(
             <>
-                <GroupingBtn
-                    grouping={props.grouping}
-                    name={name}
-                />
+                <GroupingBtn grouping={props.grouping} name={name} />
             </>
         ))}
     }

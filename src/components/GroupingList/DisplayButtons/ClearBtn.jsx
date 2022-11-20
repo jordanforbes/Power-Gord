@@ -24,8 +24,12 @@ const ClearBtn =(props)=>{
         >
           {/* Root Note Display */}
           <div style={{'display':'block','float':'left'}}>
-            <h3 className={`${!props.root ? 'noRootMessage':''}`}>{props.root ? 'Root: '+props.root : 'Select Root'}</h3>
+            <h3 className={`${!props.root ? 'noRootMessage':''}`}>
+              {props.root ? 'Root: '+props.root : 'Select Root'}
+            </h3>
           </div>
+
+          {/* X for clear */}
           <div className={`xClear`}>
               {props.root ? 'x': ''}
           </div>
