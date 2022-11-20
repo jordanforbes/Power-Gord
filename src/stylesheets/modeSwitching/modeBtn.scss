@@ -1,22 +1,5 @@
-@import 'ColorScheme';
 
-// @media screen and (min-width: 760px){
-.displayColumn{
-    background-color:white;
-    border-radius:5px;
-    width:fit-content !important;
-    padding-top:2px !important;
-    padding-bottom:10px !important;
-    filter: drop-shadow(1px 1px 2px $fretboard) !important;
-
-}
-
-
-.noRootMessage{
-    margin-bottom:-1px;
-}
-
-
+//base button
 .modeBtn{
     display:block;
     float:left;
@@ -25,40 +8,18 @@
     margin-bottom: 10px;
     margin-right:5px;
     border:2px solid !important;
-    background-color: rgba(0,0,0,0) !important;
-
-
+    background-color: white !important;
 }
 
-.clearBtn{
-    background-color: transparent !important;
-    // width:150px;
-    color:$root !important;
-    border-color: $root !important;
-}
-.clearBtn:hover{
-    // display:block;
-    text-decoration-line: line-through !important;
-    background-color: $root !important;
-    color: white !important;
-}
-
-.xClear{
-    color:$root;
-    margin:0px -5px 10px 8px;
-    display:block;
-    float:right;
-}
-
-.clearBtn:hover .xClear{
-    color:white;
-}
+//no root selected
 .noRootMode{
     background-color: $fretboard !important;
     color:white;
     pointer-events: none;
-    border:$fretboard !important;
+    // border:$fretboard !important;
 }
+
+//mode selected
 .activeModeScales{
     background-color: $scales !important;
     border-color: $scales !important;
@@ -73,9 +34,6 @@
 }
 
 
-// .inactiveMode{
-//     // color:darkgray !important;
-// }
 .inactiveModeChords:hover{
     background-color: $chordsHover !important;
     border-color: $chordsHover !important;

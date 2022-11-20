@@ -1,7 +1,7 @@
 @import 'noteButton';
 @import 'groupList';
-@import 'ColorScheme';
-@import 'modeSwitch';
+@import 'ColorSchemes/index.scss';
+@import './modeSwitching/index.scss';
 
 .App {
   text-align: center;
