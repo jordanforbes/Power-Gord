@@ -56,10 +56,10 @@ const NoteString=(props)=>{
 
     return (
         <>
-        <span className={`btnNote`}>{note}</span>
+        <span className={`btnNote ${note[1] ? 'hasAcc':'noAcc'}`}>{note}</span>
 
         <span className={`topright
-            ${props.isRoot || props.isFifth ? 'rootInterval' : 'btnOctave'}
+            ${props.isRoot ? 'noInterval' :props.isFifth || props.isThird? 'boldInterval' : 'btnOctave'}
         `}>
             {props.thisInterval}
         </span>

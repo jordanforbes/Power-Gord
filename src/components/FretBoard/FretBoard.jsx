@@ -13,6 +13,14 @@ const FretBoard=(props)=>{
     //sets tuning by creating arrays of scales that represent individual guitar strings
     const scaleRange = Scale.rangeOf('E chromatic')
 
+    function* range(start, end) {
+        yield start;
+        if (start === end) return;
+        yield* range(start + 1, end);
+    }
+    const fretNums = [...range(0,12)]
+    console.log(fretNums)
+
     //sets the range of notes for each string or column
     const standardTuning = [
         scaleRange('E2','E3'),
@@ -25,11 +33,12 @@ const FretBoard=(props)=>{
 
     //dynamically builds fretboard based on inserted notes
     const stringTuner=(scaleArray)=>{
-        return scaleArray.map((n) =>(
+        return scaleArray.map((n,i) =>(
             <NoteButton
                 setSelectedNotes ={props.setSelectedNotes}
                 setNotes={props.setNotes}
                 thisNote={n}
+                fret={i}
                 grouping = {props.grouping}
             />
         ))
