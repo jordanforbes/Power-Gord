@@ -62,7 +62,7 @@ const NoteButton=(props)=>{
                 noteButton btn
                 ${
                     isRoot ? 'isRoot' :
-                    isThird ? thirdColor :
+                    // isThird ? thirdColor :
                     isFifth ? fifthColor :
                     inRange? rangeColor :'isNotInRange'
                 }

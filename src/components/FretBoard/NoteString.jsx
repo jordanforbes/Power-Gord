@@ -59,7 +59,7 @@ const NoteString=(props)=>{
         <span className={`btnNote ${note[1] ? 'hasAcc':'noAcc'}`}>{note}</span>
 
         <span className={`topright
-            ${props.isRoot ? 'noInterval' :props.isFifth || props.isThird? 'boldInterval' : 'btnOctave'}
+            ${props.isRoot ? 'boldInterval' :props.isFifth || props.isThird? 'boldInterval' : 'btnOctave'}
         `}>
             {props.thisInterval}
         </span>
