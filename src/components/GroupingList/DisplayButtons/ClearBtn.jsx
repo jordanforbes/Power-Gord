@@ -5,7 +5,7 @@
 import { useDispatch } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { reset} from '../../../features/groupSelector/groupSelectorSlice';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const ClearBtn =(props)=>{
     const dispatch = useDispatch()
@@ -31,9 +31,11 @@ const ClearBtn =(props)=>{
 
           {/* X for clear */}
           <div className={`xClear`}>
-              {props.root ? 'x': ''}
+              {props.root ?
+              'x': ''}
           </div>
         </Button>
+
       </>
     )
 

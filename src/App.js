@@ -6,6 +6,8 @@ import './stylesheets/App.scss';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Chord, Scale, ChordType, ScaleType } from '@tonaljs/tonal'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 import FretBoard from './components/FretBoard/FretBoard';
 import PowerHeader from './components/PowerHeader';
