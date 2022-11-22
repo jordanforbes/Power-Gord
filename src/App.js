@@ -6,7 +6,7 @@ import './stylesheets/App.scss';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Chord, Scale, ChordType, ScaleType } from '@tonaljs/tonal'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { AiOutlineQuestionCircle } from 'react-icons/ai'
 
 
 import FretBoard from './components/FretBoard/FretBoard';
@@ -35,10 +35,13 @@ const App=()=>{
             // style={{'margin-right':'-40px'}}
           >
             {/* fretboard grid */}
+            <div>
             <FretBoard
               selectedGroup = {selectedGroup}
               grouping={grouping}
             />
+            </div>
+
           </div>
           <div className="col-md-4">
             <div className="row">

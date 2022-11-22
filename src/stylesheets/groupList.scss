@@ -92,6 +92,10 @@
     color:$bg;
     background-color:$chordsHover;
 }
+
+.chordRow:active{
+    background-color:$chordsLight;
+}
 .chordRow:hover .groupNoteList{
     cursor:pointer;
     color: $bg;
@@ -103,6 +107,10 @@
 .scaleRow:hover .interGroup{
     cursor:pointer;
     color: $bg !important;
+}
+
+.scaleRow:active{
+    background-color:$scalesLight;
 }
 
 .selectedGroupName{

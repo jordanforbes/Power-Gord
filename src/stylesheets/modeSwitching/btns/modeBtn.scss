@@ -43,6 +43,15 @@
     border-color: $scalesHover !important;
 }
 
+.inactiveModeChords:active{
+    background-color: $chordsLight !important;
+    border-color: $chordsLight !important;
+}
+
+.inactiveModeScales:active{
+    background-color: $scalesLight !important;
+    border-color: $scalesLight !important;
+}
 
 .disabled{
     pointer-events:none;

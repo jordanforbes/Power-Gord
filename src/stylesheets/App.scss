@@ -35,6 +35,25 @@
   color: $bg;
 }
 
+.helpBtn{
+  color:$fretboardHover;
+  font-size:30px;
+  padding-left:10px;
+  // display:block;
+  // float:left;
+}
+.helpBtn:hover{
+  color: #6dc2ff;
+  font-weight:bold;
+  padding-left:10px;
+  cursor: pointer;
+  // display:block;
+  // float:left;
+}
+.helpBtn:active{
+  color:#bae2ff;
+}
+
 .App-link {
   // color: #61dafb;
 }

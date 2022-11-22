@@ -5,6 +5,7 @@
 import React from 'react';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { Scale } from '@tonaljs/tonal'
+import { AiOutlineQuestionCircle } from 'react-icons/ai'
 
 //components
 import NoteButton from './NoteButton';
@@ -57,6 +58,9 @@ const FretBoard=(props)=>{
     return(
         <div className="fBoardContainer note-bar container d-flex flex-nowrap">
             {fretboardBuilder()}
+            {/* <div className="helpBtn"> */}
+                < AiOutlineQuestionCircle className="helpBtn"/>
+            {/* </div> */}
         </div>
     )
 

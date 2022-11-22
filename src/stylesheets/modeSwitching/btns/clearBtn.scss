@@ -10,6 +10,10 @@
     background-color: $root !important;
     color: $bg !important;
 }
+.clearBtn:active{
+    background-color: $rootLight !important;
+
+}
 
 .xClear{
     color:$root;
