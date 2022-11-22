@@ -64,7 +64,7 @@ const GroupingBtn=(props)=>{
         return (
             <>
             <br />
-            <span className='groupSpacing interGroup selectedGroupNoteList'>
+            <span className={`groupSpacing ${active? 'selInterGroup' : 'interGroup'} intervals`}>
                 {intArr.map(n => (<span className="interSpacing">{n[1]+n[0]} </span> ))}
             </span>
             </>
@@ -72,18 +72,19 @@ const GroupingBtn=(props)=>{
     }
 
     return(
-        <tr className={`${changeHoverColor()} ${active? changeBgColor():''}`}onClick={handleClick}>
+        <tr className={`groupBtn ${changeHoverColor()} ${active? changeBgColor():''}`}onClick={handleClick}>
             <div>
 
             <span className={`groupSpacing ${active? 'selectedScaleName':''}`}>
-                <span className={`groupSpacing ${active? 'selectedGroupName selectedScale':''}`}>
+                <span className={`groupSpacing ${active? 'selectedGroupName selectedScale':''} noteList`}>
                 {formatter(props.name)}
                 </span>
                 <br />
                 <span className={`groupSpacing ${active? 'selectedGroupNoteList': 'groupNoteList' }`}>
                     {showNotes()}
                 </span>
-                {active ? showIntervals() : '' }
+                    {showIntervals()}
+                {/* {active ? showIntervals() : '' } */}
             </span>
                 <div className={`${active? 'xClearGroupingBtn' : 'unselectedClear'}`}>
                     x

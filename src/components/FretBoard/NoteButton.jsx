@@ -16,19 +16,19 @@ const NoteButton=(props)=>{
     const [isEnharmonic, setIsEnharmonic] = useState(false)
     const [thisInterval, setThisInterval] = useState('')
     const [isFifth, setIsFifth] = useState(false)
-    const [isThird, setIsThird] = useState(false)
+    // const [isThird, setIsThird] = useState(false)
 
     const dispatch = useDispatch();
     const root = useSelector(state => state.groupSelector.root)
     const areScales = useSelector(state => state.groupSelector.areScales)
 
-    const checkIsFifth =()=>{ thisInterval === 'P5'? setIsFifth(true) : setIsFifth(false)}
-    const checkIsThird =()=>{ thisInterval[1] === '3'? setIsThird(true) : setIsThird(false)}
+    const checkIsFifth =()=>{ thisInterval[1] === '5'? setIsFifth(true) : setIsFifth(false)}
+    // const checkIsThird =()=>{ thisInterval[1] === '3'? setIsThird(true) : setIsThird(false)}
 
     //sets the default color value for the group based on if it's scales or chords.
     var rangeColor = areScales ? 'isInRangeScales':'isInRangeChords'
     var fifthColor = areScales ? 'sIsFifth' : 'cIsFifth'
-    var thirdColor = areScales ? 'sIsThird' : 'cIsThird'
+    // var thirdColor = areScales ? 'sIsThird' : 'cIsThird'
 
     //adds root and group together to plug back into the tonaljs library
     useEffect(()=>{
@@ -41,7 +41,7 @@ const NoteButton=(props)=>{
 
     useEffect(()=>{
         checkIsFifth()
-        checkIsThird()
+        // checkIsThird()
     },[thisInterval])
 
     //sets the root for the chord/scale on button press
@@ -77,7 +77,7 @@ const NoteButton=(props)=>{
                 isEnharmonic = {isEnharmonic} setIsEnharmonic = {setIsEnharmonic}
                 thisInterval = {thisInterval} setThisInterval = {setThisInterval}
                 isFifth = {isFifth} setIsFifth = {setIsFifth}
-                isThird = {isThird}
+                // isThird = {isThird}
             />
         </button>
     )

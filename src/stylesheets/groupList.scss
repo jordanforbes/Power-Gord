@@ -18,17 +18,36 @@
     display:none;
 }
 
+// .intervals{
+//     display:block;
+//     float:left;
+// }
+// .noteList{
+//     display:block;
+//     float:left;
+// }
+
 .groupSpacing{
     padding:4px !important;
 }
 
+.groupBtn:hover .groupNoteList{
+    font-weight:bold;
+}
+
 .interGroup{
-    padding-left:px !important;
+    padding-left:7px !important;
+    color: $fretboardHover !important;
+}
+.selInterGroup{
+    padding-left:7px !important;
+    color: $bg !important;
 }
 
 .interSpacing{
     // padding-left:5px;
     padding-right:5px !important;
+    font-size:10px;
 
 }
 .selectedScaleRow{
@@ -77,6 +96,14 @@
     cursor:pointer;
     color: $bg;
 }
+.chordRow:hover .interGroup{
+    cursor:pointer;
+    color: $bg !important;
+}
+.scaleRow:hover .interGroup{
+    cursor:pointer;
+    color: $bg !important;
+}
 
 .selectedGroupName{
     color:$bg;
@@ -89,10 +116,13 @@
 }
 .selectedGroupNoteList{
     font-size: smaller;
+
+    // font-size: smaller;
+    font-weight:bold;
     color:$bg;
 }
-.groupNoteListHover{
-    font-size: smaller;
+.groupNoteList:hover{
+    // font-size: smaller;
     color:$bg !important;
     font-weight:bold;
 }

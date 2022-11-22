@@ -52,21 +52,21 @@
 .sIsThird{
     color: $bg !important;
     font-weight:900;
-    background-color: $sThird !important;
+    background-color: $scales !important;
 }
 
 .sIsThird:hover{
-    background-color: $sThirdHover !important;
+    background-color: $scalesHover !important;
     color: $darkText;
 }
 .cIsThird{
     color: $bg !important;
     font-weight:900;
-    background-color: $cThird !important;
+    background-color: $chords !important;
 }
 
 .cIsThird:hover{
-    background-color: $cThirdHover !important;
+    background-color: $chordsHover !important;
     color: $darkText;
 }
 .isInRangeScales{
