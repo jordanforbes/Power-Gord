@@ -5,8 +5,8 @@
 
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { octaveRemove } from '../../utilities/utils';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { octaveRemove } from '../../utils/utils';
 import { selectRoot } from '../../features/groupSelector/groupSelectorSlice';
 import NoteString from './NoteString';
 
@@ -18,9 +18,9 @@ const NoteButton=(props)=>{
     const [isFifth, setIsFifth] = useState(false)
     // const [isThird, setIsThird] = useState(false)
 
-    const dispatch = useDispatch();
-    const root = useSelector(state => state.groupSelector.root)
-    const areScales = useSelector(state => state.groupSelector.areScales)
+    const dispatch = useAppDispatch();
+    const root = useAppSelector(state => state.groupSelector.root)
+    const areScales = useAppSelector(state => state.groupSelector.areScales)
 
     const checkIsFifth =()=>{ thisInterval[1] === '5'? setIsFifth(true) : setIsFifth(false)}
     // const checkIsThird =()=>{ thisInterval[1] === '3'? setIsThird(true) : setIsThird(false)}
@@ -29,7 +29,7 @@ const NoteButton=(props)=>{
     var rangeColor = areScales ? 'isInRangeScales':'isInRangeChords'
     var fifthColor = areScales ? 'sIsFifth' : 'cIsFifth'
     // var thirdColor = areScales ? 'sIsThird' : 'cIsThird'
-
+    const [testClick, setTestClick]= useState(false)
     //adds root and group together to plug back into the tonaljs library
     useEffect(()=>{
         if(root === octaveRemove(props.thisNote)){
@@ -53,6 +53,7 @@ const NoteButton=(props)=>{
     const handleClick=()=>{
         isRoot ? activate(""):
         activate(props.thisNote)
+        setTestClick(true)
 
     }
     return(
@@ -77,6 +78,8 @@ const NoteButton=(props)=>{
                 isEnharmonic = {isEnharmonic} setIsEnharmonic = {setIsEnharmonic}
                 thisInterval = {thisInterval} setThisInterval = {setThisInterval}
                 isFifth = {isFifth} setIsFifth = {setIsFifth}
+                handleClick = {handleClick}
+                testClick = {testClick}
                 // isThird = {isThird}
             />
         </button>

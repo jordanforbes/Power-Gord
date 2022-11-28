@@ -5,18 +5,18 @@
 
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { formatter, noteFormatter } from '../../../utilities/utils';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { formatter, noteFormatter } from '../../../utils/utils';
 import { selectGroup, clearGroup } from '../../../features/groupSelector/groupSelectorSlice';
 
 const GroupingBtn=(props)=>{
     const [active, setActive] = useState(false)
 
-    const areScales = useSelector(state => state.groupSelector.areScales)
-    const rawRoot = useSelector(state => state.groupSelector.rawRoot)
-    var selectedGroup = useSelector(state => state.groupSelector.selectedGroup)
+    const areScales = useAppSelector(state => state.groupSelector.areScales)
+    const rawRoot = useAppSelector(state => state.groupSelector.rawRoot)
+    var selectedGroup = useAppSelector(state => state.groupSelector.selectedGroup)
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const selectGrouping =(group)=> {
         dispatch(selectGroup(group))

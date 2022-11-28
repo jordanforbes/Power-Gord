@@ -36,10 +36,10 @@ const FretBoard=(props)=>{
     const stringTuner=(scaleArray)=>{
         return scaleArray.map((n,i) =>(
             <NoteButton
-                setSelectedNotes ={props.setSelectedNotes}
-                setNotes={props.setNotes}
+                // setSelectedNotes ={props.setSelectedNotes}
+                // setNotes={props.setNotes}
                 thisNote={n}
-                fret={i}
+                // fret={i}
                 grouping = {props.grouping}
             />
         ))
