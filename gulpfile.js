@@ -23,3 +23,9 @@ gulp.task('message', async ()=>{
     return gulp.src('./git-test/*')
       .pipe(git.add({args: ' .'}));
   });
+
+  // Run git commit with options
+gulp.task('commit', function(){
+    return gulp.src('./git-test/*')
+      .pipe(git.commit('initial commit', {args: '-a -m'}));
+  });
