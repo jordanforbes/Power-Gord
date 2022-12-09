@@ -1,30 +1,34 @@
+////////////////////////////////////////////////////////////////
+//component which defines the individual note buttons on the fretboard.
+//sets active Root
+////////////////////////////////////////////////////////////////
+
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Note } from '@tonaljs/tonal'
-
+import { octaveRemove } from '../../utilities/utils';
 import { selectRoot } from '../../features/groupSelector/groupSelectorSlice';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 import NoteString from './NoteString';
 
 const NoteButton=(props)=>{
+    const [isRoot, setIsRoot] = useState(false)
+    const [inRange, setInRange] = useState(true)
+    const [isEnharmonic, setIsEnharmonic] = useState(false)
+    const [thisInterval, setThisInterval] = useState('')
+    const [isFifth, setIsFifth] = useState(false)
+    // const [isThird, setIsThird] = useState(false)
+
     const dispatch = useDispatch();
     const root = useSelector(state => state.groupSelector.root)
     const areScales = useSelector(state => state.groupSelector.areScales)
 
-    const [isRoot, setIsRoot] = useState(false)
-    const [inRange, setInRange] = useState(true)
-    const [isEnharmonic, setIsEnharmonic] = useState(false)
+    const checkIsFifth =()=>{ thisInterval[1] === '5'? setIsFifth(true) : setIsFifth(false)}
+    // const checkIsThird =()=>{ thisInterval[1] === '3'? setIsThird(true) : setIsThird(false)}
 
     //sets the default color value for the group based on if it's scales or chords.
-
-    var groupColor = areScales ? 'red':'blue'
-
-    const octaveRemove =(note)=>{
-        return note.slice(0, note.length-1)
-    }
+    var rangeColor = areScales ? 'isInRangeScales':'isInRangeChords'
+    var fifthColor = areScales ? 'sIsFifth' : 'cIsFifth'
+    // var thirdColor = areScales ? 'sIsThird' : 'cIsThird'
 
     //adds root and group together to plug back into the tonaljs library
     useEffect(()=>{
@@ -35,42 +39,47 @@ const NoteButton=(props)=>{
         }
     },[root])
 
+    useEffect(()=>{
+        checkIsFifth()
+        // checkIsThird()
+    },[thisInterval])
+
     //sets the root for the chord/scale on button press
     const activate=(note)=>{
         setIsRoot(current => !current);
         dispatch(selectRoot(note))
-        console.log('redux state change '+root)
     }
 
     const handleClick=()=>{
         isRoot ? activate(""):
-        console.log('enharmonic',Note.chroma(props.thisNote))
-
         activate(props.thisNote)
 
     }
     return(
-        <Button
+        <button
             type="button"
-            className={`btn btn-outline-light noteButton
-                ${inRange? 'isInRange':'isNotInRange'}`}
+            className={`
+                noteButton btn
+                ${
+                    isRoot ? 'isRoot' :
+                    // isThird ? thirdColor :
+                    isFifth ? fifthColor :
+                    inRange? rangeColor :'isNotInRange'
+                }
+            `}
             onClick={handleClick}
-            style={{
-                width:'50px',
-                display:'block',
-                backgroundColor: isRoot? "#ffff80" : inRange? groupColor: "gray",
-                "color": isRoot? 'black':'white'
-            }}
         >
             <NoteString
-                isEnharmonic = {isEnharmonic}
-                setIsEnharmonic = {setIsEnharmonic}
                 thisNote = {props.thisNote}
-                inRange = {props.inRange}
                 grouping = {props.grouping}
-                setInRange = {setInRange}
+                isRoot = {isRoot}
+                inRange = {inRange} setInRange = {setInRange}
+                isEnharmonic = {isEnharmonic} setIsEnharmonic = {setIsEnharmonic}
+                thisInterval = {thisInterval} setThisInterval = {setThisInterval}
+                isFifth = {isFifth} setIsFifth = {setIsFifth}
+                // isThird = {isThird}
             />
-        </Button>
+        </button>
     )
   }
 

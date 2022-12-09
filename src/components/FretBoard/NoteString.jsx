@@ -1,58 +1,68 @@
-import { useEffect } from 'react';
+////////////////////////////////////////////////////////////////
+//defines the note listed on each noteBtn
+///////////////////////////////////////////////////////////////
+
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Note } from '@tonaljs/tonal'
-
+import { octaveRemove } from '../../utilities/utils';
 
 const NoteString=(props)=>{
     const rawRoot = useSelector(state => state.groupSelector.rawRoot)
     var selectedGroup = useSelector(state => state.groupSelector.selectedGroup)
+    var groupInterval = useSelector(state => state.groupSelector.groupInterval)
+    const selectionReady = useSelector(state => state.groupSelector.selectionReady)
 
+    // const [thisInterval, setThisInterval] = useState('')
 
     //separate note from octave
-    let note = props.thisNote.substr(0,props.thisNote.length-1)
-    let octave = props.thisNote.substr(props.thisNote.length-1)
-
+    let note = octaveRemove(props.thisNote)
 
     //gets notes from grouping
     const findGroup =(group)=>{
         let groupArr = props.grouping.get(rawRoot+' '+group).notes
-        groupArr = groupArr.map(n =>(
+        return groupArr.map(n =>(
             n.slice(0,n.length-1)
         ))
-        return groupArr
     }
 
+    //is this note within the selected group?
     const checkInRange =()=>{
         let currentGroup = findGroup(selectedGroup)
-        let currentNote = props.thisNote.slice(0,props.thisNote.length-1)
-
-        let noteChroma = Note.chroma(currentNote)
+        let noteChroma = Note.chroma(note)
         let chromaGroup = currentGroup.map(Note.chroma)
 
-        chromaGroup.includes(noteChroma) ? props.setInRange(true): props.setInRange(false)
+        if(chromaGroup.includes(noteChroma) && selectionReady){
+            props.setInRange(true)
+            let selInterval = groupInterval[chromaGroup.indexOf(noteChroma)]
+            props.setThisInterval(`${selInterval[1]}${selInterval[0]}`)
+            // props.setThisInterval(`${selInterval[1]}${selInterval[0]}`)
+        }else{
+            props.setInRange(false)
+            props.setThisInterval('')
+        }
     }
 
-    //checks if note is in range of group
     useEffect(()=>{
         checkInRange()
     },[selectedGroup,rawRoot])
+
 
     const getEnharmonic=(n)=>{
         return Note.enharmonic(n)
     }
 
-
-
     note = props.isEnharmonic ?getEnharmonic(note) : note
 
     return (
         <>
-        <span
-            className={`btnNote
-                ${props.isRoot? 'isRoot':'isNotRoot'}
-            `}
-        >{note}</span>
-        <span className="btnOctave topright">{octave}</span>
+        <span className={`btnNote ${note[1] ? 'hasAcc':'noAcc'}`}>{note}</span>
+
+        <span className={`topright
+            ${props.isRoot ? 'boldInterval' :props.isFifth ? 'boldInterval' : 'btnOctave'}
+        `}>
+            {props.thisInterval}
+        </span>
         </>)
 }
 
