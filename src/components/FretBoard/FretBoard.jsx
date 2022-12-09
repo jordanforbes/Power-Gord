@@ -5,7 +5,9 @@
 import React from 'react';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { Scale } from '@tonaljs/tonal'
+import HelpModal from '../Help/HelpModal';
 import { AiOutlineQuestionCircle } from 'react-icons/ai'
+import { useState } from "react";
 
 //components
 import NoteButton from './NoteButton';
@@ -13,6 +15,7 @@ import NoteButton from './NoteButton';
 const FretBoard=(props)=>{
     //sets tuning by creating arrays of scales that represent individual guitar strings
     const scaleRange = Scale.rangeOf('E chromatic')
+    const [displayModal, setDisplayModal] =useState(false)
 
     function* range(start, end) {
         yield start;
@@ -55,12 +58,24 @@ const FretBoard=(props)=>{
         ))
     }
 
+    const toggleModal =()=>{
+        setDisplayModal(!displayModal)
+    }
+
+    const handleClick = ()=>{
+        setDisplayModal(true)
+    }
     return(
         <div className="fBoardContainer note-bar container d-flex flex-nowrap">
             {fretboardBuilder()}
-            {/* <div className="helpBtn"> */}
-                < AiOutlineQuestionCircle className="helpBtn"/>
-            {/* </div> */}
+            < AiOutlineQuestionCircle
+                className="helpBtn"
+                onClick={handleClick}
+            />
+            <HelpModal
+                displayModal={displayModal}
+                setDisplayModal={setDisplayModal}
+            />
         </div>
     )
 

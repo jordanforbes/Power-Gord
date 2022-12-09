@@ -8,6 +8,44 @@
   background-color: $bg;
 }
 
+.modal{
+  position: relative;
+}
+
+@media screen and (min-width: 500px){
+  .showModal{
+    position: absolute;
+    display:block;
+    background-color:white;
+    z-index:5;
+    opacity: 0.9;
+    height:600px;
+    width:500px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin-left:100px;
+  }
+}
+
+@media screen and (max-width: 499px){
+  .showModal{
+    font-size:smaller;
+    position: absolute;
+    display:block;
+    background-color:white;
+    z-index:5;
+    opacity: 0.9;
+    height:640px;
+    width:300px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+  }
+}
+
+
+.hideModal{
+  display:none;
+}
 .outline {
   height: 30px;
   border: 1px solid $darkText;
