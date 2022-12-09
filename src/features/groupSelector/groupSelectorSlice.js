@@ -24,12 +24,6 @@ export const groupSelectorSlice = createSlice({
             state.rawRoot=''
         },
 
-        getRoot: (state)=>{
-            return state.root
-        },
-        getRawRoot: (state)=>{
-            return state.rawRoot
-        },
         selectGroup: (state, action)=>{
             state.selectedGroup = action.payload
 
@@ -70,6 +64,6 @@ export const groupSelectorSlice = createSlice({
     }
 })
 
-export const { getGrouping, setGroupMode, selectRoot, getRoot, getRawRoot, clearRoot,  selectGroup, clearGroup, swapGrouping, reset } = groupSelectorSlice.actions
+export const { getGrouping, setGroupMode, selectRoot, clearRoot,  selectGroup, clearGroup, swapGrouping, reset } = groupSelectorSlice.actions
 
 export default groupSelectorSlice.reducer

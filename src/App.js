@@ -6,7 +6,7 @@ import './stylesheets/App.scss';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Chord, Scale, ChordType, ScaleType } from '@tonaljs/tonal'
-// import { AiOutlineQuestionCircle } from 'react-icons/ai'
+import { AiOutlineQuestionCircle } from 'react-icons/ai'
 
 
 import FretBoard from './components/FretBoard/FretBoard';
@@ -20,7 +20,7 @@ const App=()=>{
   const selectedGroup =  useSelector(state => state.groupSelector.selectedChord)
   const grouping = areScales ? Scale : Chord
   const groupType = areScales ? ScaleType : ChordType
-  
+
 
   return (
     <div className="App bg">

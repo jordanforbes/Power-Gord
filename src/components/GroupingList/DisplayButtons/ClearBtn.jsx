@@ -2,13 +2,13 @@
 //Defines the clear button which displays the root and also erases it
 ////////////////////////////////////////////////////////////////////////////////////
 
-import { useAppDispatch } from '../../../app/hooks';
+import { useDispatch } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { reset} from '../../../features/groupSelector/groupSelectorSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const ClearBtn =(props)=>{
-    const dispatch = useAppDispatch()
+    const dispatch = useDispatch()
 
     const clearBoard=()=>{
         dispatch(reset())

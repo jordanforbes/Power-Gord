@@ -5,7 +5,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Note } from '@tonaljs/tonal'
-import { octaveRemove } from '../../utils/utils';
+import { octaveRemove } from '../../utilities/utils';
 
 const NoteString=(props)=>{
     const rawRoot = useSelector(state => state.groupSelector.rawRoot)

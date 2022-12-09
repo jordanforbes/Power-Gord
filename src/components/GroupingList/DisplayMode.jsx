@@ -5,16 +5,16 @@
 import GroupList from "./GroupList/GroupList"
 import ClearBtn from './DisplayButtons/ClearBtn'
 import ModeBtn  from "./DisplayButtons/ModeBtn"
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useDispatch, useSelector } from 'react-redux';
 import { setGroupMode, clearGroup } from '../../features/groupSelector/groupSelectorSlice';
 
 
 //contains the note list and the group list
 const DisplayMode = (props)=>{
-  const dispatch = useAppDispatch();
-  const areScales = useAppSelector(state => state.groupSelector.areScales)
+  const dispatch = useDispatch();
+  const areScales = useSelector(state => state.groupSelector.areScales)
 
-  const root = useAppSelector(state => state.groupSelector.root)
+  const root = useSelector(state => state.groupSelector.root)
 
 
   const scaleMode =()=>{
