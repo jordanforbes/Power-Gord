@@ -20,7 +20,7 @@ const App=()=>{
   const selectedGroup =  useSelector(state => state.groupSelector.selectedChord)
   const grouping = areScales ? Scale : Chord
   const groupType = areScales ? ScaleType : ChordType
-
+  
 
   return (
     <div className="App bg">
