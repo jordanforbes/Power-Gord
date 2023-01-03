@@ -1,5 +1,5 @@
 // const {src, dest} = require("gulp")
-function dummy() {
+async function dummy() {
   console.log("dummy gulp");
 }
 
