@@ -1,6 +1,6 @@
 // const {src, dest} = require("gulp")
 function dummy() {
-  print("dummy gulp");
+  console.log("dummy gulp");
 }
 
 exports.default = dummy;
